@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Foodsaver</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script defer src="js/header.js"></script>
-</head>
-<body>
-    <header class="site-header" role="banner">
-        <div class="container header-inner">
-            <a href="/" class="brand" aria-label="Foodsaver — Inicio">
-                <img src="assets/icons/Foodsaver.png" class="brand__icon" width="36" height="36" alt="Logo Foodsaver">
-                <span class="brand__name">FOODSAVER</span>
-            </a>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Foodsaver</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <script defer src="js/header.js"></script>
+    </head>
+    <body>
+        <!-- Skip link para usuarios de teclado / lectores -->
+        <a class="skip-link sr-only" href="#content">Saltar al contenido</a>
 
-            <nav class="main-nav" role="navigation" aria-label="Navegación principal">
-                <ul class="nav__list">
-                    <li class="nav__item"><a class="nav__link" href="#">Inicio</a></li>
-                    <li class="nav__item"><a class="nav__link" href="#">Recetas</a></li>
-                    <li class="nav__item"><a class="nav__link" href="#">Cómo funciona</a></li>
-                </ul>
-            </nav>
-
-            <div class="header-actions" aria-hidden="false">
-                <a href="#cart" class="cart" aria-label="Ver carrito">
-                    <img src="assets/icons/Shopping_Bag.png" alt="" aria-hidden="true" width="24" height="24">
+        <header class="site-header">
+            <div class="container header-inner">
+                <a href="/" class="brand" aria-label="Foodsaver — Inicio">
+                    <img src="assets/icons/Foodsaver.png" class="brand__icon" width="36" height="36" alt="Logo Foodsaver">
+                    <span class="brand__name">FOODSAVER</span>
                 </a>
 
-                <button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
-                    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
-                </button>
-            </div>
-        </div>
-
-                <div id="mobile-menu" class="mobile-menu" hidden>
-            <div class="mobile-card" role="dialog" aria-modal="true" aria-label="Navegación móvil">
-                <header class="mobile-card__header">
-                    <button class="mobile-close" aria-label="Cerrar menú">
-                        <img src="assets/icons/Close_Menu.png" alt="Cerrar menú">
-                    </button>
-                </header>
-
-                <nav class="mobile-nav" aria-label="Navegación móvil">
-                    <ul class="mobile-nav__list">
-                        <li><a href="#" class="mobile-nav__link">Inicio</a></li>
-                        <li><a href="#" class="mobile-nav__link">Recetas</a></li>
-                        <li><a href="#" class="mobile-nav__link">Cómo funciona</a></li>
+                <nav class="main-nav" aria-label="Navegación principal">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a class="nav__link" href="#">Inicio</a></li>
+                        <li class="nav__item"><a class="nav__link" href="#">Recetas</a></li>
+                        <li class="nav__item"><a class="nav__link" href="#">Cómo funciona</a></li>
                     </ul>
                 </nav>
 
-                <a href="#cart" class="mobile-cart" aria-label="Ver carrito">
-                    <img src="assets/icons/Shopping_Bag.png" alt="" aria-hidden="true" width="44" height="44">
-                </a>
-            </div>
-        </div>
-    </header>
+                <div class="header-actions">
+                    <a href="#cart" class="cart" aria-label="Ver carrito">
+                        <img src="assets/icons/Shopping_Bag.png" alt="" aria-hidden="true" width="24" height="24">
+                    </a>
 
-    <main id="content" tabindex="-1">
-        <!-- Contenido de la página -->
-    </main>
-</body>
+                    <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
+                        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="mobile-menu" hidden>
+                <div class="mobile-card" role="dialog" aria-modal="true" aria-label="Navegación móvil">
+                    <header class="mobile-card__header">
+                        <button class="mobile-close" type="button" aria-label="Cerrar menú">
+                            <img src="assets/icons/Close_Menu.png" alt="" aria-hidden="true">
+                        </button>
+                    </header>
+
+                    <nav class="mobile-nav" aria-label="Navegación móvil">
+                        <ul class="mobile-nav__list">
+                            <li><a href="#" class="mobile-nav__link">Inicio</a></li>
+                            <li><a href="#" class="mobile-nav__link">Recetas</a></li>
+                            <li><a href="#" class="mobile-nav__link">Cómo funciona</a></li>
+                        </ul>
+                    </nav>
+
+                    <a href="#cart" class="mobile-cart" aria-label="Ver carrito">
+                        <img src="assets/icons/Shopping_Bag.png" alt="" aria-hidden="true" width="44" height="44">
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main id="content" tabindex="-1">
+            <!-- Contenido de la página -->
+        </main>
+    </body>
 </html>
