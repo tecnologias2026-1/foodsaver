@@ -1,59 +1,74 @@
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
   const menuToggle = document.querySelector('.menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
-  const mobileClose = document.querySelector('.mobile-close');
   const siteHeader = document.querySelector('.site-header');
 
-  if(!menuToggle || !mobileMenu) return;
+  if (!menuToggle || !mobileMenu) return;
 
-  function openMenu(){
+  let previousFocus = null;
+  const focusableSel = 'a, button, [tabindex]:not([tabindex="-1"])';
+  const navLinksSelector = '.nav__link, .mobile-nav__link';
+
+  // Trampa de foco: Tab/Shift+Tab ciclan; Escape cierra
+  function trap(e) {
+    if (e.key === 'Escape') { closeMenu(); return; }
+    if (e.key !== 'Tab') return;
+
+    const nodes = mobileMenu.querySelectorAll(focusableSel);
+    const first = nodes[0];
+    const last = nodes[nodes.length - 1];
+    if (!first) return;
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+
+  function openMenu() {
+    previousFocus = document.activeElement;
     mobileMenu.hidden = false;
     mobileMenu.classList.add('is-open');
-    if(siteHeader) siteHeader.classList.add('menu-open');
-    menuToggle.setAttribute('aria-expanded','true');
+    if (siteHeader) siteHeader.classList.add('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-    // move focus into dialog
-    const firstFocusable = mobileMenu.querySelector('button, a');
-    if(firstFocusable) firstFocusable.focus();
+    const f = mobileMenu.querySelector(focusableSel);
+    if (f) f.focus();
+    document.addEventListener('keydown', trap);
   }
 
-  function closeMenu(){
+  function closeMenu() {
     mobileMenu.classList.remove('is-open');
     mobileMenu.hidden = true;
-    if(siteHeader) siteHeader.classList.remove('menu-open');
-    menuToggle.setAttribute('aria-expanded','false');
+    if (siteHeader) siteHeader.classList.remove('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
-    menuToggle.focus();
+    document.removeEventListener('keydown', trap);
+    (previousFocus || menuToggle).focus();
   }
 
-  menuToggle.addEventListener('click', function(){
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    if(expanded) closeMenu(); else openMenu();
+  menuToggle.addEventListener('click', function () {
+    const open = menuToggle.getAttribute('aria-expanded') === 'true';
+    open ? closeMenu() : openMenu();
   });
 
-  if(mobileClose) mobileClose.addEventListener('click', closeMenu);
-
-  // close when clicking backdrop
-  mobileMenu.addEventListener('click', function(e){
-    if(e.target === mobileMenu) closeMenu();
+  // Cerrar si clic en backdrop, en un enlace o en el botón cerrar
+  mobileMenu.addEventListener('click', function (e) {
+    if (
+      e.target === mobileMenu ||
+      e.target.closest('.mobile-close') ||
+      e.target.closest('a')
+    ) {
+      closeMenu();
+    }
   });
 
-  // close on link click
-  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
-
-  // Persist current nav item on click (desktop + mobile).
-  // Adds/removes `aria-current="page"` so CSS can style the active item.
-  const allNavLinks = document.querySelectorAll('.nav__link, .mobile-nav__link');
-  if(allNavLinks.length){
-    allNavLinks.forEach(link => {
-      link.addEventListener('click', function(){
-        allNavLinks.forEach(l => l.removeAttribute('aria-current'));
-        this.setAttribute('aria-current','page');
-      });
-    });
-  }
-
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMenu();
+  // Marcar enlace activo (aria-current)
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest(navLinksSelector);
+    if (!link) return;
+    document.querySelectorAll(navLinksSelector).forEach(function (l) { l.removeAttribute('aria-current'); });
+    link.setAttribute('aria-current', 'page');
   });
 });
