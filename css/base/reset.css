@@ -1,0 +1,86 @@
+/* ==========================
+   Reset / base
+   Ajustes generales para un comportamiento más consistente
+   ========================== */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    line-height: 1.4;
+    color: var(--text);
+}
+
+/* Hereda el color del texto y elimina el subrayado por defecto */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ==========================
+   Focus accesible
+   Unifica la indicación visual para elementos interactivos
+   ========================== */
+
+/* Elimina el outline por defecto y el highlight azul en móviles, pero mantiene un indicador de foco personalizado con box-shadow */
+.nav__link,
+.mobile-nav__link,
+.cart,
+.brand,
+button {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/*Se aplica un box-shadow verde semitransparente 
+solo cuando se usa el teclado para navegar. Screen Readers. NO SOLO cuando
+se hace click (focus) */
+.nav__link:focus-visible,
+.mobile-nav__link:focus-visible,
+.cart:focus-visible,
+.brand:focus-visible,
+button:focus-visible {
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius);
+}
+
+/* ==========================
+   Utilidades
+   ========================== */
+
+/* Hereda la tipografía del contexto en todos los botones */
+button {
+    font: inherit;
+}
+
+/* Oculta visualmente un elemento, pero lo mantiene accesible para lectores */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Hace visible el skip link cuando recibe foco */
+.sr-only:focus,
+.sr-only:active {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}

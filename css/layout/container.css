@@ -1,0 +1,6 @@
+/* Contenedor general para centrar contenido y limitar ancho */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem; /* Espaciado horizontal, 0 en top y bottom, 1 rem en sides */
+}

@@ -1,0 +1,47 @@
+/* ==========================
+   Estructura general del header
+   ========================== */
+
+/*Estilo base del header */
+.site-header {
+    background: var(--bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Layout del contenido interno del header */
+.header-inner {
+    display: flex; /* Ocupa todo el ancho disponible */
+    align-items: center; /* Centra verticalemente */
+    justify-content: space-between;
+    gap: var(--gap);
+    height: 64px;
+}
+
+/* ==========================
+   Marca / logo
+   ========================== */
+.brand {
+    display: inline-flex; /*Ocupa solo el espacio necesario para su contenido*/
+    align-items: center;
+    gap: .6rem;
+    font-weight: 700;
+    border-radius: var(--radius);
+    padding: 0.2rem;
+}
+
+/* Icono del logo con fondo verde de marca */
+.brand img {
+    width: auto;
+    height: 36px;
+    border-radius: var(--radius);
+    background: var(--accent);
+    padding: 4px;
+    object-fit: contain; /* La imagen debe encajar dentro de 36x36 sin deformarse / Mantiene proporcion */
+}
+
+/* Texto del logo */
+.brand__name {
+    color: var(--text);
+    font-size: 1.05rem;
+    letter-spacing: .08em;
+}

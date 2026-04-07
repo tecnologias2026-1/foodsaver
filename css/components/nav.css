@@ -1,0 +1,99 @@
+/* ==========================
+   Navegación principal
+   En móvil se oculta y se activa más adelante con media query
+   ========================== */
+.main-nav {
+    display: none; /* Se prioriza móvil antes que desktop, por eso se oculta por defecto */
+}
+
+/* Lista horizontal de enlaces en desktop */
+.nav__list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+    list-style: none; /* Elimina el marcador de lista por defecto */
+    border: 1px solid black;
+}
+
+.nav__link {
+    display: inline-block;
+    padding: .4rem .75rem; /*Arriba/Abajo, Izquierda/Derecha */
+    border-radius: var(--radius);
+    color: var(--muted);
+    transition: color var(--transition-fast); /* Transición suave para el cambio de color en hover y estados activos */
+}
+
+/* Se mantiene el color verde de los enlaces en hover, active y estado actual */
+/* Si se cumple cualquiera de estas condiciones, el enlace se resalta con el color de accent */
+.nav__link:hover, /* En hover */
+.nav__link:active, /* En active (mientras se hace clic) */
+.nav__link[aria-current="page"],
+.mobile-nav__link[aria-current="page"] {
+    color: var(--accent);
+}
+
+/* ==========================
+   Acciones del header
+   Agrupa carrito y botón hamburguesa
+   ========================== */
+
+/* Aunque solo se muestre un item segun responsive (carrito o menú), se diseña
+el contenedor para mantener dos o más elementos en caso de futuras adiciones */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+/* Estilo base compartido por el carrito y el botón de menú */
+.cart,
+.menu-toggle {
+    background: transparent; /* Quita el fondo gris por defecto de los botones */
+    border: none; /* Elimina el borde por defecto de los botones */
+    padding: .45rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Tamaño uniforme para iconos del header */
+/* Selecciona cualquier img dentro de .cart o .menu-toggle para aplicar el mismo tamaño */
+/* Es un selector descendiente. Apunta a elementos hijos img dentro de .cart o .menu-toggle */
+.cart img,
+.menu-toggle img {
+    width: auto;
+    height: 30px;
+}
+
+/* Hover compartido entre carrito desktop, menú hamburguesa y carrito móvil */
+.cart:hover,
+.menu-toggle:hover,
+.mobile-cart:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================
+   Media queries
+   ========================== */
+
+/* En móvil se oculta el carrito del header para evitar duplicación */
+/* Cuando la pantalla sea de 699px o MENOS */
+@media (max-width: 699px) {
+    .header-actions .cart {
+        display: none;
+    }
+}
+
+/* En desktop se muestra la navegación principal y se oculta el menú hamburguesa */
+/* Cuando la pantalla sea de 700px o MÁS grande */
+@media (min-width: 700px) {
+    .main-nav {
+        display: block;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+}
