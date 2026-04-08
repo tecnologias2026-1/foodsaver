@@ -11,9 +11,8 @@
     display: flex;
     margin: 0;
     padding: 0;
-    gap: 0;
+    gap: 1rem;
     list-style: none; /* Elimina el marcador de lista por defecto */
-    border: 1px solid black;
 }
 
 .nav__link {
