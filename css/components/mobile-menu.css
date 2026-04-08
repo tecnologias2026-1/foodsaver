@@ -1,0 +1,109 @@
+/* ==========================
+   Menú móvil
+   Overlay + tarjeta central
+   ========================== */
+.mobile-menu {
+    /* Cubre toda la pantalla con un fondo semitransparente */
+    position: fixed; /* Fija el menú al viewport para que no se mueva al hacer scroll */
+    inset: 0; /* Equivale a top: 0; right: 0; bottom: 0; left: 0; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.28);
+    z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .18s ease, visibility .18s;
+}
+
+/* Estado visible del overlay */
+/* Mismo elemento con dos clases: .mobile-menu para el estilo base y .is-open para activar la visibilidad */
+.mobile-menu.is-open {
+    visibility: visible; /* Hace visible el overlay */
+    opacity: 1; /* Si es cero el overlay no es visible pero es clickeable. Tambien controla el fade */
+}
+     
+/* Tarjeta del menú móvil */
+/* Contiene la navegacion, el botón de cierre y el acceso al carrito dentro del menú */
+.mobile-card {
+    width: min(92%, 400px); /* Usa el menor valor: 92% del ancho o máximo 420px */
+    border-radius: 12px;
+    padding: .75rem 1rem;
+    background: var(--bg);
+    
+    display: flex;
+    flex-direction: column;
+    
+    gap: .75rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    max-height: 92vh;
+}
+
+/* Cabecera del diálogo móvil */
+.mobile-card__header {
+    display: flex;
+    width: 100%;
+    align-items: center; /* Centra el botón de cierre verticalmente */
+    justify-content: center; /* Centra el botón de cierre horizontalmente */
+}
+
+/* Botón de cierre del menú móvil */
+.mobile-close {
+    background: transparent; /* Quita el fondo por defecto del botón */
+    padding: .4rem;
+    cursor: pointer;
+    border: none; /* Elimina el borde por defecto del botón */
+}
+
+/* Tamaño del icono de cierre */
+.mobile-close img {
+    display: block;
+    width: auto;
+    height: 50px;
+}
+
+/* Lista vertical de enlaces en móvil */
+.mobile-nav__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+/* Enlaces del menú móvil */
+.mobile-nav__link {
+    display: block;
+    width: 100%; /* Ocupa todo el ancho del contenedor para facilitar el clic en móvil */
+
+    text-align: center;
+    padding: .6rem 1rem;
+    border-radius: var(--radius);
+    color: var(--text);
+    transition: color var(--transition-fast);
+}
+
+.mobile-nav__link:hover,
+.mobile-nav__link:active {
+    color: var(--accent);
+}
+
+/* Carrito dentro del menú móvil */
+.mobile-cart {
+    border-radius: var(--radius);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    border: 1px solid black;
+}
+
+/* Tamaño del icono del carrito móvil */
+.mobile-cart img {
+    width: 60px;
+    height: 60px;
+    border: 1px solid black;
+}
