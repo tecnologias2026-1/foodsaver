@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
     <link rel="stylesheet" href="../css/components/buttons.css">
-    <link rel="stylesheet" href="../css/pages/home.css">
+    <link rel="stylesheet" href="../css/pages/recetas.css">
 
     <!-- Script del header: controla menú móvil y estados interactivos -->
     <script defer src="../js/header.js"></script>
@@ -110,8 +110,104 @@
 
     <!-- Contenido principal de la página -->
     <main id="content" tabindex="-1">
-Aqui van las recetas
-<!-- Aquí irá el contenido propio de cada vista -->
+        <section class="recipes-page" aria-labelledby="recipes-title">
+            <div class="container">
+                <div class="section-heading">
+                    <h1 id="recipes-title">Categorías</h1>
+                    <span class="section-icon" aria-hidden="true">↔</span>
+                </div>
+
+                <ul class="category-list" aria-label="Categorías de recetas">
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/comida vegana.jpg"
+                            alt="Mesa con un plato de comida vegana"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <p>Veganos</p>
+                    </li>
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/milhoja.jpg"
+                            alt="milhoja"
+                            loading="lazy"
+                            decoding="async"
+                        >
+                        <p>Postres</p>
+                    </li>
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/pasabocas.jpg"
+                            alt="Pasabocas sobre una tabla de servir"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <p>Pasabocas</p>
+                    </li>
+                </ul>
+
+                <div class="section-heading">
+                    <h2>Recetas Sugeridas</h2>
+                    <span class="section-icon" aria-hidden="true">↔</span>
+                </div>
+
+                <ul class="recipe-list" aria-label="Recetas sugeridas">
+                    <li class="recipe-card">
+                        <img
+                            src="../assets/images/Homemade-lasagna.png"
+                            alt="Plato de lasagna servido"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <div class="card-content">
+                            <p class="recipe-name">Lasagna</p>
+                        </div>
+                    </li>
+                    <li class="recipe-card">
+                        <img
+                            src="../assets/images/arroz-pollo.jpg"
+                            alt="Arroz con pollo servido en plato blanco"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <div class="card-content">
+                            <p class="recipe-name">Arroz con pollo</p>
+                        </div>
+                    </li>
+                    <li class="recipe-card">
+                        <img
+                            src="../assets/images/empanadas.jpg"
+                            alt="Empanadas doradas en una fuente"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <div class="card-content">
+                            <p class="recipe-name">Empanadas</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <span class="footer-text">🌐 Español (Colombia)</span>
+            </div>
+            <nav class="footer-nav" aria-label="Enlaces de footer">
+                <a href="#">Contacto</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Aviso Legal</a>
+            </nav>
+            <p class="footer-copyright">© FOODSAVER 2026</p>
+        </div>
+    </footer>
 </body>
 </html>
