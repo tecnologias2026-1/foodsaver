@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
     <link rel="stylesheet" href="../css/components/buttons.css">
-    <link rel="stylesheet" href="../css/pages/home.css">
+    <link rel="stylesheet" href="../css/pages/como-funciona.css">
 
     <!-- Script del header: controla menú móvil y estados interactivos -->
     <script defer src="../js/header.js"></script>
@@ -110,8 +110,115 @@
 
     <!-- Contenido principal de la página -->
     <main id="content" tabindex="-1">
-Aqui va la explicacion de como funciona
-<!-- Aquí irá el contenido propio de cada vista -->
+        <section class="how-it-works" aria-labelledby="how-it-works-title">
+            <div class="container">
+                <!-- Título principal -->
+                <h1 id="how-it-works-title" class="how-it-works__title">Cómo funcionamos</h1>
+
+                <!-- Descripción introductoria -->
+                <p class="how-it-works__subtitle">
+                    El Comparador Inteligente de Ingredientes utiliza tecnología
+                    automatizada para ayudarte a encontrar los mejores precios para
+                    los ingredientes de tus recetas favoritas.
+                </p>
+
+                <!-- Lista de pasos -->
+                <div class="how-it-works__steps" role="list">
+                    <!-- Paso 1 -->
+                    <article class="step-card" role="listitem">
+                        <div class="step-card__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <div class="step-card__content">
+                            <h3 class="step-card__title">1. Explora nuestras recetas</h3>
+                            <p class="step-card__description">
+                                Navega por diferentes categorías de recetas: postres,
+                                veganos, pasabocas, de mar y colombiana. Encuentra tu
+                                receta favorita.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Paso 2 -->
+                    <article class="step-card" role="listitem">
+                        <div class="step-card__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <div class="step-card__content">
+                            <h3 class="step-card__title">2. Compara ingredientes</h3>
+                            <p class="step-card__description">
+                                Selecciona la opción "Comparar ingredientes" y nuestra
+                                plataforma te mostrará automáticamente los precios de
+                                cada ingrediente en diferentes supermercados.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Paso 3 -->
+                    <article class="step-card" role="listitem">
+                        <div class="step-card__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <div class="step-card__content">
+                            <h3 class="step-card__title">3. Añade a tu bolsa</h3>
+                            <p class="step-card__description">
+                                Elige los productos con mejor relación calidad-precio y
+                                añádelos a tu bolsa de mercado. Podrás ver el total
+                                acumulado en tiempo real.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Paso 4 -->
+                    <article class="step-card" role="listitem">
+                        <div class="step-card__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <div class="step-card__content">
+                            <h3 class="step-card__title">4. Ahorra dinero</h3>
+                            <p class="step-card__description">
+                                Con la información de precios en múltiples supermercados,
+                                tomas decisiones informadas y ahorras en tus compras del
+                                mercado.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Tarjeta de tecnología automatizada -->
+                <div class="tech-card">
+                    <h3 class="tech-card__title">Tecnología automatizada</h3>
+                    <p class="tech-card__description">
+                        Utilizamos sistemas automatizados para consultar los precios en
+                        tiempo real de diferentes cadenas de supermercados, garantizando
+                        que siempre tengas acceso a información actualizada y confiable.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <span class="footer-text">🌐 Español (Colombia)</span>
+            </div>
+            <nav class="footer-nav" aria-label="Enlaces de footer">
+                <a href="#">Contacto</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Aviso Legal</a>
+            </nav>
+            <p class="footer-copyright">© FOODSAVER 2026</p>
+        </div>
+    </footer>
 </body>
 </html>
