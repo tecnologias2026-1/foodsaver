@@ -78,9 +78,13 @@
         <div id="mobile-menu" class="mobile-menu" hidden>
 
             <!-- Tarjeta central del menú móvil tratada como diálogo accesible -->
+             <!-- aria-modal="true"le indica a las tecnologías de asistencia que 
+              informen al usuario que la capacidad de interactuar con otro contenido 
+              de la página, o acceder a él, requiere que el cuadro de diálogo modal 
+              esté cerrado o pierda el foco. En este caso, el menú móvil es un diálogo modal -->
             <div class="mobile-card" role="dialog" aria-modal="true" aria-label="Navegación móvil">
 
-                <!-- Cabecera del menú móvil con botón de cierre -->
+                <!-- Cabecera del menú móvil con botón para cerrar -->
                 <header class="mobile-card__header">
                     <button class="mobile-close" type="button" aria-label="Cerrar menú">
                         <img src="assets/icons/Close_Menu.svg" alt="" aria-hidden="true">

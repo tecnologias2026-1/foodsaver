@@ -1,8 +1,9 @@
-/* Botones reutilizables */
+/* Botones reutilizables */ /* Por defecto los botones son inline block. Se
+Comportan como elementos en linea y además respetan las dimensiones  */
+/* Explorar recetas , ... */
 .btn {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
+    background: var(--accent); /* Color de fondo del boton */
+    color: #fff; /* Color del texto del boton */
     padding: 10px 18px;
     border-radius: 10px;
     font-weight: 500;

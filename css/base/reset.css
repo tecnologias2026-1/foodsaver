@@ -8,21 +8,24 @@
 
 html,
 body {
-    height: 100%;
+    height: 100%; /* Hace que el body ocupe toda la altura de la pantalla*/
+    
 }
 
 body {
-    margin: 0;
+    margin: 0; /* Elimina los márgenes predeterminados que la mayoría de los navegadores añaden automáticamente */
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    line-height: 1.4;
+    line-height: 1.4; /*Espacio entre lineas de texto, mejora la legibilidad */
     color: var(--text);
+    
 }
 
-/* Hereda el color del texto y elimina el subrayado por defecto */
+/* Elimina el subrayado por defecto */
 a {
-    color: inherit;
+    color: inherit; /* a de "Saltar al Contenido", hereda del body*/
     text-decoration: none;
 }
+
 
 /* ==========================
    Focus accesible
@@ -61,19 +64,22 @@ button {
 }
 
 /* Oculta visualmente un elemento, pero lo mantiene accesible para lectores */
+/* <a class="skip-link sr-only" href="#content">Saltar al contenido</a>*/
+
 .sr-only {
-    position: absolute;
-    width: 1px;
+    position: absolute; /*Layout method that removes an element from the 
+                            normal document flow, allowing you to place it at precise coordinates */
+    width: 1px; 
     height: 1px;
     padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
+    margin: -1px; /* Negative margin to ensure the element is completely off-screen */  
+    overflow: hidden; /* Si algo se sale se esconde */
+    clip: rect(0 0 0 0); /* Recorta todo el contenido del elemento, asegurando que no sea visible */
     white-space: nowrap;
     border: 0;
 }
 
-/* Hace visible el skip link cuando recibe foco */
+/* Hace visible el skip link cuando recibe foco. Se deshace TODO lo anterior */
 .sr-only:focus,
 .sr-only:active {
     position: static;
