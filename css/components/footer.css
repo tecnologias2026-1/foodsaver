@@ -1,0 +1,130 @@
+/* Footer component styles - reusable across pages */
+.site-footer {
+    background-color: #f8f8f8;
+    padding: 1.25rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.site-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.footer-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.footer-language {
+    /* Use same typographic scale as nav links */
+    display: inline-block; /* allow visible focus ring */
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5625rem;
+    color: var(--muted);
+    cursor: default; /* indicativo, no clickeable */
+}
+
+/* Visible focus for the language indicator when included in tab order */
+.footer-language:focus-visible {
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius);
+    outline: none;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+/* Reuse header navigation look: use same padding, radius and color variables */
+.footer-nav a {
+    /* Minimal rules so .nav__link class determines appearance */
+    color: var(--muted);
+    text-decoration: none;
+    padding: .4rem .75rem; /* matches .nav__link spacing */
+    border-radius: var(--radius);
+    transition: color var(--transition-fast);
+}
+
+/* Hover/active/aria-current handled by .nav__link (we apply that class in markup)
+   so we avoid adding transform/box-shadow differences here */
+
+.footer-copyright {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5625rem;
+    color: var(--muted);
+    margin: 0;
+    cursor: default; /* indicativo, no clickeable */
+}
+
+.footer-copyright:focus-visible {
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius);
+    outline: none;
+}
+
+/* Responsive adjustments (tablet / mobile) */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .footer-nav a {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        min-width: 100px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-nav {
+        width: 100%;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .footer-nav a {
+        flex: 1;
+        min-width: 80px;
+        padding: 0.625rem 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .footer-copyright {
+        font-size: 0.875rem;
+    }
+}
