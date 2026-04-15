@@ -51,9 +51,9 @@
                 <a href="carrito.html" class="cart" aria-label="Ver carrito">
                     <img
                         src="../assets/icons/Shopping_Bag.svg"
-                        alt="Icono de carrito de compras"
+                        alt=""
                         aria-hidden="true"
-                    >
+                    />
                 </a>
 
                 <!-- Botón que abre el menú móvil -->
@@ -65,10 +65,11 @@
                     aria-label="Abrir menú"
                 >
                     <img
-                        src = "../assets/icons/Menu.svg"
+                        src="../assets/icons/Menu.svg"
+                        alt=""
                         aria-hidden="true"
                         focusable="false"
-                    >
+                    />
                 </button>
             </div>
         </div>
@@ -82,7 +83,7 @@
                 <!-- Cabecera del menú móvil con botón de cierre -->
                 <header class="mobile-card__header">
                     <button class="mobile-close" type="button" aria-label="Cerrar menú">
-                        <img src="../assets/icons/Close_Menu.svg" alt="" aria-hidden="true">
+                        <img src="../assets/icons/Close_Menu.svg" alt="" aria-hidden="true" />
                     </button>
                 </header>
 
@@ -99,9 +100,9 @@
                 <a href="carrito.html" class="mobile-cart" aria-label="Ver carrito">
                     <img
                         src="../assets/icons/Shopping_Bag.svg"
-                        alt="Icono de carrito de compras"
+                        alt=""
                         aria-hidden="true"
-                    >
+                    />
                 </a>
             </div>
         </div>
@@ -121,22 +122,25 @@
 
                 <!-- Lista de categorías de recetas, cada una con imagen y nombre -->
                 <ul class="category-list" aria-label="Categorías de recetas">
-                    <!-- Categoría Colombiana: imagen -->
+                    <!-- Categoría Colombiana: activa y clicable -->
                     <li class="card card--category">
-                        <picture>
-                            <source type="image/webp" srcset="../assets/images/recetas/categorias/colombiana.webp">
-                            <img
-                                src="../assets/images/recetas/categorias/colombiana.jpg"
-                                alt="Platos típicos colombianos"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </picture>
-                        <p>Colombiana</p>
+                        <!--No requiere tabindex-->
+                        <a class="card-link" href="colombiana.html" aria-label="Ver recetas Colombianas">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/recetas/categorias/colombiana.webp">
+                                <img
+                                    src="../assets/images/recetas/categorias/colombiana.jpg"
+                                    alt="Platos típicos colombianos"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </picture>
+                            <p>Colombiana</p>
+                        </a>
                     </li>
 
-                    <!-- Categoría Veganos: muestra imagen de comida vegana -->
-                    <li class="card card--category">
+                    <!-- Veganos. tabindex es para hacer enfocable lo que NO lo es -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Veganos — categoría no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/comida vegana.webp">
                             <img
@@ -148,8 +152,9 @@
                         </picture>
                         <p>Veganos</p>
                     </li>
-                    <!-- Categoría Postres: imagen de milhoja -->
-                    <li class="card card--category">
+
+                    <!-- Postres -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Postres — categoría no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/postres.webp">
                             <img
@@ -161,8 +166,9 @@
                         </picture>
                         <p>Postres</p>
                     </li>
-                    <!-- Categoría Pasabocas: imagen de pasabocas -->
-                    <li class="card card--category">
+
+                    <!-- Pasabocas -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Pasabocas — categoría no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/pasabocas.webp">
                             <img
@@ -174,8 +180,9 @@
                         </picture>
                         <p>Pasabocas</p>
                     </li>
-                    <!-- Categoría De Mar: imagen de mariscos -->
-                    <li class="card card--category">
+
+                    <!-- De Mar -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="De Mar — categoría no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/de mar.webp">
                             <img
@@ -187,9 +194,9 @@
                         </picture>
                         <p>De Mar</p>
                     </li>
-
-                    <!-- Categoría Sopas y cremas: imagen -->
-                    <li class="card card--category">
+                    
+                     <!-- Sopas y cremas -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Sopas y cremas — categoría no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/sopas y cremas.webp">
                             <img
@@ -201,8 +208,9 @@
                         </picture>
                         <p>Sopas y cremas</p>
                     </li>
-                    <!-- Categoría Ensaladas: imagen -->
-                    <li class="card card--category">
+
+                    <!-- Ensaladas -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Ensaladas — categoría no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/ensaladas.webp">
                             <img
@@ -214,8 +222,9 @@
                         </picture>
                         <p>Ensaladas</p>
                     </li>
-                    <!-- Categoría Desayunos: imagen -->
-                    <li class="card card--category">
+
+                    <!-- Desayunos -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Desayunos — categoría no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/desayunos.webp">
                             <img
@@ -227,8 +236,9 @@
                         </picture>
                         <p>Desayunos</p>
                     </li>
-                    <!-- Categoría Bebidas y Malteadas: imagen -->
-                    <li class="card card--category">
+
+                    <!-- Bebidas y malteadas -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Bebidas y Malteadas — categoría no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/bebidas y malteadas.webp">
                             <img
@@ -240,8 +250,9 @@
                         </picture>
                         <p>Bebidas y Malteadas</p>
                     </li>
-                    <!-- Categoría Comida Rápida: imagen -->
-                    <li class="card card--category">
+
+                    <!--- Comida Rapida -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Comida Rápida — categoría no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/comida rápida.webp">
                             <img
@@ -264,8 +275,26 @@
 
                 <!-- Lista de recetas sugeridas, cada una con imagen y nombre -->
                 <ul class="recipe-list" aria-label="Recetas sugeridas">
-                    <!-- Receta Lasagna: imagen local -->
+                    <!-- Receta Arroz con pollo: activa y clicable (primera) -->
                     <li class="card card--recipe">
+                        <a class="card-link" href="arroz-con-pollo.html" aria-label="Ver receta Arroz con pollo">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
+                                <img
+                                    src="../assets/images/recetas/recetas_sugeridas/arroz-pollo.jpg"
+                                    alt="Arroz con pollo servido en plato blanco"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </picture>
+                            <div class="card-content">
+                                <p class="recipe-name">Arroz con pollo</p>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- Receta Lasagna: desactivada -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Lasagna — receta no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/lasaña.webp">
                             <img
@@ -279,23 +308,9 @@
                             <p class="recipe-name">Lasagna</p>
                         </div>
                     </li>
-                    <!-- Receta Arroz con pollo: imagen local -->
-                    <li class="card card--recipe">
-                        <picture>
-                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
-                            <img
-                                src="../assets/images/recetas/recetas_sugeridas/arroz-pollo.jpg"
-                                alt="Arroz con pollo servido en plato blanco"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </picture>
-                        <div class="card-content">
-                            <p class="recipe-name">Arroz con pollo</p>
-                        </div>
-                    </li>
-                    <!-- Receta Empanadas: imagen local -->
-                    <li class="card card--recipe">
+
+                    <!-- Receta Empanadas: desactivada -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Empanadas — receta no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/empanadas.webp">
                             <img
@@ -309,8 +324,9 @@
                             <p class="recipe-name">Empanadas</p>
                         </div>
                     </li>
-                    <!-- Receta Salmón al ajillo: imagen local -->
-                    <li class="card card--recipe">
+
+                    <!-- Receta Salmón al ajillo: desactivada -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Salmón al ajillo — receta no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/salmón al ajillo.webp">
                             <img
@@ -324,8 +340,9 @@
                             <p class="recipe-name">Salmón al ajillo</p>
                         </div>
                     </li>
-                    <!-- Receta Pasta Béchamel: imagen local -->
-                    <li class="card card--recipe">
+
+                    <!-- Receta Pasta Béchamel: desactivada -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Pasta Béchamel — receta no disponible">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/pasta bechamel.webp">
                             <img
@@ -350,7 +367,7 @@
             <nav class="footer-nav" aria-label="Enlaces de footer">
                 <a class="nav__link" href="contacto.html">Contacto</a>
                 <a class="nav__link" href="privacidad.html">Privacidad</a>
-                <a class="nav__link" href="aviso_legal.html">Aviso Legal</a>
+                <a class="nav__link" href="aviso-legal.html">Aviso Legal</a>
             </nav>
             <span class="footer-copyright" tabindex="0" aria-label="© FOODSAVER 2026">© FOODSAVER 2026</span>
         </div>

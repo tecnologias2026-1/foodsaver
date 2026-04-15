@@ -85,7 +85,7 @@ el contenedor para mantener dos o más elementos en caso de futuras adiciones */
     }
 }
 
-/* ESTUDIAR /*
+/* ESTUDIAR */
 /* En desktop se muestra la navegación principal y se oculta el menú hamburguesa */
 /* Cuando la pantalla sea de 700px o MÁS grande */
 @media (min-width: 700px) {
