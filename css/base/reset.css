@@ -11,6 +11,15 @@ body {
     height: 100%; /* Hace que el body ocupe toda la altura de la pantalla*/ 
 }
 
+/* Reservar espacio del scrollbar vertical para evitar desplazamientos
+   del layout cuando algunas páginas no requieren scroll y otras sí. */
+html {
+    /* Mantiene el espacio del scroll siempre presente para que la página no “salte”
+       cuando unas páginas tienen scroll y otras no */
+    overflow-y: scroll;
+    scrollbar-gutter: stable both-edges;
+}
+
 body {
     margin: 0; /* Elimina los márgenes predeterminados que la mayoría de los navegadores añaden automáticamente */
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
