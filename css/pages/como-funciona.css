@@ -2,13 +2,14 @@
    Estilos de la página: Cómo Funcionamos
    ======================================== */
 
-/* Sección principal */
+/* Estilos para la sección principal how-it-works: establece fondo blanco, padding y altura mínima */
 .how-it-works {
     background-color: #fff;
     padding: 4rem 0;
     min-height: calc(100vh - 200px);
 }
 
+/* Estilos para el contenedor dentro de how-it-works: limita ancho máximo, centra y organiza elementos verticalmente */
 .how-it-works .container {
     max-width: 680px;
     margin: 0 auto;
@@ -18,7 +19,7 @@
     padding: 0 1.5rem;
 }
 
-/* Título principal */
+/* Estilos para el título principal: define tamaño, peso, línea y color, centrado */
 .how-it-works__title {
     font-size: 2.25rem;
     font-weight: 500;
@@ -28,7 +29,7 @@
     text-align: center;
 }
 
-/* Subtitle / descripción */
+/* Estilos para el subtítulo: define tamaño, peso, línea y color, centrado */
 .how-it-works__subtitle {
     font-size: 1.125rem;
     font-weight: 500;
@@ -38,14 +39,14 @@
     text-align: center;
 }
 
-/* Contenedor de pasos */
+/* Estilos para el contenedor de pasos: organiza pasos verticalmente */
 .how-it-works__steps {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
-/* Tarjeta de paso */
+/* Estilos para cada tarjeta de paso: define fondo, bordes, padding, flexbox y efectos hover */
 .step-card {
     background-color: #fff;
     border-radius: 14px;
@@ -57,12 +58,13 @@
     transition: all var(--transition-fast) ease-in-out;
 }
 
+/* Estilos hover para step-card: aumenta sombra y eleva ligeramente */
 .step-card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
 
-/* Icono del paso */
+/* Estilos para el icono del paso: crea círculo verde con icono centrado */
 .step-card__icon {
     flex-shrink: 0;
     width: 3.5rem;
@@ -75,12 +77,13 @@
     color: #00a63e;
 }
 
+/* Estilos para el SVG dentro del icono: define tamaño */
 .step-card__icon svg {
     width: 1.5rem;
     height: 1.5rem;
 }
 
-/* Contenido del paso */
+/* Estilos para el contenido del paso: organiza título y descripción verticalmente */
 .step-card__content {
     display: flex;
     flex-direction: column;
@@ -88,7 +91,7 @@
     flex: 1;
 }
 
-/* Título del paso */
+/* Estilos para el título del paso: define tamaño, peso, línea y color */
 .step-card__title {
     font-size: 1.25rem;
     font-weight: 500;
@@ -97,7 +100,7 @@
     margin: 0;
 }
 
-/* Descripción del paso */
+/* Estilos para la descripción del paso: define tamaño, peso, línea y color */
 .step-card__description {
     font-size: 1rem;
     font-weight: 500;
@@ -106,7 +109,7 @@
     margin: 0;
 }
 
-/* Tarjeta de tecnología automatizada */
+/* Estilos para la tarjeta de tecnología: fondo verde claro, bordes redondeados, padding y gap */
 .tech-card {
     background-color: #f0fdf4;
     border-radius: 14px;
@@ -117,7 +120,7 @@
     border: 1px solid #dcfce7;
 }
 
-/* Título tech-card */
+/* Estilos para el título de tech-card: define tamaño, peso, línea y color */
 .tech-card__title {
     font-size: 1.25rem;
     font-weight: 500;
@@ -126,7 +129,7 @@
     margin: 0;
 }
 
-/* Descripción tech-card */
+/* Estilos para la descripción de tech-card: define tamaño, peso, línea y color */
 .tech-card__description {
     font-size: 1rem;
     font-weight: 500;
@@ -138,12 +141,15 @@
 /* ========================================
    Footer
    ======================================== */
+
+/* Estilos para el footer del sitio: fondo gris claro, padding y borde superior */
 .site-footer {
     background-color: #f8f8f8;
     padding: 1.25rem 0;
     border-top: 1px solid #e5e7eb;
 }
 
+/* Estilos para el contenedor del footer: distribuye elementos horizontalmente con flex */
 .site-footer .container {
     display: flex;
     justify-content: space-between;
@@ -153,6 +159,7 @@
     flex-wrap: wrap;
 }
 
+/* Estilos para el contenido del footer: distribuye elementos con gap */
 .footer-content {
     display: flex;
     justify-content: space-between;
@@ -161,7 +168,7 @@
     gap: 1rem;
 }
 
-/* Sección del footer con idioma */
+/* Estilos para secciones del footer: alinea elementos horizontalmente */
 .footer-section {
     display: flex;
     align-items: center;
@@ -169,6 +176,7 @@
     white-space: nowrap;
 }
 
+/* Estilos para texto del footer: define tamaño, peso, línea y color */
 .footer-text {
     font-size: 1.125rem;
     font-weight: 500;
@@ -176,7 +184,7 @@
     color: #515151;
 }
 
-/* Navegación del footer */
+/* Estilos para navegación del footer: centra enlaces con gap */
 .footer-nav {
     display: flex;
     justify-content: center;
@@ -184,6 +192,7 @@
     flex: 1;
 }
 
+/* Estilos para enlaces del footer: apariencia, padding, sombra y transiciones */
 .footer-nav a {
     font-size: 1rem;
     font-weight: 500;
@@ -196,16 +205,18 @@
     transition: all var(--transition-fast) ease-in-out;
 }
 
+/* Estilos hover para enlaces del footer: cambia color y eleva */
 .footer-nav a:hover {
     color: #00a63e;
     transform: translateY(-2px);
 }
 
+/* Estilos focus para enlaces del footer: añade outline */
 .footer-nav a:focus {
     outline: 2px solid var(--accent);
 }
 
-/* Copyright del footer */
+/* Estilos para copyright del footer: define tamaño, peso, línea y color */
 .footer-copyright {
     font-size: 1rem;
     font-weight: 500;
@@ -218,6 +229,8 @@
 /* ========================================
    Responsive: Tablet
    ======================================== */
+
+/* Ajustes para tablet: reduce padding de how-it-works y tamaños de títulos y elementos */
 @media (max-width: 768px) {
     .how-it-works {
         padding: 2rem 0;
@@ -233,6 +246,7 @@
         line-height: 1.5rem;
     }
 
+    /* Reduce gap y padding de step-card, y tamaños de icono y textos */
     .step-card {
         gap: 1rem;
         padding: 1rem;
@@ -252,6 +266,7 @@
         font-size: 0.95rem;
     }
 
+    /* Ajusta footer para tablet: dirección columna, gap y navegación */
     .footer-content {
         flex-direction: column;
         align-items: center;
@@ -275,6 +290,8 @@
 /* ========================================
    Responsive: Mobile
    ======================================== */
+
+/* Ajustes para móvil: reduce gap del contenedor y tamaños de títulos */
 @media (max-width: 480px) {
     .how-it-works .container {
         gap: 1.5rem;
@@ -290,6 +307,7 @@
         line-height: 1.5rem;
     }
 
+    /* Cambia step-card a columna, ajusta icono y textos */
     .step-card {
         flex-direction: column;
         align-items: flex-start;
@@ -317,6 +335,7 @@
         line-height: 1.375rem;
     }
 
+    /* Reduce padding de tech-card */
     .tech-card {
         padding: 1rem;
         gap: 0.75rem;
@@ -332,6 +351,7 @@
         line-height: 1.375rem;
     }
 
+    /* Ajusta footer-section a columna, navegación y copyright */
     .footer-section {
         flex-direction: column;
         align-items: center;

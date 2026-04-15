@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Carrito — Foodsaver</title>
 
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
     <!-- Hoja de estilos principal (modular) -->
     <link rel="stylesheet" href="../css/base/variables.css">
     <link rel="stylesheet" href="../css/base/reset.css">
@@ -14,7 +17,7 @@
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
     <link rel="stylesheet" href="../css/components/buttons.css">
-    <link rel="stylesheet" href="../css/pages/home.css">
+    <link rel="stylesheet" href="../css/pages/carrito.css">
 
     <!-- Script del header: controla menú móvil y estados interactivos -->
     <script defer src="../js/header.js"></script>
@@ -110,8 +113,17 @@
 
     <!-- Contenido principal de la página -->
     <main id="content" tabindex="-1">
-Aqui iran los items seleccionados
-<!-- Aquí irá el contenido propio de cada vista -->
+        <div class="empty-cart">
+            <h1>Bolsa de Mercado</h1>
+            <p>Tu bolsa está vacía. ¡Agrega algunos ingredientes!</p>
+            <div class="empty-cart-card">
+                <div class="empty-cart-icon">
+                    <img src="../assets/icons/Reloj.png" alt="Carrito vacío">
+                </div>
+                <p>Aún no has consultado ningún producto</p>
+                <a href="recetas.html" class="btn-primary">Explorar recetas</a>
+            </div>
+        </div>
     </main>
 </body>
 </html>
