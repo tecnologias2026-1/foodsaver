@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
     <link rel="stylesheet" href="../css/pages/recetas.css">
+    <link rel="stylesheet" href="../css/pages/colombiana.css">
     <link rel="stylesheet" href="../css/components/footer.css">
 
     <script defer src="../js/header.js"></script>
@@ -68,7 +69,113 @@
         </div>
     </header>
 
-    <main> Aqui va la rejilla de recetas de colombiana</main>
+    <main id="content" tabindex="-1">
+        <section class="recipes-page" aria-labelledby="colombiana-title">
+            <div class="container">
+                <div class="section-heading">
+                    <a href="recetas.html" class="back-link" aria-label="Volver a Recetas">
+                        <img src="../assets/icons/Arrow_Back.svg" alt="" aria-hidden="true" class="back-link__icon" width="20" height="20">
+                        <span class="back-link__text">Volver a Recetas</span>
+                    </a>
+                    <h1 id="colombiana-title">Colombiana</h1>
+                </div>
+
+                <p id="colombiana-grid-desc" class="sr-only">Listado de recetas colombianas. Use Tab y Shift+Tab para navegar por las tarjetas. Presione Enter para abrir la receta.</p>
+
+                <ul class="colombiana-grid" aria-label="Recetas Colombianas" aria-describedby="colombiana-grid-desc">
+                    <!-- Primera card activa -->
+                    <li class="card card--recipe">
+                        <a class="card-link" href="arroz-con-pollo.html" aria-label="Ver receta Arroz con pollo">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
+                                <img src="../assets/images/recetas/recetas_sugeridas/arroz-pollo.jpg" alt="Arroz con pollo" loading="lazy" decoding="async">
+                            </picture>
+                            <div class="card-content">
+                                <div>
+                                    <p class="recipe-name">Arroz con pollo</p>
+                                    <p class="card-desc">Clásico plato de arroz sazonado con pollo desmenuzado, verduras y especias.</p>
+                                </div>
+                                <span class="card-cta">Ver receta</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- Cards deshabilitadas (focables) -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Empanadas — receta no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/empanadas.webp">
+                            <img src="../assets/images/recetas/recetas_sugeridas/empanadas.jpg" alt="Empanadas" loading="lazy" decoding="async">
+                        </picture>
+                        <div class="card-content">
+                            <div>
+                                <p class="recipe-name">Empanadas</p>
+                                <p class="card-desc">Crujientes empanadas rellenas de carne, papa y especias, fritas al punto perfecto.</p>
+                            </div>
+                            <span class="card-cta" aria-hidden="true">Ver receta</span>
+                        </div>
+                    </li>
+
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Frijoles — receta no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/frijoles.webp">
+                            <img src="../assets/images/recetas/recetas_sugeridas/frijoles.jpg" alt="Frijoles" loading="lazy" decoding="async">
+                        </picture>
+                        <div class="card-content">
+                            <div>
+                                <p class="recipe-name">Frijoles</p>
+                                <p class="card-desc">Tradicional sopa espesa de frijoles cocidos con verduras y sabores caseros.</p>
+                            </div>
+                            <span class="card-cta" aria-hidden="true">Ver receta</span>
+                        </div>
+                    </li>
+
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Sancocho — receta no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/sancocho.webp">
+                            <img src="../assets/images/recetas/recetas_sugeridas/sancocho.jpg" alt="Sancocho" loading="lazy" decoding="async">
+                        </picture>
+                        <div class="card-content">
+                            <div>
+                                <p class="recipe-name">Sancocho</p>
+                                <p class="card-desc">Reconfortante sopa con carnes, yuca, papa, maíz y hierbas tradicionales.</p>
+                            </div>
+                            <span class="card-cta" aria-hidden="true">Ver receta</span>
+                        </div>
+                    </li>
+
+                    <!-- Cards adicionales añadidas -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Arepas rellenas — receta no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arepas-rellenas.webp">
+                            <img src="../assets/images/recetas/recetas_sugeridas/arepas-rellenas.jpg" alt="Arepas rellenas" loading="lazy" decoding="async">
+                        </picture>
+                        <div class="card-content">
+                            <div>
+                                <p class="recipe-name">Arepas rellenas</p>
+                                <p class="card-desc">Suaves arepas rellenas con carnes jugosas y sabores auténticos.</p>
+                            </div>
+                            <span class="card-cta" aria-hidden="true">Ver receta</span>
+                        </div>
+                    </li>
+
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Bandeja paisa — receta no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/bandeja-paisa.webp">
+                            <img src="../assets/images/recetas/recetas_sugeridas/bandeja-paisa.jpg" alt="Bandeja paisa" loading="lazy" decoding="async">
+                        </picture>
+                        <div class="card-content">
+                            <div>
+                                <p class="recipe-name">Bandeja paisa</p>
+                                <p class="card-desc">Abundante plato típico con arroz, frijoles, carne, chorizo, huevo y plátano.</p>
+                            </div>
+                            <span class="card-cta" aria-hidden="true">Ver receta</span>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+    </main>
 
     <footer class="site-footer">
         <div class="container">

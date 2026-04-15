@@ -5,7 +5,7 @@
 /* Estilos para la sección principal de la página de recetas: establece fondo blanco, padding y altura mínima */
 .recipes-page {
     background-color: #fff;
-    padding: 4rem 0;
+    padding: 1rem 0;
     min-height: calc(100vh - 180px);
 }
 
@@ -22,6 +22,9 @@
     display: flex;
     align-items: center;
     gap: 0.5rem; /* espacio pequeño y consistente entre título e ícono */
+
+    /* Padding solo arriba */
+    padding-top: 2.5rem;
     flex-wrap: nowrap;
     justify-content: flex-start; /* asegurar que título e ícono queden juntos a la izquierda */
 }
@@ -30,14 +33,12 @@
 .section-heading h1,
 .section-heading h2 {
     font-size: 2.25rem;
-    line-height: 3.125rem;
+    line-height: 3rem;
     font-weight: 500;
     color: #101828;
     margin: 0;
     flex: 0 0 auto; /* no permitir que el título se expanda y empuje el ícono */
     white-space: nowrap; /* mantener título en una sola línea y junto al ícono */
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* Estilos para el icono de sección: crea un círculo verde con icono blanco centrado */
@@ -81,6 +82,7 @@
     transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
 
+
 /* Estado interactivo: solo aplicado al enlace que envuelve la tarjeta activa */
 .card-link {
     display: block;
@@ -96,7 +98,10 @@
     box-shadow: 0 16px 32px rgba(15, 23, 42, 0.2);
 }
 
-/*:focus-visible se activa solo cuando el foco viene del teclado, no del mouse.*/
+.card:not(.card--disabled):active {
+    transform: translateY(1px);
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.15);
+}
 .card:not(.card--disabled):focus-within:has(:focus-visible) { /* Aplica el estilo a la tarjeta solo cuando un elemento dentro (como el link) tiene foco por teclado (no por click) y la tarjeta no está deshabilitada */
     outline: 2px solid var(--accent);
     outline-offset: 4px;
@@ -114,6 +119,14 @@
     opacity: 0.7; /* sutil diferencia visual */
     cursor: default;
 }
+
+/* Estilos para el CTA dentro de las tarjetas de receta: botón con fondo de acento y texto blanco */
+.card--disabled .card-cta {
+    background: #d1d5db;
+    color: #6b7280;      
+    cursor: not-allowed;
+}
+
 
 /* Imágenes de las tarjetas (compartido) */
 .card img {
