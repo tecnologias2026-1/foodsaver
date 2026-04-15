@@ -161,21 +161,7 @@
         height: 180px;
     }
 
-    /* Ajusta footer para móvil: dirección columna y gap */
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.75rem;
-    }
-
-    .footer-nav a {
-        padding: 0.75rem 0.85rem;
-    }
+    /* Footer styles moved to css/components/footer.css */
 }
 
 /* ========================================
@@ -206,10 +192,5 @@
         height: 150px;
     }
 
-    /* Ajusta navegación del footer: ancho completo y centrado */
-    .footer-nav a {
-        width: 100%;
-        text-align: center;
-        padding: 0.7rem 0.6rem;
-    }
+    /* Footer styles moved to css/components/footer.css */
 }
