@@ -2,12 +2,14 @@
    Estilos de la página: Recetas
    ======================================== */
 
+/* Estilos para la sección principal de la página de recetas: establece fondo blanco, padding y altura mínima */
 .recipes-page {
     background-color: #fff;
     padding: 4rem 0;
     min-height: calc(100vh - 180px);
 }
 
+/* Estilos para el contenedor dentro de recipes-page: usa flexbox para organizar elementos verticalmente con gap */
 .recipes-page .container {
     display: flex;
     flex-direction: column;
@@ -15,12 +17,14 @@
     padding: 0 1.5rem;
 }
 
+/* Estilos para el encabezado de sección: alinea título e icono horizontalmente */
 .section-heading {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
+/* Estilos para los títulos h1 y h2 en section-heading: define tamaño, línea, peso y color de fuente */
 .section-heading h1,
 .section-heading h2 {
     font-size: 2.25rem;
@@ -30,6 +34,7 @@
     margin: 0;
 }
 
+/* Estilos para el icono de sección: crea un círculo verde con icono blanco centrado */
 .section-icon {
     display: inline-flex;
     align-items: center;
@@ -42,6 +47,7 @@
     font-size: 1.25rem;
 }
 
+/* Estilos para las listas de categorías y recetas: permite scroll horizontal y elimina estilo de lista */
 .category-list,
 .recipe-list {
     display: flex;
@@ -52,6 +58,7 @@
     list-style: none;
 }
 
+/* Estilos para las tarjetas de categoría y receta: define tamaño, fondo, bordes, sombra y efectos hover */
 .category-card,
 .recipe-card {
     min-width: 360px;
@@ -66,6 +73,7 @@
     cursor: pointer;
 }
 
+/* Estilos hover y focus para tarjetas: eleva la tarjeta y aumenta sombra */
 .category-card:hover,
 .recipe-card:hover,
 .category-card:focus-within,
@@ -74,6 +82,7 @@
     box-shadow: 0 24px 50px rgba(15, 23, 42, 0.18);
 }
 
+/* Estilos para imágenes en tarjetas: define ancho completo, relación de aspecto y ajuste de objeto */
 .category-card img,
 .recipe-card img {
     width: 100%;
@@ -84,6 +93,7 @@
     background-color: #f3f4f6;
 }
 
+/* Estilos para párrafos en tarjetas de categoría y nombre de receta: define márgenes, padding, tamaño y color */
 .category-card p,
 .recipe-name {
     margin: 0;
@@ -94,24 +104,33 @@
     color: #101828;
 }
 
+/* Estilos para el contenido de la tarjeta de receta: añade padding */
 .card-content {
     padding: 1rem;
 }
 
+/* Estilos específicos para tarjetas de receta: ajusta ancho máximo */
 .recipe-card {
     max-width: 380px;
 }
 
+/* Estilos para nombres de recetas: ajusta tamaño de fuente */
 .recipe-name {
     font-size: 1.125rem;
 }
 
+/* ========================================
+   Footer
+   ======================================== */
+
+/* Estilos para el footer del sitio: establece fondo gris claro, padding y borde superior */
 .site-footer {
     background-color: #f8f8f8;
     padding: 1.25rem 0;
     border-top: 1px solid #e5e7eb;
 }
 
+/* Estilos para el contenedor del footer: usa flexbox para distribuir elementos horizontalmente */
 .site-footer .container {
     display: flex;
     justify-content: space-between;
@@ -120,6 +139,7 @@
     flex-wrap: wrap;
 }
 
+/* Estilos para el contenido del footer: distribuye elementos con flex */
 .footer-content {
     display: flex;
     justify-content: space-between;
@@ -128,6 +148,7 @@
     gap: 1rem;
 }
 
+/* Estilos para secciones del footer: alinea elementos horizontalmente */
 .footer-section {
     display: flex;
     align-items: center;
@@ -135,6 +156,7 @@
     white-space: nowrap;
 }
 
+/* Estilos para texto del footer: define tamaño, peso, línea y color */
 .footer-text {
     font-size: 1.125rem;
     font-weight: 500;
@@ -142,6 +164,7 @@
     color: #515151;
 }
 
+/* Estilos para navegación del footer: centra los enlaces con gap */
 .footer-nav {
     display: flex;
     justify-content: center;
@@ -149,6 +172,7 @@
     flex: 1;
 }
 
+/* Estilos para enlaces del footer: define apariencia, padding, sombra y transiciones */
 .footer-nav a {
     font-size: 1rem;
     font-weight: 500;
@@ -161,17 +185,20 @@
     transition: all var(--transition-fast) ease-in-out;
 }
 
+/* Estilos hover para enlaces del footer: cambia color y eleva el enlace */
 .footer-nav a:hover,
 .footer-nav a:focus-visible {
     color: #00a63e;
     transform: translateY(-2px);
 }
 
+/* Estilos focus para enlaces del footer: añade outline */
 .footer-nav a:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
 }
 
+/* Estilos para copyright del footer: define tamaño, peso, línea y color */
 .footer-copyright {
     font-size: 1rem;
     font-weight: 500;
@@ -181,6 +208,11 @@
     white-space: nowrap;
 }
 
+/* ========================================
+   Responsive: Tablet (max-width: 900px)
+   ======================================== */
+
+/* Ajustes para tablet: cambia dirección del section-heading a columna */
 @media (max-width: 900px) {
     .section-heading {
         flex-direction: column;
@@ -188,6 +220,11 @@
     }
 }
 
+/* ========================================
+   Responsive: Mobile (max-width: 768px)
+   ======================================== */
+
+/* Ajustes para móvil: reduce padding de recipes-page y tamaño de títulos */
 @media (max-width: 768px) {
     .recipes-page {
         padding: 2rem 0;
@@ -199,6 +236,7 @@
         line-height: 2.25rem;
     }
 
+    /* Reduce tamaño de tarjetas y altura de imágenes */
     .category-card,
     .recipe-card {
         min-width: 280px;
@@ -210,6 +248,7 @@
         height: 180px;
     }
 
+    /* Ajusta footer para móvil: dirección columna y gap */
     .footer-content {
         flex-direction: column;
         align-items: center;
@@ -226,6 +265,11 @@
     }
 }
 
+/* ========================================
+   Responsive: Small Mobile (max-width: 480px)
+   ======================================== */
+
+/* Ajustes para móviles pequeños: reduce gap del contenedor y tamaños de títulos */
 @media (max-width: 480px) {
     .recipes-page .container {
         gap: 1.5rem;
@@ -237,6 +281,7 @@
         line-height: 2rem;
     }
 
+    /* Reduce aún más tamaño de tarjetas e imágenes */
     .category-card,
     .recipe-card {
         min-width: 220px;
@@ -248,6 +293,7 @@
         height: 150px;
     }
 
+    /* Ajusta navegación del footer: ancho completo y centrado */
     .footer-nav a {
         width: 100%;
         text-align: center;

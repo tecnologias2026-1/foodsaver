@@ -1,0 +1,112 @@
+/* ==========================
+   Estilos para la página del carrito
+   ========================== */
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 25px 60px;
+    min-height: 60vh; /* Ajustar según necesidad */
+    text-align: center;
+}
+
+.empty-cart h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 60px;
+    color: #000;
+    margin: 0;
+}
+
+.empty-cart > p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: #515151;
+    margin: 0;
+}
+
+.empty-cart-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.1);
+    padding: 30px;
+    max-width: 900px;
+    width: 100%;
+    min-width: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 19px;
+}
+
+.empty-cart-icon {
+    width: 80px;
+    height: 80px;
+}
+
+.empty-cart-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.empty-cart-card p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25px;
+    color: #515151;
+    margin: 0;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    display: inline-block;
+    width: 191px;
+    text-align: center;
+    transition: background-color var(--transition-fast);
+}
+
+.btn-primary:hover {
+    background: #008a35; /* Slightly darker green */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .empty-cart {
+        padding: 25px 20px;
+    }
+
+    .empty-cart h1 {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .empty-cart > p {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .empty-cart-card {
+        padding: 20px;
+    }
+
+    .empty-cart-icon {
+        width: 64px;
+        height: 64px;
+    }
+}

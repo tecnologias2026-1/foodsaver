@@ -110,14 +110,19 @@
 
     <!-- Contenido principal de la página -->
     <main id="content" tabindex="-1">
+        <!-- Sección principal de la página de recetas que organiza categorías y recetas sugeridas -->
         <section class="recipes-page" aria-labelledby="recipes-title">
             <div class="container">
+                <!-- Encabezado de la sección de categorías con título y icono decorativo -->
                 <div class="section-heading">
                     <h1 id="recipes-title">Categorías</h1>
+                    <!-- Icono decorativo que representa expansión o lista, oculto para lectores de pantalla -->
                     <span class="section-icon" aria-hidden="true">↔</span>
                 </div>
 
+                <!-- Lista de categorías de recetas, cada una con imagen y nombre -->
                 <ul class="category-list" aria-label="Categorías de recetas">
+                    <!-- Categoría Veganos: muestra imagen de comida vegana con enlace implícito -->
                     <li class="category-card">
                         <img
                             src="../assets/images/comida vegana.jpg"
@@ -128,6 +133,7 @@
                         >
                         <p>Veganos</p>
                     </li>
+                    <!-- Categoría Postres: imagen de milhoja sin onerror ya que es local -->
                     <li class="category-card">
                         <img
                             src="../assets/images/milhoja.jpg"
@@ -137,6 +143,7 @@
                         >
                         <p>Postres</p>
                     </li>
+                    <!-- Categoría Pasabocas: imagen de pasabocas con fallback -->
                     <li class="category-card">
                         <img
                             src="../assets/images/pasabocas.jpg"
@@ -147,14 +154,95 @@
                         >
                         <p>Pasabocas</p>
                     </li>
+                    <!-- Categoría De Mar: imagen desde Figma con fallback -->
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/de mar.jpg"
+                            alt="Platos de mariscos y pescados"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <p>De Mar</p>
+                    </li>
+                    <!-- Categoría Colombiana: imagen desde Figma -->
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/colombiana.jpg"
+                            alt="Platos típicos colombianos"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <p>Colombiana</p>
+                    </li>
+                    <!-- Categoría Sopas y cremas: imagen desde Figma -->
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/sopas y cremas.jpg"
+                            alt="Sopas y cremas calientes"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <p>Sopas y cremas</p>
+                    </li>
+                    <!-- Categoría Ensaladas: imagen desde Figma -->
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/ensaladas.jpg"
+                            alt="Ensaladas frescas y saludables"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <p>Ensaladas</p>
+                    </li>
+                    <!-- Categoría Desayunos: imagen desde Figma -->
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/desayunos.jpg"
+                            alt="Desayunos nutritivos"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <p>Desayunos</p>
+                    </li>
+                    <!-- Categoría Bebidas y Malteadas: imagen desde Figma -->
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/bebidas y malteadas.jpg"
+                            alt="Bebidas y malteadas refrescantes"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <p>Bebidas y Malteadas</p>
+                    </li>
+                    <!-- Categoría Comida Rápida: imagen desde Figma -->
+                    <li class="category-card">
+                        <img
+                            src="../assets/images/comida rápida.jpg"
+                            alt="Comida rápida y deliciosa"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <p>Comida Rápida</p>
+                    </li>
                 </ul>
 
+                <!-- Encabezado de la sección de recetas sugeridas -->
                 <div class="section-heading">
                     <h2>Recetas Sugeridas</h2>
+                    <!-- Icono decorativo igual que en categorías -->
                     <span class="section-icon" aria-hidden="true">↔</span>
                 </div>
 
+                <!-- Lista de recetas sugeridas, cada una con imagen y nombre -->
                 <ul class="recipe-list" aria-label="Recetas sugeridas">
+                    <!-- Receta Lasagna: imagen local con fallback -->
                     <li class="recipe-card">
                         <img
                             src="../assets/images/Homemade-lasagna.png"
@@ -167,6 +255,7 @@
                             <p class="recipe-name">Lasagna</p>
                         </div>
                     </li>
+                    <!-- Receta Arroz con pollo: imagen local -->
                     <li class="recipe-card">
                         <img
                             src="../assets/images/arroz-pollo.jpg"
@@ -179,6 +268,7 @@
                             <p class="recipe-name">Arroz con pollo</p>
                         </div>
                     </li>
+                    <!-- Receta Empanadas: imagen local -->
                     <li class="recipe-card">
                         <img
                             src="../assets/images/empanadas.jpg"
@@ -189,6 +279,32 @@
                         >
                         <div class="card-content">
                             <p class="recipe-name">Empanadas</p>
+                        </div>
+                    </li>
+                    <!-- Receta Salmón al ajillo: imagen desde Figma -->
+                    <li class="recipe-card">
+                        <img
+                            src="https://www.figma.com/api/mcp/asset/a0ca3851-eadf-471b-8f52-98c6f3f4a8b0"
+                            alt="Salmón al ajillo servido"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <div class="card-content">
+                            <p class="recipe-name">Salmón al ajillo</p>
+                        </div>
+                    </li>
+                    <!-- Receta Pasta Béchamel: imagen desde Figma -->
+                    <li class="recipe-card">
+                        <img
+                            src="https://www.figma.com/api/mcp/asset/a21c4083-ba3d-45cb-b26b-833f7ea817c2"
+                            alt="Pasta con bechamel"
+                            loading="lazy"
+                            decoding="async"
+                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                        >
+                        <div class="card-content">
+                            <p class="recipe-name">Pasta Béchamel</p>
                         </div>
                     </li>
                 </ul>
