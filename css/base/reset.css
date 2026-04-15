@@ -13,7 +13,7 @@ body {
 
 /* Reservar espacio del scrollbar vertical para evitar desplazamientos
    del layout cuando algunas páginas no requieren scroll y otras sí. */
-   /* El espacio del scrollbar SIEMPRE está reservado, aunque no se vea o no se use. */
+/* El espacio del scrollbar SIEMPRE está reservado, aunque no se vea o no se use. */
 html {
     /* Mantiene el espacio del scroll siempre presente para que la página no “salte”
        cuando unas páginas tienen scroll y otras no */
