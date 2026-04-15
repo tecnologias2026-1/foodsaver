@@ -1,0 +1,112 @@
+/* Footer component styles - cleaned and consolidated
+   - Merged rules into .site-footer .container (removed .footer-content wrapper)
+   - Removed unused/diagnostic borders and redundant selectors
+   - Kept visual layout, spacing and responsive behaviour unchanged
+*/
+.site-footer {
+    background-color: #f8f8f8;
+    padding: 1.25rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Specific container rules for footer only (do not change global .container) */
+.site-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem; /* matches previous effective gap */
+    padding: 0 1.5rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Language indicator (informative) */
+.footer-language {
+    display: inline-block; /* allow focus ring */
+    white-space: nowrap;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5625rem;
+    color: var(--muted);
+    cursor: default;
+}
+
+.footer-language:focus-visible {
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius);
+    outline: none;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+/* Keep link rules minimal: .nav__link provides hover/active/aria-current */
+.footer-nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: .4rem .75rem; /* keep same spacing as header links */
+    border-radius: var(--radius);
+    transition: color var(--transition-fast);
+}
+
+.footer-copyright {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5625rem;
+    color: var(--muted);
+    margin: 0;
+    cursor: default;
+}
+
+.footer-copyright:focus-visible {
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius);
+    outline: none;
+}
+
+/* Responsive: tablet */
+@media (max-width: 768px) {
+    .site-footer .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .footer-nav a {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+        min-width: 100px;
+        text-align: center;
+    }
+}
+
+/* Responsive: mobile */
+@media (max-width: 480px) {
+    .footer-nav {
+        width: 100%;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .footer-nav a {
+        flex: 1;
+        min-width: 80px;
+        padding: 0.625rem 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .footer-copyright {
+        font-size: 0.875rem;
+    }
+}
