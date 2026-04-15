@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="../css/layout/container.css">
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
-    <link rel="stylesheet" href="../css/components/buttons.css">
     <link rel="stylesheet" href="../css/pages/recetas.css">
     <link rel="stylesheet" href="../css/components/footer.css">
 
@@ -27,7 +26,6 @@
     <!-- Header principal del sitio -->
     <header class="site-header">
         <div class="container header-inner">
-
             <!-- Logo / marca principal que redirige al inicio -->
             <a href="../index.html" class="brand" aria-label="Foodsaver — Inicio">
                 <img
@@ -41,7 +39,6 @@
             <nav class="main-nav" aria-label="Navegación principal">
                 <ul class="nav__list">
                     <li><a class="nav__link" href="../index.html">Inicio</a></li>
-                    <li><a class="nav__link" href="recetas.html">Recetas</a></li>
                     <li><a class="nav__link" href="como-funciona.html">Cómo funciona</a></li>
                 </ul>
             </nav>
@@ -124,7 +121,7 @@
                 <!-- Lista de categorías de recetas, cada una con imagen y nombre -->
                 <ul class="category-list" aria-label="Categorías de recetas">
                     <!-- Categoría Veganos: muestra imagen de comida vegana -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/comida vegana.webp">
                             <img
@@ -137,7 +134,7 @@
                         <p>Veganos</p>
                     </li>
                     <!-- Categoría Postres: imagen de milhoja -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/postres.webp">
                             <img
@@ -150,7 +147,7 @@
                         <p>Postres</p>
                     </li>
                     <!-- Categoría Pasabocas: imagen de pasabocas -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/pasabocas.webp">
                             <img
@@ -163,7 +160,7 @@
                         <p>Pasabocas</p>
                     </li>
                     <!-- Categoría De Mar: imagen de mariscos -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/de mar.webp">
                             <img
@@ -176,7 +173,7 @@
                         <p>De Mar</p>
                     </li>
                     <!-- Categoría Colombiana: imagen -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/colombiana.webp">
                             <img
@@ -189,7 +186,7 @@
                         <p>Colombiana</p>
                     </li>
                     <!-- Categoría Sopas y cremas: imagen -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/sopas y cremas.webp">
                             <img
@@ -202,7 +199,7 @@
                         <p>Sopas y cremas</p>
                     </li>
                     <!-- Categoría Ensaladas: imagen -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/ensaladas.webp">
                             <img
@@ -215,7 +212,7 @@
                         <p>Ensaladas</p>
                     </li>
                     <!-- Categoría Desayunos: imagen -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/desayunos.webp">
                             <img
@@ -228,7 +225,7 @@
                         <p>Desayunos</p>
                     </li>
                     <!-- Categoría Bebidas y Malteadas: imagen -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/bebidas y malteadas.webp">
                             <img
@@ -241,7 +238,7 @@
                         <p>Bebidas y Malteadas</p>
                     </li>
                     <!-- Categoría Comida Rápida: imagen -->
-                    <li class="category-card">
+                    <li class="card card--category">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/categorias/comida rápida.webp">
                             <img
@@ -265,7 +262,7 @@
                 <!-- Lista de recetas sugeridas, cada una con imagen y nombre -->
                 <ul class="recipe-list" aria-label="Recetas sugeridas">
                     <!-- Receta Lasagna: imagen local -->
-                    <li class="recipe-card">
+                    <li class="card card--recipe">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/lasaña.webp">
                             <img
@@ -280,7 +277,7 @@
                         </div>
                     </li>
                     <!-- Receta Arroz con pollo: imagen local -->
-                    <li class="recipe-card">
+                    <li class="card card--recipe">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
                             <img
@@ -295,7 +292,7 @@
                         </div>
                     </li>
                     <!-- Receta Empanadas: imagen local -->
-                    <li class="recipe-card">
+                    <li class="card card--recipe">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/empanadas.webp">
                             <img
@@ -310,7 +307,7 @@
                         </div>
                     </li>
                     <!-- Receta Salmón al ajillo: imagen local -->
-                    <li class="recipe-card">
+                    <li class="card card--recipe">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/salmón al ajillo.webp">
                             <img
@@ -325,7 +322,7 @@
                         </div>
                     </li>
                     <!-- Receta Pasta Béchamel: imagen local -->
-                    <li class="recipe-card">
+                    <li class="card card--recipe">
                         <picture>
                             <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/pasta bechamel.webp">
                             <img
