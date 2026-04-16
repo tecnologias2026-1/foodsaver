@@ -16,10 +16,13 @@
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
     <link rel="stylesheet" href="../css/components/buttons.css">
     <link rel="stylesheet" href="../css/pages/recipe-detail.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+    <link rel="stylesheet" href="../css/pages/arroz-con-pollo.css">
 
     <!-- Script del header: controla menú móvil y estados interactivos -->
     <script defer src="../js/header.js"></script>
-    <script defer src="../js/cart-shared.js"></script>
+    <script defer src="../js/card-shared.js"></script>
+    <script defer src="../js/card.js"></script>
 
     <!-- Script para cambiar entre ingredientes -->
     <script>
@@ -135,7 +138,7 @@
         });
     </script>
 </head>
-<body class="recipe-screen">
+<body>
     <!-- Enlace accesible para saltar directamente al contenido principal -->
     <a class="skip-link sr-only" href="#content">Saltar al contenido</a>
 
@@ -233,36 +236,44 @@
 
     <!-- Contenido principal de la página -->
     <main id="content" class="recipe-detail" tabindex="-1">
+
+        <!-- Info de la receta -->
+        <section class="recipe-hero" aria-labelledby="recipe-title">
+            <div class="container recipe-hero__inner">
+                <a href="arroz-con-pollo-info.html" class="back-link" aria-label="Volver a Preparacion">
+                    <img src="../assets/icons/Arrow_Back.svg" alt="" aria-hidden="true" class="back-link__icon" width="20" height="20">
+                    <span class="back-link__text">Volver a Preparacion</span>
+                </a>
+
+                <article class="hero-card" aria-labelledby="recipe-title">
+                    <div class="hero-grid">
+                        <div class="hero-media">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
+                                <img src="../assets/images/recetas/recetas_sugeridas/arroz-pollo.jpg" alt="Arroz con pollo" loading="lazy" decoding="async">
+                            </picture>
+                        </div>
+                        
+                        <div class="hero-content">
+                            <header class="hero-header">
+                                <h1 id="recipe-title">Arroz con Pollo</h1>
+                            </header>
+
+                            <div class="hero-description">
+                                <p>Un plato tradicional de la cocina latinoamericana, lleno de sabor y color. Arroz cocido en un caldo sazonado, mezclado con pollo desmenuzado, verduras frescas y especias que realzan su aroma. Preparado lentamente para lograr una textura suave y un equilibrio perfecto entre ingredientes.</p>
+                            </div>
+
+                            <div class="hero-actions">
+                                <button id="compare-ingredients-btn" class="card-cta compare-btn" type="button" aria-controls="ingredient-section scraping-info" aria-expanded="false">Comparar ingredientes</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Ingredientes -->
         <section class="recipe-detail__section container" aria-labelledby="recipe-title">
-            <a class="return-link" href="recetas.html" aria-label="Volver a recetas">
-                <span aria-hidden="true">←</span>
-                <span>Volver a Recetas</span>
-            </a>
-
-            <article class="recipe-hero" aria-label="Detalle de receta arroz con pollo">
-                <figure class="recipe-hero__media">
-                    <img
-                        src="../assets/images/arroz-pollo.jpg"
-                        alt="Arroz con pollo servido en plato"
-                        loading="eager"
-                        decoding="sync"
-                        fetchpriority="high"
-                        width="1200"
-                        height="600"
-                    >
-                </figure>
-
-                <div class="recipe-hero__content">
-                    <h1 id="recipe-title">ARROZ CON POLLO</h1>
-                    <p>
-                        Un clásico de la cocina latinoamericana, especialmente en Colombia. 
-                        Arroz tierno cocinado con trozos de pollo jugoso, verduras frescas y un toque 
-                        de azafrán que le da su color y sabor característico. Perfecto para comer en familia.
-                    </p>
-                    <button id="compare-ingredients-btn" class="compare-btn" type="button" aria-controls="ingredient-section scraping-info" aria-expanded="false">Comparar ingredientes</button>
-                </div>
-            </article>
-
             <section id="ingredient-section" class="ingredient-section" aria-label="Comparador por ingrediente" hidden>
                 <nav class="ingredient-tabs" aria-label="Ingredientes">
                     <button class="ingredient-tabs__item is-active" type="button" data-ingredient="habichuela">Habichuela</button>
@@ -279,7 +290,7 @@
                 <section class="market-grid is-active" data-ingredient="habichuela" aria-label="Habichuela - Comparación de supermercados">
                 <article class="market-card">
                     <img
-                        src="../assets/images/Habichuela Ekono.jpg"
+                        src="../assets/images/ingredientes/Habichuela Ekono.jpg"
                         alt="Habichuela Ekono Éxito"
                         loading="lazy"
                         decoding="async"
@@ -296,7 +307,7 @@
 
                 <article class="market-card">
                     <img
-                        src="../assets/images/Habichuelina Carulla.jpg"
+                        src="../assets/images/ingredientes/Habichuelina Carulla.jpg"
                         alt="Habichuela Premium Carulla"
                         loading="lazy"
                         decoding="async"
@@ -313,7 +324,7 @@
 
                 <article class="market-card">
                     <img
-                        src="../assets/images/Habichuela Jumbo 700 gr.jpg"
+                        src="../assets/images/ingredientes/Habichuela Jumbo 700 gr.jpg"
                         alt="Habichuela Tradicional Jumbo"
                         loading="lazy"
                         decoding="async"
@@ -333,7 +344,7 @@
                 <section class="market-grid" data-ingredient="arroz" aria-label="Arroz - Comparación de supermercados" hidden>
                 <article class="market-card">
                     <img
-                        src="../assets/images/Arroz-Diana-1000-gr.jpg"
+                        src="../assets/images/ingredientes/Arroz-Diana-1000-gr.jpg"
                         alt="Arroz Blanco Éxito"
                         loading="lazy"
                         decoding="async"
@@ -350,7 +361,7 @@
 
                 <article class="market-card">
                     <img
-                        src="../assets/images/Arroz-Premium-1000 gr.jpg"
+                        src="../assets/images/ingredientes/Arroz-Premium-1000 gr.jpg"
                         alt="Arroz Premium Carulla"
                         loading="lazy"
                         decoding="async"
@@ -367,7 +378,7 @@
 
                 <article class="market-card">
                     <img
-                        src="../assets/images/Arroz Integral.jpg"
+                        src="../assets/images/ingredientes/Arroz Integral.jpg"
                         alt="Arroz Integral Jumbo"
                         loading="lazy"
                         decoding="async"
@@ -387,7 +398,7 @@
                 <section class="market-grid" data-ingredient="pimenton" aria-label="Pimentón - Comparación de supermercados" hidden>
                 <article class="market-card">
                     <img
-                        src="../assets/images/Pimenton-Colores- Exito.jpg"
+                        src="../assets/images/ingredientes/Pimenton-Colores- Exito.jpg"
                         alt="Pimentón Amarillo Éxito"
                         loading="lazy"
                         decoding="async"
@@ -404,7 +415,7 @@
 
                 <article class="market-card">
                     <img
-                        src="../assets/images/PIMENTON-VERDE Carulla.jpg"
+                        src="../assets/images/ingredientes/PIMENTON-VERDE Carulla.jpg"
                         alt="Pimentón Importado Carulla"
                         loading="lazy"
                         decoding="async"
@@ -421,7 +432,7 @@
 
                 <article class="market-card">
                     <img
-                        src="../assets/images/Pimenton Jumbo.jpg"
+                        src="../assets/images/ingredientes/Pimenton Jumbo.jpg"
                         alt="Pimentón Dulce Jumbo"
                         loading="lazy"
                         decoding="async"
@@ -441,7 +452,7 @@
                 <section class="market-grid" data-ingredient="cebolla" aria-label="Cebolla - Comparación de supermercados" hidden>
                 <article class="market-card">
                     <img
-                        src="../assets/images/CEBOLLA-BLANCA-UNIDAD EXITO.jpg"
+                        src="../assets/images/ingredientes/CEBOLLA-BLANCA-UNIDAD EXITO.jpg"
                         alt="Cebolla Blanca Éxito"
                         loading="lazy"
                         decoding="async"
@@ -458,7 +469,7 @@
 
                 <article class="market-card">
                     <img
-                        src="../assets/images/CEBOLLA-ROJA-UNIDAD-CARULLA.jpg"
+                        src="../assets/images/ingredientes/CEBOLLA-ROJA-UNIDAD-CARULLA.jpg"
                         alt="Cebolla Morada Carulla unidad"
                         loading="lazy"
                         decoding="async"
@@ -475,7 +486,7 @@
 
                 <article class="market-card">
                     <img
-                        src="../assets/images/CEBOLLA JUMBO.jpg"
+                        src="../assets/images/ingredientes/CEBOLLA JUMBO.jpg"
                         alt="Cebolla Dulce Jumbo"
                         loading="lazy"
                         decoding="async"
@@ -495,7 +506,7 @@
                 <section class="market-grid" data-ingredient="pechuga" aria-label="Pechuga - Comparación de supermercados" hidden>
                     <article class="market-card">
                         <img
-                            src="../assets/images/PECHUGA-SI-CAMPESINA-EXITO.jpg"
+                            src="../assets/images/ingredientes/PECHUGA-SI-CAMPESINA-EXITO.jpg"
                             alt="Pechuga de Pollo Campesina Éxito"
                             loading="lazy"
                             decoding="async"
@@ -512,7 +523,7 @@
 
                     <article class="market-card">
                         <img
-                            src="../assets/images/PECHUGA-SI-BLANCA-CARULLA.jpg"
+                            src="../assets/images/ingredientes/PECHUGA-SI-BLANCA-CARULLA.jpg"
                             alt="Pechuga Blanca Marinada Carulla"
                             loading="lazy"
                             decoding="async"
@@ -529,7 +540,7 @@
 
                     <article class="market-card">
                         <img
-                            src="../assets/images/Pechuga Jumbo.jpg"
+                            src="../assets/images/ingredientes/Pechuga Jumbo.jpg"
                             alt="Pechuga Campesina Marinada Jumbo"
                             loading="lazy"
                             decoding="async"
@@ -549,7 +560,7 @@
                 <section class="market-grid" data-ingredient="arveja" aria-label="Arveja - Comparación de supermercados" hidden>
                     <article class="market-card">
                         <img
-                            src="../assets/images/Arveja-Amarilla-Frescampo EXITO.jpg"
+                            src="../assets/images/ingredientes/Arveja-Amarilla-Frescampo EXITO.jpg"
                             alt="Arveja Amarilla Éxito"
                             loading="lazy"
                             decoding="async"
@@ -566,7 +577,7 @@
 
                     <article class="market-card">
                         <img
-                            src="../assets/images/Arveja-Verde-Frescampo CARULLA.jpg"
+                            src="../assets/images/ingredientes/Arveja-Verde-Frescampo CARULLA.jpg"
                             alt="Arveja Verde Carulla"
                             loading="lazy"
                             decoding="async"
@@ -583,7 +594,7 @@
 
                     <article class="market-card">
                         <img
-                            src="../assets/images/Arveja Premium JUMBO.jpg"
+                            src="../assets/images/ingredientes/Arveja Premium JUMBO.jpg"
                             alt="Arveja Premium Jumbo"
                             loading="lazy"
                             decoding="async"
@@ -603,7 +614,7 @@
                 <section class="market-grid" data-ingredient="condimento" aria-label="Condimento - Comparación de supermercados" hidden>
                     <article class="market-card">
                         <img
-                            src="../assets/images/Tricompleto-El-Rey-X-Exito.jpg"
+                            src="../assets/images/ingredientes/Tricompleto-El-Rey-X-Exito.jpg"
                             alt="Condimento Tricompleto Éxito"
                             loading="lazy"
                             decoding="async"
@@ -620,7 +631,7 @@
 
                     <article class="market-card">
                         <img
-                            src="../assets/images/Condimento-Completo-TRICONDOR-Carulla.jpg"
+                            src="../assets/images/ingredientes/Condimento-Completo-TRICONDOR-Carulla.jpg"
                             alt="Condimento Premium Carulla"
                             loading="lazy"
                             decoding="async"
@@ -637,7 +648,7 @@
 
                     <article class="market-card">
                         <img
-                            src="../assets/images/Condimento Jumbo.jpg"
+                            src="../assets/images/ingredientes/Condimento Jumbo.jpg"
                             alt="Condimento Tradicional Jumbo"
                             loading="lazy"
                             decoding="async"
@@ -657,7 +668,7 @@
                 <section class="market-grid" data-ingredient="ajo" aria-label="Ajo - Comparación de supermercados" hidden>
                     <article class="market-card">
                         <img
-                            src="../assets/images/Ajo-Importado-Malla-Paquete-Exito.jpg"
+                            src="../assets/images/ingredientes/Ajo-Importado-Malla-Paquete-Exito.jpg"
                             alt="Ajo Malla por 3 Éxito"
                             loading="lazy"
                             decoding="async"
@@ -674,7 +685,7 @@
 
                     <article class="market-card">
                         <img
-                            src="../assets/images/Ajo-Importado-Malla-Paquete Carulla.jpg"
+                            src="../assets/images/ingredientes/Ajo-Importado-Malla-Paquete Carulla.jpg"
                             alt="Ajo Malla por 3 Carulla"
                             loading="lazy"
                             decoding="async"
@@ -691,7 +702,7 @@
 
                     <article class="market-card">
                         <img
-                            src="../assets/images/Ajo Importado Malla Jumbo.jpg"
+                            src="../assets/images/ingredientes/Ajo Importado Malla Jumbo.jpg"
                             alt="Ajo Malla por 3 Jumbo"
                             loading="lazy"
                             decoding="async"
@@ -716,17 +727,14 @@
     </main>
 
     <footer class="site-footer">
-        <div class="container footer-content">
-            <div class="footer-locale">
-                <span aria-hidden="true">🌐</span>
-                <span>Español (Colombia)</span>
-            </div>
+        <div class="container">
+            <span class="footer-language" tabindex="0" aria-label="Idioma: Español (Colombia)">🌐 Español (Colombia)</span>
             <nav class="footer-nav" aria-label="Enlaces de footer">
-                <a href="#">Contacto</a>
-                <a href="#">Privacidad</a>
-                <a href="#">Aviso Legal</a>
+                <a class="nav__link" href="contacto.html">Contacto</a>
+                <a class="nav__link" href="privacidad.html">Privacidad</a>
+                <a class="nav__link" href="aviso-legal.html">Aviso Legal</a>
             </nav>
-            <p class="footer-copyright">© FOODSAVER 2026</p>
+            <span class="footer-copyright" tabindex="0" aria-label="© FOODSAVER 2026">© FOODSAVER 2026</span>
         </div>
     </footer>
 </body>

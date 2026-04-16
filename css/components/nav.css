@@ -73,6 +73,37 @@ el contenedor para mantener dos o más elementos en caso de futuras adiciones */
     background: rgba(0, 0, 0, 0.04);
 }
 
+/* Cart count badge: small circular indicator with number inside */
+.cart,
+.mobile-cart {
+    position: relative; /* positioning context for badge */
+}
+
+.cart .cart-count,
+.mobile-cart .cart-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+
+.cart .cart-count[hidden],
+.mobile-cart .cart-count[hidden] {
+    display: none;
+}
+
 /* ==========================
    Media queries
    ========================== */
@@ -95,5 +126,28 @@ el contenedor para mantener dos o más elementos en caso de futuras adiciones */
 
     .menu-toggle {
         display: none;
+    }
+}
+
+/* Mobile-specific badge positioning: anchor the badge to the cart icon inside the mobile menu */
+@media (max-width: 699px) {
+    .mobile-card .mobile-cart {
+        position: relative; /* ensure the badge is positioned relative to the icon container */
+        display: inline-flex; /* keep the anchor only as wide as the icon */
+        padding: 0; /* avoid extra space around the icon */
+        align-self: center; /* prevent stretching: keep the anchor shrink-wrapped to the icon */
+        width: fit-content; /* ensure the anchor width matches its content */
+    }
+
+    .mobile-card .mobile-cart .cart-count {
+        /* move badge further inside the icon area and make it slightly smaller */
+        top: -5px; /* slight offset outside icon corner for separation */
+        right: -5px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 4px;
+        font-size: 11px;
+        line-height: 18px;
+        box-sizing: border-box;
     }
 }

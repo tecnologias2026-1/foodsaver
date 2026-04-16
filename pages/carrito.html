@@ -22,6 +22,8 @@
 
     <!-- Script del header: controla menú móvil y estados interactivos -->
     <script defer src="../js/header.js"></script>
+    <script defer src="../js/card-shared.js"></script>
+    <script defer src="../js/card.js"></script>
 </head>
 <body>
     <!-- Enlace accesible para saltar directamente al contenido principal -->
@@ -59,6 +61,7 @@
                         alt="Icono de carrito de compras"
                         aria-hidden="true"
                     >
+                    <span class="cart-count" hidden>0</span>
                 </a>
 
                 <!-- Botón que abre el menú móvil -->
@@ -107,15 +110,17 @@
                         alt="Icono de carrito de compras"
                         aria-hidden="true"
                     >
+                    <span class="cart-count" hidden>0</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Contenido principal de la página -->
+<!-- Contenido principal de la página -->
     <main id="content" tabindex="-1">
-        <div class="empty-cart">
-            <h1>Bolsa de Mercado</h1>
+        <h1 class="cart-title">Bolsa de Mercado</h1>
+
+        <div class="empty-cart" aria-live="polite">
             <p>Tu bolsa está vacía. ¡Agrega algunos ingredientes!</p>
             <div class="empty-cart-card">
                 <div class="empty-cart-icon">
@@ -125,6 +130,25 @@
                 <a href="recetas.html" class="btn-primary">Explorar recetas</a>
             </div>
         </div>
+
+        <section class="filled-cart" hidden aria-label="Productos añadidos a la bolsa">
+            <div id="cart-items-list" class="cart-items-list" aria-live="polite"></div>
+
+            <div class="cart-summary">
+                <div class="cart-summary__top">
+                    <span>Total</span>
+                    <strong>
+                        <span id="cart-total">0</span>
+                        <span>COP</span>
+                    </strong>
+                </div>
+                <p id="cart-products-count" class="cart-summary__count">0 productos en tu bolsa</p>
+                <div class="cart-summary__actions">
+                    <a href="recetas.html" class="btn-secondary">Seguir comprando</a>
+                    <button id="clear-cart-btn" class="cart-clear-btn" type="button">Vaciar bolsa</button>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">

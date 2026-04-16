@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contacto — Foodsaver</title>
+    <title>Contacto — FoodSaver</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/base/variables.css">
     <link rel="stylesheet" href="../css/base/reset.css">
@@ -12,10 +14,12 @@
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
     <link rel="stylesheet" href="../css/components/buttons.css">
-    <link rel="stylesheet" href="../css/pages/como-funciona.css">
+    <link rel="stylesheet" href="../css/pages/legal-pages.css">
     <link rel="stylesheet" href="../css/components/footer.css">
 
     <script defer src="../js/header.js"></script>
+    <script defer src="../js/card-shared.js"></script>
+    <script defer src="../js/card.js"></script>
 </head>
 <body>
     <a class="skip-link sr-only" href="#content">Saltar al contenido</a>
@@ -38,6 +42,7 @@
             <div class="header-actions">
                 <a href="carrito.html" class="cart" aria-label="Ver carrito">
                     <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
+                    <span class="cart-count" hidden>0</span>
                 </a>
 
                 <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
@@ -53,7 +58,6 @@
                         <img src="../assets/icons/Close_Menu.svg" alt="" aria-hidden="true">
                     </button>
                 </header>
-
                 <nav class="mobile-nav" aria-label="Navegación móvil">
                     <ul class="mobile-nav__list">
                         <li><a href="../index.html" class="mobile-nav__link">Inicio</a></li>
@@ -61,19 +65,29 @@
                         <li><a href="como-funciona.html" class="mobile-nav__link">Cómo funciona</a></li>
                     </ul>
                 </nav>
-
                 <a href="carrito.html" class="mobile-cart" aria-label="Ver carrito">
                     <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
+                    <span class="cart-count" hidden>0</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <main id="content" tabindex="-1">
-        <section class="container">
-            <h1>Contacto</h1>
-            <p>Escribe a contacto@foodsaver.example o utiliza nuestro formulario (placeholder).</p>
-        </section>
+    <main id="content" tabindex="-1" class="legal-page">
+        <div class="container">
+            <article class="legal-container" role="article" aria-labelledby="contacto-title">
+                <h1 id="contacto-title" class="page-title">Contacto – FoodSaver</h1>
+
+                <p>Si tienes dudas, sugerencias o necesitas soporte, puedes contactarnos a través de:</p>
+
+                <ul>
+                    <li>Correo electrónico: <a href="mailto:est.madi.colina@unimilitar.edu.co">est.madi.colina@unimilitar.edu.co</a></li>
+                    <li>Ubicación: Bogotá DC, Colombia</li>
+                </ul>
+
+                <p>Tiempo de respuesta estimado: <strong>24 a 72 horas hábiles</strong>.</p>
+            </article>
+        </div>
     </main>
 
     <footer class="site-footer">
@@ -89,3 +103,4 @@
     </footer>
 </body>
 </html>
+

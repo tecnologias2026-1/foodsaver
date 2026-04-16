@@ -12,10 +12,12 @@
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
     <link rel="stylesheet" href="../css/components/buttons.css">
-    <link rel="stylesheet" href="../css/pages/como-funciona.css">
+    <link rel="stylesheet" href="../css/pages/legal-pages.css">
     <link rel="stylesheet" href="../css/components/footer.css">
 
     <script defer src="../js/header.js"></script>
+    <script defer src="../js/card-shared.js"></script>
+    <script defer src="../js/card.js"></script>
 </head>
 <body>
     <a class="skip-link sr-only" href="#content">Saltar al contenido</a>
@@ -38,6 +40,7 @@
             <div class="header-actions">
                 <a href="carrito.html" class="cart" aria-label="Ver carrito">
                     <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
+                    <span class="cart-count" hidden>0</span>
                 </a>
 
                 <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
@@ -64,16 +67,63 @@
 
                 <a href="carrito.html" class="mobile-cart" aria-label="Ver carrito">
                     <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
+                    <span class="cart-count" hidden>0</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <main id="content" tabindex="-1">
-        <section class="container">
-            <h1>Privacidad</h1>
-            <p>Política de privacidad placeholder. Aquí se describirá cómo manejamos los datos de los usuarios.</p>
-        </section>
+    <main id="content" tabindex="-1" class="legal-page">
+        <div class="container">
+            <article class="legal-container" role="article" aria-labelledby="privacidad-title">
+                <h1 id="privacidad-title" class="page-title">POLÍTICA DE PRIVACIDAD – FOODSAVER</h1>
+
+                <p>En FoodSaver respetamos la privacidad de los usuarios. Esta aplicación no requiere registro ni inicio de sesión para su uso.</p>
+
+                <section aria-labelledby="datos-que-recopilamos">
+                    <h2 id="datos-que-recopilamos">1. Datos que recopilamos</h2>
+                    <p>FoodSaver no solicita datos personales identificables como nombre, correo electrónico o contraseña.</p>
+                    <p>Sin embargo, podemos recopilar información no personal, como:</p>
+                    <ul>
+                        <li>Datos de uso dentro de la aplicación</li>
+                        <li>Información técnica del dispositivo (tipo de dispositivo, sistema operativo)</li>
+                        <li>Preferencias de uso (si el usuario guarda configuraciones dentro de la app)</li>
+                    </ul>
+                </section>
+
+                <section aria-labelledby="finalidad">
+                    <h2 id="finalidad">2. Finalidad del uso de datos</h2>
+                    <p>La información recopilada se utiliza para:</p>
+                    <ul>
+                        <li>Mejorar el funcionamiento de la aplicación</li>
+                        <li>Analizar el uso de las funcionalidades</li>
+                        <li>Detectar errores y optimizar el rendimiento</li>
+                    </ul>
+                </section>
+
+                <section aria-labelledby="almacenamiento">
+                    <h2 id="almacenamiento">3. Almacenamiento de datos</h2>
+                    <p>Los datos pueden almacenarse de forma local en el dispositivo del usuario o mediante servicios externos necesarios para el funcionamiento de la app.</p>
+                </section>
+
+                <section aria-labelledby="comparticion">
+                    <h2 id="comparticion">4. Compartición de datos</h2>
+                    <p>No compartimos información personal con terceros.</p>
+                    <p>En caso de utilizar servicios externos (por ejemplo, herramientas de análisis), estos pueden procesar datos técnicos de forma anónima.</p>
+                </section>
+
+                <section aria-labelledby="derechos">
+                    <h2 id="derechos">5. Derechos del usuario</h2>
+                    <p>Dado que no se recopilan datos personales identificables, no se gestionan perfiles de usuario.</p>
+                    <p>El usuario puede eliminar los datos almacenados desinstalando la aplicación.</p>
+                </section>
+
+                <section aria-labelledby="cambios-politica">
+                    <h2 id="cambios-politica">6. Cambios en la política</h2>
+                    <p>FoodSaver se reserva el derecho de modificar esta política en cualquier momento.</p>
+                </section>
+            </article>
+        </div>
     </main>
 
     <footer class="site-footer">

@@ -125,3 +125,66 @@
         padding: 2rem 0;
     }
 }
+
+/* ========================================
+   Preparación (pasos) — tarjetas sencillas
+   ======================================== */
+.preparation-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    grid-template-columns: 1fr; /* fuerza una columna (una card debajo de otra) */
+}
+
+.preparation-step {
+    background: #dcfce7; /* color según Figma */
+    border: none;
+    padding: 1rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(16,24,40,0.04);
+}
+
+.preparation-step h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.preparation-step p {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+
+@media (max-width: 700px) {
+    .preparation-step {
+        padding: 0.9rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .preparation-step h3 {
+        font-size: 0.98rem;
+    }
+}
+
+/* Ajustes específicos para centrar título y separar del footer */
+.recipe-detail__section[aria-labelledby="preparacion-title"] .section-heading {
+    justify-content: center;
+}
+
+.recipe-detail__section[aria-labelledby="preparacion-title"] {
+    margin-bottom: 3.5rem;
+}
+
+.recipe-detail__section[aria-labelledby="preparacion-title"] #preparacion-title {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

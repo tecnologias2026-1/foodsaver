@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="../css/components/footer.css">
 
     <script defer src="../js/header.js"></script>
+    <script defer src="../js/card-shared.js"></script>
+    <script defer src="../js/card.js"></script>
 </head>
 <body>
     <a class="skip-link sr-only" href="#content">Saltar al contenido</a>
@@ -38,6 +40,7 @@
             <div class="header-actions">
                 <a href="carrito.html" class="cart" aria-label="Ver carrito">
                     <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
+                    <span class="cart-count" hidden>0</span>
                 </a>
 
                 <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
@@ -64,6 +67,7 @@
 
                 <a href="carrito.html" class="mobile-cart" aria-label="Ver carrito">
                     <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
+                    <span class="cart-count" hidden>0</span>
                 </a>
             </div>
         </div>
@@ -71,8 +75,49 @@
 
     <main id="content" tabindex="-1">
         <section class="container">
-            <h1>Aviso Legal</h1>
-            <p>Aviso legal placeholder. Información legal y condiciones de uso.</p>
+            <article class="legal-container" role="article" aria-labelledby="aviso-title">
+                <h1 id="aviso-title" class="page-title">AVISO LEGAL – FOODSAVER</h1>
+
+                <p>En cumplimiento de las disposiciones legales aplicables, se informa a los usuarios de la aplicación FoodSaver (en adelante, “la App”) lo siguiente:</p>
+
+                <section aria-labelledby="titularidad">
+                    <h2 id="titularidad">1. Titularidad</h2>
+                    <p>La presente aplicación es operada por Madi Sofía Colina Hernández, Sebastián Hernando Olarte Galeano, Juan Sebastián Sánchez Quimbaya, con domicilio en Bogotá DC, Colombia.</p>
+                    <p>Correo de contacto: <a href="mailto:est.madi.colina@unimilitar.edu.co">est.madi.colina@unimilitar.edu.co</a></p>
+                </section>
+
+                <section aria-labelledby="condiciones-uso">
+                    <h2 id="condiciones-uso">2. Condiciones de uso</h2>
+                    <p>El acceso y uso de la App atribuye la condición de usuario, quien acepta, desde dicho acceso, las presentes condiciones de uso.</p>
+                    <p>El usuario se compromete a utilizar la aplicación de forma adecuada, lícita y respetuosa, absteniéndose de:</p>
+                    <ul>
+                        <li>Realizar actividades ilícitas</li>
+                        <li>Introducir o difundir virus o software malicioso</li>
+                        <li>Intentar acceder a datos de otros usuarios sin autorización</li>
+                    </ul>
+                </section>
+
+                <section aria-labelledby="responsabilidad">
+                    <h2 id="responsabilidad">3. Responsabilidad</h2>
+                    <p>FoodSaver no se hace responsable de:</p>
+                    <ul>
+                        <li>Errores en los contenidos</li>
+                        <li>Fallos técnicos o interrupciones del servicio</li>
+                        <li>Uso indebido de la aplicación por parte de los usuarios</li>
+                    </ul>
+                </section>
+
+                <section aria-labelledby="propiedad-int">
+                    <h2 id="propiedad-int">4. Propiedad intelectual</h2>
+                    <p>Todos los contenidos de la App (diseño, textos, logos, interfaz, etc.) son propiedad de FoodSaver o cuentan con licencia, y están protegidos por derechos de propiedad intelectual.</p>
+                    <p>Queda prohibida su reproducción sin autorización expresa.</p>
+                </section>
+
+                <section aria-labelledby="modificaciones">
+                    <h2 id="modificaciones">5. Modificaciones</h2>
+                    <p>FoodSaver se reserva el derecho de modificar en cualquier momento el presente aviso legal.</p>
+                </section>
+            </article>
         </section>
     </main>
 
