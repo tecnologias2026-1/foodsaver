@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
     <link rel="stylesheet" href="../css/pages/recetas.css">
+    <link rel="stylesheet" href="../css/pages/arroz-con-pollo.css">
     <link rel="stylesheet" href="../css/components/footer.css">
 
     <script defer src="../js/header.js"></script>
@@ -69,7 +70,39 @@
     </header>
 
     <main id="content" tabindex="-1">
-        Aqui va la receta arroz con pollo
+        <section class="recipe-hero" aria-labelledby="recipe-title">
+            <div class="container recipe-hero__inner">
+                <a href="colombiana.html" class="back-link" aria-label="Volver a Colombiana">
+                    <img src="../assets/icons/Arrow_Back.svg" alt="" aria-hidden="true" class="back-link__icon" width="20" height="20">
+                    <span class="back-link__text">Volver a Colombiana</span>
+                </a>
+
+                <article class="hero-card" aria-labelledby="recipe-title">
+                    <div class="hero-grid">
+                        <div class="hero-media">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
+                                <img src="../assets/images/recetas/recetas_sugeridas/arroz-pollo.jpg" alt="Arroz con pollo" loading="lazy" decoding="async">
+                            </picture>
+                        </div>
+                        
+                        <div class="hero-content">
+                            <header class="hero-header">
+                                <h1 id="recipe-title">Arroz con Pollo</h1>
+                            </header>
+
+                            <div class="hero-description">
+                                <p>Un plato tradicional de la cocina latinoamericana, lleno de sabor y color. Arroz cocido en un caldo sazonado, mezclado con pollo desmenuzado, verduras frescas y especias que realzan su aroma. Preparado lentamente para lograr una textura suave y un equilibrio perfecto entre ingredientes.</p>
+                            </div>
+
+                            <div class="hero-actions">
+                                <a href="#" class="card-cta">Comparar Ingredientes</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">

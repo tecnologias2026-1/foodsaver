@@ -71,8 +71,7 @@
 
 /* Estilos compartidos para tarjetas (.card) — usada por categorías y recetas */
 .card {
-    min-width: 360px;
-    max-width: 360px;
+    width: clamp(220px, 30vw, 360px);
     background-color: #fff;
     border-radius: 18px;
     border: 1px solid #e5e7eb;
@@ -133,7 +132,7 @@
     width: 100%;
     display: block;
     aspect-ratio: 16 / 9;
-    height: 230px;
+    height: clamp(150px, 22vw, 230px);
     object-fit: cover;
     background-color: #f3f4f6;
 }
@@ -201,15 +200,7 @@
         line-height: 2.25rem;
     }
 
-    /* Reduce tamaño de tarjetas y altura de imágenes */
-    .card {
-        min-width: 280px;
-        max-width: 280px;
-    }
-
-    .card img {
-        height: 180px;
-    }
+    /* Structural and spacing adjustments retained; sizes use clamp() */
 
     /* Reduce horizontal padding inside the recipes container to improve visual centering
        of the horizontal carousels on small screens */
@@ -243,13 +234,5 @@
         line-height: 2rem;
     }
 
-    /* Reduce aún más tamaño de tarjetas e imágenes */
-    .card {
-        min-width: 220px;
-        max-width: 220px;
-    }
-
-    .card img {
-        height: 150px;
-    }
+    /* Keep spacing and layout changes; sizes handled by clamp() */
 }

@@ -99,18 +99,17 @@ button {
 /* Hace visible el skip link cuando recibe foco. Se deshace TODO lo anterior */
 .sr-only:focus,
 .sr-only:active {
-    position: absolute;
-    top: 10px; /*10 px desde arriba */
-    left: 10px; /*10 px desde la izquierda */
-    z-index: 1000;
+    position: static;
 
-    padding: 0.5rem 0.5rem;
-    width: auto;
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    width: fit-content; /*oBLIGA a ajustarse al contenido */
     height: auto;
     margin: 0;
+
     overflow: visible;
     clip: auto;
-    white-space: normal;
+    white-space: nowrap;
 }
 
 .skip-link:focus-visible {
