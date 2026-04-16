@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Recetas — Foodsaver</title>
+    <meta name="description" content="Explora recetas y compara el precio de sus ingredientes entre supermercados para elegir la mejor opción.">
 
     <!-- Hoja de estilos principal (modular) -->
     <link rel="stylesheet" href="../css/base/variables.css">
@@ -18,6 +19,7 @@
 
     <!-- Script del header: controla menú móvil y estados interactivos -->
     <script defer src="../js/header.js"></script>
+    <script defer src="../js/cart-shared.js"></script>
 </head>
 <body>
     <!-- Enlace accesible para saltar directamente al contenido principal -->
@@ -292,6 +294,20 @@
                             </div>
                         </a>
                     </li>
+                    <!-- Receta Arroz con pollo: imagen local -->
+                    <li>
+                        <a href="arroz-con-pollo.html" class="recipe-card">
+                            <img
+                                src="../assets/images/arroz-pollo.jpg"
+                                alt="Arroz con pollo servido en plato blanco"
+                                loading="lazy"
+                                decoding="async"
+                                onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
+                            >
+                            <div class="card-content">
+                                <p class="recipe-name">Arroz con pollo</p>
+                            </div>
+                        </a>
 
                     <!-- Receta Lasagna: desactivada -->
                     <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Lasagna — receta no disponible">

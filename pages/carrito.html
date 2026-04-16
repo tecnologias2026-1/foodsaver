@@ -5,7 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Carrito — Foodsaver</title>
+    <meta name="description" content="Revisa tu bolsa de mercado en Foodsaver, compara totales y continúa comprando ingredientes al mejor precio.">
 
+    <!-- Performance: Preconnect to Google Fonts (faster font loading) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -22,6 +27,8 @@
 
     <!-- Script del header: controla menú móvil y estados interactivos -->
     <script defer src="../js/header.js"></script>
+    <script defer src="../js/cart-shared.js"></script>
+    <script defer src="../js/cart.js"></script>
 </head>
 <body>
     <!-- Enlace accesible para saltar directamente al contenido principal -->
@@ -59,6 +66,7 @@
                         alt="Icono de carrito de compras"
                         aria-hidden="true"
                     >
+                    <span class="cart-count" hidden>0</span>
                 </a>
 
                 <!-- Botón que abre el menú móvil -->
@@ -107,6 +115,7 @@
                         alt="Icono de carrito de compras"
                         aria-hidden="true"
                     >
+                    <span class="cart-count" hidden>0</span>
                 </a>
             </div>
         </div>
@@ -125,6 +134,27 @@
                 <a href="recetas.html" class="btn-primary">Explorar recetas</a>
             </div>
         </div>
+
+        <section class="filled-cart" hidden aria-label="Productos añadidos a la bolsa">
+            <h1>Bolsa de Mercado</h1>
+
+            <div id="cart-items-list" class="cart-items-list" aria-live="polite"></div>
+
+            <div class="cart-summary">
+                <div class="cart-summary__top">
+                    <span>Total</span>
+                    <strong>
+                        <span id="cart-total">0</span>
+                        <span>COP</span>
+                    </strong>
+                </div>
+                <p id="cart-products-count" class="cart-summary__count">0 productos en tu bolsa</p>
+                <div class="cart-summary__actions">
+                    <a href="recetas.html" class="btn-secondary">Seguir comprando</a>
+                    <button id="clear-cart-btn" class="cart-clear-btn" type="button">Vaciar bolsa</button>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
