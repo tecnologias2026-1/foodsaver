@@ -71,6 +71,9 @@
     flex: 0 0 auto;
     transition: transform 0.24s ease, box-shadow 0.24s ease;
     cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Estilos hover y focus para tarjetas: eleva la tarjeta y aumenta sombra */
