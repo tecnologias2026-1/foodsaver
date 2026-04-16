@@ -27,7 +27,7 @@
     <!-- Script para cambiar entre ingredientes -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.ingredient-tabs__item');
+            const tabs = Array.from(document.querySelectorAll('.ingredient-tabs__item'));
             const compareButton = document.getElementById('compare-ingredients-btn');
             const ingredientSection = document.getElementById('ingredient-section');
             const scrapingInfo = document.getElementById('scraping-info');
@@ -80,55 +80,93 @@
                     }
                 });
             }
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const ingredientName = this.dataset.ingredient;
-                    
-                    // Remove active state from all tabs
-                    tabs.forEach(t => t.classList.remove('is-active'));
-                    
-                    // Add active state to clicked tab
-                    this.classList.add('is-active');
-                    
-                    // Hide all market grids
-                    const grids = document.querySelectorAll('.market-grid');
-                    grids.forEach(grid => {
-                        grid.hidden = true;
-                        grid.classList.remove('is-active');
-                    });
-                    
-                    // Show the selected grid
-                    const selectedGrid = document.querySelector(`.market-grid[data-ingredient="${ingredientName}"]`);
-                    if (selectedGrid) {
-                        selectedGrid.hidden = false;
-                        selectedGrid.classList.add('is-active');
+
+            function activateTab(tab, setFocusToPanel = true) {
+                if (!tab) return;
+                tabs.forEach(function(t) {
+                    const selected = t === tab;
+                    t.classList.toggle('is-active', selected);
+                    t.setAttribute('aria-selected', selected ? 'true' : 'false');
+                    t.tabIndex = selected ? 0 : -1;
+                });
+
+                const ingredientName = tab.dataset.ingredient;
+                const grids = document.querySelectorAll('.market-grid');
+                grids.forEach(function(grid) {
+                    const match = grid.dataset.ingredient === ingredientName;
+                    grid.hidden = !match;
+                    grid.classList.toggle('is-active', match);
+                    if (match && setFocusToPanel) {
+                        try { grid.focus(); } catch (e) { /* ignore */ }
                     }
                 });
+            }
+
+            function focusTabAt(index) {
+                if (!tabs.length) return;
+                const i = (index + tabs.length) % tabs.length;
+                tabs[i].focus();
+            }
+
+            function onTabKeydown(e) {
+                const el = e.currentTarget;
+                const idx = tabs.indexOf(el);
+
+                switch (e.key) {
+                    case 'ArrowLeft':
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        focusTabAt(idx - 1);
+                        break;
+                    case 'ArrowRight':
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        focusTabAt(idx + 1);
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        focusTabAt(0);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        focusTabAt(tabs.length - 1);
+                        break;
+                    case 'Enter':
+                    case ' ':
+                        e.preventDefault();
+                        activateTab(el);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() { activateTab(tab); });
+                tab.addEventListener('keydown', onTabKeydown);
             });
+
+            // Ensure an initial selected tab exists and panels match
+            const initial = tabs.find(function(t) { return t.getAttribute('aria-selected') === 'true'; }) || tabs[0];
+            if (initial) activateTab(initial, false);
 
             if (compareButton && ingredientSection) {
                 compareButton.addEventListener('click', function () {
                     ingredientSection.hidden = false;
                     compareButton.setAttribute('aria-expanded', 'true');
-                    if (scrapingInfo) {
-                        scrapingInfo.hidden = false;
-                    }
+                    if (scrapingInfo) scrapingInfo.hidden = false;
                     localStorage.setItem(compareStateKey, 'true');
+                    // focus the active tab for keyboard users
+                    const active = tabs.find(function(t) { return t.getAttribute('aria-selected') === 'true'; }) || tabs[0];
                     ingredientSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (active) active.focus();
                 });
             }
 
             if (localStorage.getItem(compareStateKey) === 'true') {
-                if (ingredientSection) {
-                    ingredientSection.hidden = false;
-                }
-                if (scrapingInfo) {
-                    scrapingInfo.hidden = false;
-                }
-                if (compareButton) {
-                    compareButton.setAttribute('aria-expanded', 'true');
-                }
+                if (ingredientSection) ingredientSection.hidden = false;
+                if (scrapingInfo) scrapingInfo.hidden = false;
+                if (compareButton) compareButton.setAttribute('aria-expanded', 'true');
             } else if (compareButton) {
                 compareButton.setAttribute('aria-expanded', 'false');
             }
