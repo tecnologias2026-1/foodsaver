@@ -45,6 +45,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // Oculta / restaura el contenido de fondo a las tecnologías de asistencia
+  // (cuando el diálogo del menú móvil está abierto)
+  function setBackgroundHidden(hidden) {
+    try {
+      document.querySelectorAll('main, footer, .site-footer').forEach(function (el) {
+        if (!el) return;
+        if (hidden) el.setAttribute('aria-hidden', 'true');
+        else el.removeAttribute('aria-hidden');
+      });
+    } catch (err) { /* no-op */ }
+  }
+
   // Abre el menú móvil, bloquea el scroll del fondo y mueve el foco al primer control
   // Abre el menú móvil
   function openMenu() {
@@ -70,6 +82,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Bloquea el scroll de la página de fondo
     document.body.style.overflow = 'hidden';
 
+    // Oculta el fondo a AT (mejora compatibilidad de aria-modal)
+    setBackgroundHidden(true);
+
     // Busca el primer elemento interactivo dentro del menú
     // (link, botón, etc.)
     const f = mobileMenu.querySelector(focusableSel);
@@ -85,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Cierra el menú móvil, restaura el estado inicial y devuelve el foco
   function closeMenu() {
+    // Restaura visibilidad del fondo a AT
+    setBackgroundHidden(false);
     // Quita la clase visual del menú
     mobileMenu.classList.remove('is-open');
 
