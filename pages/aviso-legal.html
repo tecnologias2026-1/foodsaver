@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aviso Legal — Foodsaver</title>
+
+    <link rel="stylesheet" href="../css/base/variables.css">
+    <link rel="stylesheet" href="../css/base/reset.css">
+    <link rel="stylesheet" href="../css/layout/header.css">
+    <link rel="stylesheet" href="../css/layout/container.css">
+    <link rel="stylesheet" href="../css/components/nav.css">
+    <link rel="stylesheet" href="../css/components/mobile-menu.css">
+    <link rel="stylesheet" href="../css/components/buttons.css">
+    <link rel="stylesheet" href="../css/pages/como-funciona.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
+
+    <script defer src="../js/header.js"></script>
+</head>
+<body>
+    <a class="skip-link sr-only" href="#content">Saltar al contenido</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="../index.html" class="brand" aria-label="Foodsaver — Inicio">
+                <img src="../assets/icons/Foodsaver.png" alt="Logo Foodsaver">
+                <span class="brand__name">FOODSAVER</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Navegación principal">
+                <ul class="nav__list">
+                    <li><a class="nav__link" href="../index.html">Inicio</a></li>
+                    <li><a class="nav__link" href="recetas.html">Recetas</a></li>
+                    <li><a class="nav__link" href="como-funciona.html">Cómo funciona</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="carrito.html" class="cart" aria-label="Ver carrito">
+                    <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
+                </a>
+
+                <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
+                    <img src="../assets/icons/Menu.svg" aria-hidden="true" focusable="false">
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="mobile-menu" hidden>
+            <div class="mobile-card" role="dialog" aria-modal="true" aria-label="Navegación móvil">
+                <header class="mobile-card__header">
+                    <button class="mobile-close" type="button" aria-label="Cerrar menú">
+                        <img src="../assets/icons/Close_Menu.svg" alt="" aria-hidden="true">
+                    </button>
+                </header>
+
+                <nav class="mobile-nav" aria-label="Navegación móvil">
+                    <ul class="mobile-nav__list">
+                        <li><a href="../index.html" class="mobile-nav__link">Inicio</a></li>
+                        <li><a href="recetas.html" class="mobile-nav__link">Recetas</a></li>
+                        <li><a href="como-funciona.html" class="mobile-nav__link">Cómo funciona</a></li>
+                    </ul>
+                </nav>
+
+                <a href="carrito.html" class="mobile-cart" aria-label="Ver carrito">
+                    <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main id="content" tabindex="-1">
+        <section class="container">
+            <h1>Aviso Legal</h1>
+            <p>Aviso legal placeholder. Información legal y condiciones de uso.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <span class="footer-language" tabindex="0" aria-label="Idioma: Español (Colombia)">🌐 Español (Colombia)</span>
+            <nav class="footer-nav" aria-label="Enlaces de footer">
+                <a class="nav__link" href="contacto.html">Contacto</a>
+                <a class="nav__link" href="privacidad.html">Privacidad</a>
+                <a class="nav__link" href="aviso-legal.html">Aviso Legal</a>
+            </nav>
+            <span class="footer-copyright" tabindex="0" aria-label="© FOODSAVER 2026">© FOODSAVER 2026</span>
+        </div>
+    </footer>
+</body>
+</html>

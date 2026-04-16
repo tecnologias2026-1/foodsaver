@@ -8,8 +8,17 @@
 
 html,
 body {
-    height: 100%; /* Hace que el body ocupe toda la altura de la pantalla*/
-    
+    height: 100%; /* Hace que el body ocupe toda la altura de la pantalla*/ 
+}
+
+/* Reservar espacio del scrollbar vertical para evitar desplazamientos
+   del layout cuando algunas páginas no requieren scroll y otras sí. */
+/* El espacio del scrollbar SIEMPRE está reservado, aunque no se vea o no se use. */
+html {
+    /* Mantiene el espacio del scroll siempre presente para que la página no “salte”
+       cuando unas páginas tienen scroll y otras no */
+    overflow-y: scroll;
+    scrollbar-gutter: stable both-edges;
 }
 
 body {
@@ -17,7 +26,15 @@ body {
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     line-height: 1.4; /*Espacio entre lineas de texto, mejora la legibilidad */
     color: var(--text);
+
+    /* Convierte toda la pagina en una estructura vetical con flex */
+    display: flex;
+    flex-direction: column;
     
+}
+
+main{
+    flex: 1; /* Hace que el main ocupe todo el espacio disponible entre header y footer, empujando el footer al final de la pagina */
 }
 
 /* Elimina el subrayado por defecto */
@@ -82,11 +99,22 @@ button {
 /* Hace visible el skip link cuando recibe foco. Se deshace TODO lo anterior */
 .sr-only:focus,
 .sr-only:active {
-    position: static;
+    position: absolute;
+    top: 10px; /*10 px desde arriba */
+    left: 10px; /*10 px desde la izquierda */
+    z-index: 1000;
+
+    padding: 0.5rem 0.5rem;
     width: auto;
     height: auto;
     margin: 0;
     overflow: visible;
     clip: auto;
     white-space: normal;
+}
+
+.skip-link:focus-visible {
+    outline: none; /* Border default */
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius);
 }

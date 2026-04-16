@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="../css/layout/container.css">
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
-    <link rel="stylesheet" href="../css/components/buttons.css">
     <link rel="stylesheet" href="../css/pages/recetas.css">
+    <link rel="stylesheet" href="../css/components/footer.css">
 
     <!-- Script del header: controla menú móvil y estados interactivos -->
     <script defer src="../js/header.js"></script>
@@ -28,7 +28,6 @@
     <!-- Header principal del sitio -->
     <header class="site-header">
         <div class="container header-inner">
-
             <!-- Logo / marca principal que redirige al inicio -->
             <a href="../index.html" class="brand" aria-label="Foodsaver — Inicio">
                 <img
@@ -54,9 +53,9 @@
                 <a href="carrito.html" class="cart" aria-label="Ver carrito">
                     <img
                         src="../assets/icons/Shopping_Bag.svg"
-                        alt="Icono de carrito de compras"
+                        alt=""
                         aria-hidden="true"
-                    >
+                    />
                 </a>
 
                 <!-- Botón que abre el menú móvil -->
@@ -68,10 +67,11 @@
                     aria-label="Abrir menú"
                 >
                     <img
-                        src = "../assets/icons/Menu.svg"
+                        src="../assets/icons/Menu.svg"
+                        alt=""
                         aria-hidden="true"
                         focusable="false"
-                    >
+                    />
                 </button>
             </div>
         </div>
@@ -85,7 +85,7 @@
                 <!-- Cabecera del menú móvil con botón de cierre -->
                 <header class="mobile-card__header">
                     <button class="mobile-close" type="button" aria-label="Cerrar menú">
-                        <img src="../assets/icons/Close_Menu.svg" alt="" aria-hidden="true">
+                        <img src="../assets/icons/Close_Menu.svg" alt="" aria-hidden="true" />
                     </button>
                 </header>
 
@@ -102,9 +102,9 @@
                 <a href="carrito.html" class="mobile-cart" aria-label="Ver carrito">
                     <img
                         src="../assets/icons/Shopping_Bag.svg"
-                        alt="Icono de carrito de compras"
+                        alt=""
                         aria-hidden="true"
-                    >
+                    />
                 </a>
             </div>
         </div>
@@ -124,113 +124,146 @@
 
                 <!-- Lista de categorías de recetas, cada una con imagen y nombre -->
                 <ul class="category-list" aria-label="Categorías de recetas">
-                    <!-- Categoría Veganos: muestra imagen de comida vegana con enlace implícito -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/comida vegana.jpg"
-                            alt="Mesa con un plato de comida vegana"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+                    <!-- Categoría Colombiana: activa y clicable -->
+                    <li class="card card--category">
+                        <!--No requiere tabindex-->
+                        <a class="card-link" href="colombiana.html" aria-label="Ver recetas Colombianas">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/recetas/categorias/colombiana.webp">
+                                <img
+                                    src="../assets/images/recetas/categorias/colombiana.jpg"
+                                    alt="Platos típicos colombianos"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </picture>
+                            <p>Colombiana</p>
+                        </a>
+                    </li>
+
+                    <!-- Veganos. tabindex es para hacer enfocable lo que NO lo es -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Veganos — categoría no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/categorias/comida vegana.webp">
+                            <img
+                                src="../assets/images/recetas/categorias/comida vegana.jpg"
+                                alt="Mesa con un plato de comida vegana"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <p>Veganos</p>
                     </li>
-                    <!-- Categoría Postres: imagen de milhoja sin onerror ya que es local -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/milhoja.jpg"
-                            alt="milhoja"
-                            loading="lazy"
-                            decoding="async"
-                        >
+
+                    <!-- Postres -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Postres — categoría no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/categorias/postres.webp">
+                            <img
+                                src="../assets/images/recetas/categorias/postres.jpg"
+                                alt="milhoja"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <p>Postres</p>
                     </li>
-                    <!-- Categoría Pasabocas: imagen de pasabocas con fallback -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/pasabocas.jpg"
-                            alt="Pasabocas sobre una tabla de servir"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+
+                    <!-- Pasabocas -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Pasabocas — categoría no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/categorias/pasabocas.webp">
+                            <img
+                                src="../assets/images/recetas/categorias/pasabocas.jpg"
+                                alt="Pasabocas sobre una tabla de servir"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <p>Pasabocas</p>
                     </li>
-                    <!-- Categoría De Mar: imagen desde Figma con fallback -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/de mar.jpg"
-                            alt="Platos de mariscos y pescados"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+
+                    <!-- De Mar -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="De Mar — categoría no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/categorias/de mar.webp">
+                            <img
+                                src="../assets/images/recetas/categorias/de mar.jpg"
+                                alt="Platos de mariscos y pescados"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <p>De Mar</p>
                     </li>
-                    <!-- Categoría Colombiana: imagen desde Figma -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/colombiana.jpg"
-                            alt="Platos típicos colombianos"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
-                        <p>Colombiana</p>
-                    </li>
-                    <!-- Categoría Sopas y cremas: imagen desde Figma -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/sopas y cremas.jpg"
-                            alt="Sopas y cremas calientes"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+                    
+                     <!-- Sopas y cremas -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Sopas y cremas — categoría no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/categorias/sopas y cremas.webp">
+                            <img
+                                src="../assets/images/recetas/categorias/sopas y cremas.jpg"
+                                alt="Sopas y cremas calientes"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <p>Sopas y cremas</p>
                     </li>
-                    <!-- Categoría Ensaladas: imagen desde Figma -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/ensaladas.jpg"
-                            alt="Ensaladas frescas y saludables"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+
+                    <!-- Ensaladas -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Ensaladas — categoría no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/categorias/ensaladas.webp">
+                            <img
+                                src="../assets/images/recetas/categorias/ensaladas.jpg"
+                                alt="Ensaladas frescas y saludables"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <p>Ensaladas</p>
                     </li>
-                    <!-- Categoría Desayunos: imagen desde Figma -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/desayunos.jpg"
-                            alt="Desayunos nutritivos"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+
+                    <!-- Desayunos -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Desayunos — categoría no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/categorias/desayunos.webp">
+                            <img
+                                src="../assets/images/recetas/categorias/desayunos.jpg"
+                                alt="Desayunos nutritivos"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <p>Desayunos</p>
                     </li>
-                    <!-- Categoría Bebidas y Malteadas: imagen desde Figma -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/bebidas y malteadas.jpg"
-                            alt="Bebidas y malteadas refrescantes"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+
+                    <!-- Bebidas y malteadas -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Bebidas y Malteadas — categoría no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/categorias/bebidas y malteadas.webp">
+                            <img
+                                src="../assets/images/recetas/categorias/bebidas y malteadas.jpg"
+                                alt="Bebidas y malteadas refrescantes"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <p>Bebidas y Malteadas</p>
                     </li>
-                    <!-- Categoría Comida Rápida: imagen desde Figma -->
-                    <li class="category-card">
-                        <img
-                            src="../assets/images/comida rápida.jpg"
-                            alt="Comida rápida y deliciosa"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+
+                    <!--- Comida Rapida -->
+                    <li class="card card--category card--disabled" aria-disabled="true" tabindex="0" aria-label="Comida Rápida — categoría no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/categorias/comida rápida.webp">
+                            <img
+                                src="../assets/images/recetas/categorias/comida rápida.jpg"
+                                alt="Comida rápida y deliciosa"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <p>Comida Rápida</p>
                     </li>
                 </ul>
@@ -244,18 +277,22 @@
 
                 <!-- Lista de recetas sugeridas, cada una con imagen y nombre -->
                 <ul class="recipe-list" aria-label="Recetas sugeridas">
-                    <!-- Receta Lasagna: imagen local con fallback -->
-                    <li class="recipe-card">
-                        <img
-                            src="../assets/images/Homemade-lasagna.png"
-                            alt="Plato de lasagna servido"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
-                        <div class="card-content">
-                            <p class="recipe-name">Lasagna</p>
-                        </div>
+                    <!-- Receta Arroz con pollo: activa y clicable (primera) -->
+                    <li class="card card--recipe">
+                        <a class="card-link" href="arroz-con-pollo.html" aria-label="Ver receta Arroz con pollo">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
+                                <img
+                                    src="../assets/images/recetas/recetas_sugeridas/arroz-pollo.jpg"
+                                    alt="Arroz con pollo servido en plato blanco"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </picture>
+                            <div class="card-content">
+                                <p class="recipe-name">Arroz con pollo</p>
+                            </div>
+                        </a>
                     </li>
                     <!-- Receta Arroz con pollo: imagen local -->
                     <li>
@@ -271,42 +308,66 @@
                                 <p class="recipe-name">Arroz con pollo</p>
                             </div>
                         </a>
+
+                    <!-- Receta Lasagna: desactivada -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Lasagna — receta no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/lasaña.webp">
+                            <img
+                                src="../assets/images/recetas/recetas_sugeridas/lasaña.jpg"
+                                alt="Plato de lasagna servido"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
+                        <div class="card-content">
+                            <p class="recipe-name">Lasagna</p>
+                        </div>
                     </li>
-                    <!-- Receta Empanadas: imagen local -->
-                    <li class="recipe-card">
-                        <img
-                            src="../assets/images/empanadas.jpg"
-                            alt="Empanadas doradas en una fuente"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+
+                    <!-- Receta Empanadas: desactivada -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Empanadas — receta no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/empanadas.webp">
+                            <img
+                                src="../assets/images/recetas/recetas_sugeridas/empanadas.jpg"
+                                alt="Empanadas doradas en una fuente"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <div class="card-content">
                             <p class="recipe-name">Empanadas</p>
                         </div>
                     </li>
-                    <!-- Receta Salmón al ajillo: imagen desde Figma -->
-                    <li class="recipe-card">
-                        <img
-                            src="https://www.figma.com/api/mcp/asset/a0ca3851-eadf-471b-8f52-98c6f3f4a8b0"
-                            alt="Salmón al ajillo servido"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+
+                    <!-- Receta Salmón al ajillo: desactivada -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Salmón al ajillo — receta no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/salmón al ajillo.webp">
+                            <img
+                                src="../assets/images/recetas/recetas_sugeridas/salmón al ajillo.jpg"
+                                alt="Salmón al ajillo servido"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <div class="card-content">
                             <p class="recipe-name">Salmón al ajillo</p>
                         </div>
                     </li>
-                    <!-- Receta Pasta Béchamel: imagen desde Figma -->
-                    <li class="recipe-card">
-                        <img
-                            src="https://www.figma.com/api/mcp/asset/a21c4083-ba3d-45cb-b26b-833f7ea817c2"
-                            alt="Pasta con bechamel"
-                            loading="lazy"
-                            decoding="async"
-                            onerror="this.onerror=null;this.src='../assets/images/hero_image.jpg';"
-                        >
+
+                    <!-- Receta Pasta Béchamel: desactivada -->
+                    <li class="card card--recipe card--disabled" aria-disabled="true" tabindex="0" aria-label="Pasta Béchamel — receta no disponible">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/pasta bechamel.webp">
+                            <img
+                                src="../assets/images/recetas/recetas_sugeridas/pasta bechamel.jpg"
+                                alt="Pasta con bechamel"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </picture>
                         <div class="card-content">
                             <p class="recipe-name">Pasta Béchamel</p>
                         </div>
@@ -317,16 +378,14 @@
     </main>
 
     <footer class="site-footer">
-        <div class="container footer-content">
-            <div class="footer-section">
-                <span class="footer-text">🌐 Español (Colombia)</span>
-            </div>
+        <div class="container">
+            <span class="footer-language" tabindex="0" aria-label="Idioma: Español (Colombia)">🌐 Español (Colombia)</span>
             <nav class="footer-nav" aria-label="Enlaces de footer">
-                <a href="#">Contacto</a>
-                <a href="#">Privacidad</a>
-                <a href="#">Aviso Legal</a>
+                <a class="nav__link" href="contacto.html">Contacto</a>
+                <a class="nav__link" href="privacidad.html">Privacidad</a>
+                <a class="nav__link" href="aviso-legal.html">Aviso Legal</a>
             </nav>
-            <p class="footer-copyright">© FOODSAVER 2026</p>
+            <span class="footer-copyright" tabindex="0" aria-label="© FOODSAVER 2026">© FOODSAVER 2026</span>
         </div>
     </footer>
 </body>
