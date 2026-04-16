@@ -45,29 +45,3 @@
     font-size: 1.05rem;
     letter-spacing: .08em;
 }
-
-.cart,
-.mobile-cart {
-    position: relative;
-}
-
-.cart-count {
-    align-items: center;
-    background: #00a63e;
-    border-radius: 999px;
-    color: #fff;
-    display: inline-flex;
-    font-size: 12px;
-    font-weight: 700;
-    height: 18px;
-    justify-content: center;
-    min-width: 18px;
-    padding: 0 5px;
-    position: absolute;
-    right: -5px;
-    top: -3px;
-}
-
-.cart-count[hidden] {
-    display: none;
-}

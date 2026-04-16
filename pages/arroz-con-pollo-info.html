@@ -1,46 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Configuración básica del documento -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Carrito — Foodsaver</title>
+    <title>Arroz con pollo — Foodsaver</title>
 
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Hoja de estilos principal (modular) -->
     <link rel="stylesheet" href="../css/base/variables.css">
     <link rel="stylesheet" href="../css/base/reset.css">
     <link rel="stylesheet" href="../css/layout/header.css">
     <link rel="stylesheet" href="../css/layout/container.css">
     <link rel="stylesheet" href="../css/components/nav.css">
     <link rel="stylesheet" href="../css/components/mobile-menu.css">
-    <link rel="stylesheet" href="../css/components/buttons.css">
-    <link rel="stylesheet" href="../css/pages/carrito.css">
+    <link rel="stylesheet" href="../css/pages/recetas.css">
+    <link rel="stylesheet" href="../css/pages/arroz-con-pollo.css">
     <link rel="stylesheet" href="../css/components/footer.css">
 
-    <!-- Script del header: controla menú móvil y estados interactivos -->
     <script defer src="../js/header.js"></script>
 </head>
 <body>
-    <!-- Enlace accesible para saltar directamente al contenido principal -->
     <a class="skip-link sr-only" href="#content">Saltar al contenido</a>
 
-    <!-- Header principal del sitio -->
     <header class="site-header">
         <div class="container header-inner">
-
-            <!-- Logo / marca principal que redirige al inicio -->
             <a href="../index.html" class="brand" aria-label="Foodsaver — Inicio">
-                <img
-                    src="../assets/icons/Foodsaver.png"
-                    alt="Logo Foodsaver"
-                >
+                <img src="../assets/icons/Foodsaver.png" alt="Logo Foodsaver">
                 <span class="brand__name">FOODSAVER</span>
             </a>
 
-            <!-- Navegación principal visible en desktop -->
             <nav class="main-nav" aria-label="Navegación principal">
                 <ul class="nav__list">
                     <li><a class="nav__link" href="../index.html">Inicio</a></li>
@@ -49,49 +35,25 @@
                 </ul>
             </nav>
 
-            <!-- Acciones del header: carrito y botón hamburguesa -->
             <div class="header-actions">
-
-                <!-- Acceso al carrito en desktop -->
                 <a href="carrito.html" class="cart" aria-label="Ver carrito">
-                    <img
-                        src="../assets/icons/Shopping_Bag.svg"
-                        alt="Icono de carrito de compras"
-                        aria-hidden="true"
-                    >
+                    <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
                 </a>
 
-                <!-- Botón que abre el menú móvil -->
-                <button
-                    class="menu-toggle"
-                    type="button"
-                    aria-controls="mobile-menu"
-                    aria-expanded="false"
-                    aria-label="Abrir menú"
-                >
-                    <img
-                        src = "../assets/icons/Menu.svg"
-                        aria-hidden="true"
-                        focusable="false"
-                    >
+                <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
+                    <img src="../assets/icons/Menu.svg" aria-hidden="true" focusable="false">
                 </button>
             </div>
         </div>
 
-        <!-- Menú móvil oculto por defecto -->
         <div id="mobile-menu" class="mobile-menu" hidden>
-
-            <!-- Tarjeta central del menú móvil tratada como diálogo accesible -->
             <div class="mobile-card" role="dialog" aria-modal="true" aria-label="Navegación móvil">
-
-                <!-- Cabecera del menú móvil con botón de cierre -->
                 <header class="mobile-card__header">
                     <button class="mobile-close" type="button" aria-label="Cerrar menú">
                         <img src="../assets/icons/Close_Menu.svg" alt="" aria-hidden="true">
                     </button>
                 </header>
 
-                <!-- Navegación en versión móvil -->
                 <nav class="mobile-nav" aria-label="Navegación móvil">
                     <ul class="mobile-nav__list">
                         <li><a href="../index.html" class="mobile-nav__link">Inicio</a></li>
@@ -100,31 +62,47 @@
                     </ul>
                 </nav>
 
-                <!-- Acceso al carrito dentro del menú móvil -->
                 <a href="carrito.html" class="mobile-cart" aria-label="Ver carrito">
-                    <img
-                        src="../assets/icons/Shopping_Bag.svg"
-                        alt="Icono de carrito de compras"
-                        aria-hidden="true"
-                    >
+                    <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito de compras" aria-hidden="true">
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Contenido principal de la página -->
     <main id="content" tabindex="-1">
-        <div class="empty-cart">
-            <h1>Bolsa de Mercado</h1>
-            <p>Tu bolsa está vacía. ¡Agrega algunos ingredientes!</p>
-            <div class="empty-cart-card">
-                <div class="empty-cart-icon">
-                    <img src="../assets/icons/reloj.svg" alt="Carrito vacío">
-                </div>
-                <p>Aún no has consultado ningún producto</p>
-                <a href="recetas.html" class="btn-primary">Explorar recetas</a>
+        <section class="recipe-hero" aria-labelledby="recipe-title">
+            <div class="container recipe-hero__inner">
+                <a href="colombiana.html" class="back-link" aria-label="Volver a Colombiana">
+                    <img src="../assets/icons/Arrow_Back.svg" alt="" aria-hidden="true" class="back-link__icon" width="20" height="20">
+                    <span class="back-link__text">Volver a Colombiana</span>
+                </a>
+
+                <article class="hero-card" aria-labelledby="recipe-title">
+                    <div class="hero-grid">
+                        <div class="hero-media">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
+                                <img src="../assets/images/recetas/recetas_sugeridas/arroz-pollo.jpg" alt="Arroz con pollo" loading="lazy" decoding="async">
+                            </picture>
+                        </div>
+                        
+                        <div class="hero-content">
+                            <header class="hero-header">
+                                <h1 id="recipe-title">Arroz con Pollo</h1>
+                            </header>
+
+                            <div class="hero-description">
+                                <p>Un plato tradicional de la cocina latinoamericana, lleno de sabor y color. Arroz cocido en un caldo sazonado, mezclado con pollo desmenuzado, verduras frescas y especias que realzan su aroma. Preparado lentamente para lograr una textura suave y un equilibrio perfecto entre ingredientes.</p>
+                            </div>
+
+                            <div class="hero-actions">
+                                <a href="#" class="card-cta">Comparar Ingredientes</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer class="site-footer">
