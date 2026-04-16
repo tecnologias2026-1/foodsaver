@@ -1,10 +1,4 @@
-.recipe-screen {
-    background: var(--bg);
-    color: #515151;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
+
 
 /* Page layout — styles scoped for the recipe detail (comparator) view only */
 .recipe-detail {

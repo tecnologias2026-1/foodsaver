@@ -15,10 +15,8 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     padding: 0 1.5rem;
-    border: 1px solid black;
-
 }
 
 /* Estilos para el título principal: define tamaño, peso, línea y color, centrado */

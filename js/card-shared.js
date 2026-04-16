@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
       badge.className = 'cart-count';
       badge.hidden = true;
       badge.textContent = '0';
+      badge.setAttribute('role', 'status');
+      badge.setAttribute('aria-live', 'polite');
+      badge.setAttribute('aria-atomic', 'true');
+      badge.setAttribute('aria-hidden', 'true');
       container.appendChild(badge);
     }
     return badge;
@@ -49,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     getBadges().forEach(function (badge) {
       badge.textContent = String(count);
       badge.hidden = count === 0;
+      badge.setAttribute('aria-hidden', count === 0 ? 'true' : 'false');
     });
     localStorage.setItem(countStorageKey, String(count));
   }
@@ -99,6 +104,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     writeCartItems(items);
     renderBadges(getItemsCount(items));
+
+    try {
+      const updated = readCartItems();
+      document.dispatchEvent(new CustomEvent('foodsaver:cart-updated', { detail: { items: updated } }));
+    } catch (err) {
+      // no-op: dispatch best-effort
+    }
   }
 
   document.querySelectorAll('.add-btn').forEach(function (button) {
@@ -108,4 +120,23 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   renderBadges(getCurrentCount());
+
+  // Update badges when cart changes in other tabs or via custom events.
+  document.addEventListener('foodsaver:cart-updated', function () {
+    try {
+      renderBadges(getItemsCount(readCartItems()));
+    } catch (err) {
+      // no-op
+    }
+  });
+
+  window.addEventListener('storage', function (e) {
+    try {
+      if (e.key === itemsStorageKey || e.key === countStorageKey) {
+        renderBadges(getItemsCount(readCartItems()));
+      }
+    } catch (err) {
+      // no-op
+    }
+  });
 });

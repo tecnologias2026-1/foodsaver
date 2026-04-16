@@ -5,10 +5,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const emptyCart = document.querySelector('.empty-cart');
   const filledCart = document.querySelector('.filled-cart');
   const itemsList = document.getElementById('cart-items-list');
+  const cartSummary = document.querySelector('.cart-summary');
   const totalElement = document.getElementById('cart-total');
   const productsCountElement = document.getElementById('cart-products-count');
   const clearCartButton = document.getElementById('clear-cart-btn');
   const countBadges = document.querySelectorAll('.cart-count');
+
+  function setVisibility(el, visible, fallbackDisplay) {
+    if (!el) return;
+    el.hidden = !visible;
+    try { el.setAttribute('aria-hidden', (!visible).toString()); } catch (e) {}
+    el.style.display = visible ? (fallbackDisplay || '') : 'none';
+  }
 
   function readCartItems() {
     try {
@@ -61,6 +69,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     writeCartItems(nextItems);
     render(nextItems);
+    try {
+      document.dispatchEvent(new CustomEvent('foodsaver:cart-updated', { detail: { items: nextItems } }));
+    } catch (err) {
+      // best-effort
+    }
   }
 
   function updateItemQuantity(id, delta) {
@@ -83,12 +96,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     writeCartItems(nextItems);
     render(nextItems);
+    try {
+      document.dispatchEvent(new CustomEvent('foodsaver:cart-updated', { detail: { items: nextItems } }));
+    } catch (err) {
+      // best-effort
+    }
   }
 
   function clearCart() {
     writeCartItems([]);
     localStorage.setItem(countStorageKey, '0');
     render([]);
+    try {
+      document.dispatchEvent(new CustomEvent('foodsaver:cart-updated', { detail: { items: [] } }));
+    } catch (err) {
+      // best-effort
+    }
   }
 
   function renderItems(items) {
@@ -127,13 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '  <div class="cart-item__total-row">' +
         '    <p class="cart-item__line-total">Subtotal: ' + formatCOP(subtotal) + ' COP</p>' +
         '    <button class="cart-item__remove" type="button" data-remove-id="' + item.id + '" aria-label="Eliminar producto">' +
-        '      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-        '        <path d="M3 6H5H21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>' +
-        '        <path d="M8 6V4C8 3.44772 8.44772 3 9 3H15C15.5523 3 16 3.44772 16 4V6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>' +
-        '        <path d="M19 6V20C19 20.5523 18.5523 21 18 21H6C5.44772 21 5 20.5523 5 20V6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>' +
-        '        <path d="M10 11V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>' +
-        '        <path d="M14 11V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>' +
-        '      </svg>' +
+        '      <img src="../assets/icons/Trash.svg" alt="" aria-hidden="true" class="cart-item__remove-icon">' +
         '    </button>' +
         '  </div>' +
         '</div>';
@@ -165,17 +182,37 @@ document.addEventListener('DOMContentLoaded', function () {
   function render(items) {
     const hasItems = items.length > 0;
 
-    if (emptyCart) {
-      emptyCart.hidden = hasItems;
-    }
-
-    if (filledCart) {
-      filledCart.hidden = !hasItems;
-    }
+    // ensure exclusive visibility using explicit display and aria-hidden
+    setVisibility(emptyCart, !hasItems, 'flex');
+    setVisibility(filledCart, hasItems, 'flex');
 
     renderBadges(calculateCount(items));
     renderItems(items);
+
+    setVisibility(itemsList, hasItems, 'block');
+    setVisibility(cartSummary, hasItems, 'block');
   }
+
+  // Listen for cross-script cart updates (e.g., when user clicks "Agregar" elsewhere).
+  document.addEventListener('foodsaver:cart-updated', function (e) {
+    try {
+      const items = e && e.detail && Array.isArray(e.detail.items) ? e.detail.items : readCartItems();
+      render(items);
+    } catch (err) {
+      console.error('Error handling foodsaver:cart-updated', err);
+    }
+  });
+
+  // Listen for storage events to synchronize across tabs/windows.
+  window.addEventListener('storage', function (e) {
+    try {
+      if (e.key === itemsStorageKey) {
+        render(readCartItems());
+      }
+    } catch (err) {
+      console.error('storage listener error', err);
+    }
+  });
 
   if (clearCartButton) {
     clearCartButton.addEventListener('click', clearCart);

@@ -6,10 +6,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 25px 60px;
-    min-height: 60vh; /* Ajustar según necesidad */
+    justify-content: flex-start; /* alinear contenido hacia arriba para acercarlo al título */
+    gap: 12px; /* reducido para agrupar contenido */
+    padding: 12px 60px; /* menos espacio entre título y contenido */
+    min-height: 36vh; /* reducido para evitar grandes espacios vacíos */
     text-align: center;
 }
 
@@ -35,7 +35,6 @@
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.1);
-    padding: 30px;
     max-width: 900px;
     width: 100%;
     min-width: 290px;
@@ -85,13 +84,20 @@
     background: #008a35; /* Slightly darker green */
 }
 
+/* Ajustes de título y espaciado para la página del carrito */
+.cart-title {
+    margin-top: 1.5rem; /* separa ligeramente del header */
+    margin-bottom: 0.5rem; /* reduce espacio con el contenido */
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .empty-cart {
-        padding: 25px 20px;
+        padding: 12px 20px;
     }
 
-    .empty-cart h1 {
+    .empty-cart h1,
+    .cart-title {
         font-size: 40px;
         line-height: 40px;
     }
@@ -109,4 +115,204 @@
         width: 64px;
         height: 64px;
     }
+}
+
+/* ==========================
+   Estilos para carrito con items
+   ========================== */
+.filled-cart {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2rem 1rem;
+    min-height: 60vh;
+}
+
+.cart-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 60px;
+    color: #000;
+    margin-top: 1.5rem; /* separa ligeramente del header */
+    margin-bottom: 0.5rem; /* reduce espacio con el contenido */
+    text-align: center;
+}
+
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 120px 1fr 200px;
+    gap: 1rem;
+    align-items: center;
+    background: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.cart-item__image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+.cart-item__content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cart-item__content h2 { margin: 0; font-size: 18px; color: var(--text); }
+.cart-item__market { margin: 0; color: #6a7282; font-size: 14px; }
+
+.qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f3f4f6;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.qty-stepper__btn {
+    background: transparent;
+    border: none;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.qty-stepper__value { min-width: 20px; text-align: center; display: inline-block; }
+
+.cart-item__meta { text-align: right; }
+.cart-item__unit { margin: 0; color: #515151; font-size: 14px; }
+.cart-item__line-total { margin: 0; font-weight: 700; color: var(--accent); }
+
+.cart-item__remove {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    margin-top: 8px;
+}
+
+.cart-item__remove-icon {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+}
+
+.cart-summary {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.cart-summary__top { display: flex; justify-content: space-between; align-items: baseline; }
+.cart-summary__top span { color: #515151; }
+.cart-summary__top strong { font-size: 24px; color: var(--accent); }
+
+.cart-summary__count { margin: 0; color: #6a7282; }
+
+.cart-summary__actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+.btn-secondary {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.07);
+    color: var(--text);
+}
+
+.cart-clear-btn {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.07);
+    background: transparent;
+    color: var(--accent);
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    /* Compact two-column layout for cart items on small screens
+       Left: fixed-size image; Right: stacked content (title, market, qty, price+remove) */
+    .cart-item {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        grid-template-areas: "image content" "image meta";
+        gap: 0.75rem;
+        align-items: start;
+        padding: 12px;
+    }
+
+    .cart-item__image {
+        grid-area: image;
+        width: 100px;
+        height: 100px;
+        max-width: 100px;
+        max-height: 100px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .cart-item__content {
+        grid-area: content;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .cart-item__meta {
+        grid-area: meta;
+        display: flex;
+        flex-direction: column; /* apilar: precio unitario arriba, subtotal debajo */
+        gap: 0.5rem;
+        align-items: stretch;
+    }
+
+    .cart-item__unit {
+        text-align: right; /* mantener precio unitario alineado a la derecha */
+    }
+
+    .cart-item__total-row {
+        display: flex;
+        flex-direction: column; /* subtotal arriba, botón eliminar abajo */
+        gap: 0.25rem;
+        align-items: flex-end; /* colocar subtotal y botón hacia la derecha */
+        width: 100%;
+    }
+
+    .cart-item__remove {
+        margin: 0;
+        align-self: flex-end; /* asegurar que el botón quede al final, en la derecha */
+    }
+
+    .cart-item__remove { margin: 0; }
+
+    .cart-summary__actions { justify-content: space-between; }
 }
