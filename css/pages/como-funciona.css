@@ -5,7 +5,7 @@
 /* Estilos para la sección principal how-it-works: establece fondo blanco, padding y altura mínima */
 .how-it-works {
     background-color: #fff;
-    padding: 4rem 0;
+    padding: 1rem 0;
     min-height: calc(100vh - 200px);
 }
 
@@ -17,6 +17,8 @@
     flex-direction: column;
     gap: 2rem;
     padding: 0 1.5rem;
+    border: 1px solid black;
+
 }
 
 /* Estilos para el título principal: define tamaño, peso, línea y color, centrado */
