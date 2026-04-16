@@ -82,21 +82,19 @@
                 </div>
 
                 <ul class="colombiana-grid" aria-label="Recetas Colombianas">
-                    <!-- Primera card activa -->
+                    <!-- Primera card activa (tarjeta no clicable; CTA maneja la navegación) -->
                     <li class="card card--recipe">
-                        <a class="card-link" href="arroz-con-pollo-info.html" aria-label="Ver receta Arroz con pollo">
-                            <picture>
-                                <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
-                                <img src="../assets/images/recetas/recetas_sugeridas/arroz-pollo.jpg" alt="Arroz con pollo" loading="lazy" decoding="async">
-                            </picture>
-                            <div class="card-content">
-                                <div>
-                                    <p class="recipe-name">Arroz con pollo</p>
-                                    <p class="card-desc">Clásico plato de arroz sazonado con pollo desmenuzado, verduras y especias.</p>
-                                </div>
-                                <span class="card-cta">Ver receta</span>
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/recetas/recetas_sugeridas/arroz-pollo.webp">
+                            <img src="../assets/images/recetas/recetas_sugeridas/arroz-pollo.jpg" alt="Arroz con pollo" loading="lazy" decoding="async">
+                        </picture>
+                        <div class="card-content">
+                            <div>
+                                <p class="recipe-name">Arroz con pollo</p>
+                                <p class="card-desc">Clásico plato de arroz sazonado con pollo desmenuzado, verduras y especias.</p>
                             </div>
-                        </a>
+                            <a class="card-cta" href="arroz-con-pollo-info.html" aria-label="Ver receta Arroz con pollo">Ver receta</a>
+                        </div>
                     </li>
 
                     <!-- Cards deshabilitadas (focables) -->
