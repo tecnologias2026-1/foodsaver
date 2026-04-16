@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración básica del documento -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arroz con Pollo — Foodsaver</title>
+    <meta name="description" content="Compara ingredientes de arroz con pollo entre supermercados y encuentra la opción más económica en Foodsaver.">
+
+    <!-- Hoja de estilos principal (modular) -->
+    <link rel="stylesheet" href="../css/base/variables.css">
+    <link rel="stylesheet" href="../css/base/reset.css">
+    <link rel="stylesheet" href="../css/layout/header.css">
+    <link rel="stylesheet" href="../css/layout/container.css">
+    <link rel="stylesheet" href="../css/components/nav.css">
+    <link rel="stylesheet" href="../css/components/mobile-menu.css">
+    <link rel="stylesheet" href="../css/components/buttons.css">
+    <link rel="stylesheet" href="../css/pages/recipe-detail.css">
+
+    <!-- Script del header: controla menú móvil y estados interactivos -->
+    <script defer src="../js/header.js"></script>
+    <script defer src="../js/cart-shared.js"></script>
+
+    <!-- Script para cambiar entre ingredientes -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.ingredient-tabs__item');
+            const compareButton = document.getElementById('compare-ingredients-btn');
+            const ingredientSection = document.getElementById('ingredient-section');
+            const scrapingInfo = document.getElementById('scraping-info');
+            const compareStateKey = 'foodsaverRecipeCompareOpen';
+
+            function parsePrice(text) {
+                const numeric = Number((text || '').replace(/[^0-9]/g, ''));
+                return Number.isFinite(numeric) ? numeric : Number.POSITIVE_INFINITY;
+            }
+
+            function markCheapestCards() {
+                const grids = document.querySelectorAll('.market-grid');
+
+                grids.forEach(function (grid) {
+                    const cards = Array.from(grid.querySelectorAll('.market-card'));
+
+                    if (cards.length === 0) {
+                        return;
+                    }
+
+                    let cheapestCard = null;
+                    let cheapestPrice = Number.POSITIVE_INFINITY;
+
+                    cards.forEach(function (card) {
+                        const priceNode = card.querySelector('.price');
+                        const price = parsePrice(priceNode ? priceNode.textContent : '');
+
+                        if (price < cheapestPrice) {
+                            cheapestPrice = price;
+                            cheapestCard = card;
+                        }
+                    });
+
+                    cards.forEach(function (card) {
+                        card.classList.remove('market-card--cheapest');
+                        const existingBadge = card.querySelector('.market-card__badge');
+                        if (existingBadge) {
+                            existingBadge.remove();
+                        }
+                    });
+
+                    if (cheapestCard) {
+                        cheapestCard.classList.add('market-card--cheapest');
+
+                        const badge = document.createElement('span');
+                        badge.className = 'market-card__badge';
+                        badge.textContent = 'Más Económico';
+                        badge.setAttribute('aria-label', 'Esta es la opción más económica');
+                        cheapestCard.prepend(badge);
+                    }
+                });
+            }
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const ingredientName = this.dataset.ingredient;
+                    
+                    // Remove active state from all tabs
+                    tabs.forEach(t => t.classList.remove('is-active'));
+                    
+                    // Add active state to clicked tab
+                    this.classList.add('is-active');
+                    
+                    // Hide all market grids
+                    const grids = document.querySelectorAll('.market-grid');
+                    grids.forEach(grid => {
+                        grid.hidden = true;
+                        grid.classList.remove('is-active');
+                    });
+                    
+                    // Show the selected grid
+                    const selectedGrid = document.querySelector(`.market-grid[data-ingredient="${ingredientName}"]`);
+                    if (selectedGrid) {
+                        selectedGrid.hidden = false;
+                        selectedGrid.classList.add('is-active');
+                    }
+                });
+            });
+
+            if (compareButton && ingredientSection) {
+                compareButton.addEventListener('click', function () {
+                    ingredientSection.hidden = false;
+                    compareButton.setAttribute('aria-expanded', 'true');
+                    if (scrapingInfo) {
+                        scrapingInfo.hidden = false;
+                    }
+                    localStorage.setItem(compareStateKey, 'true');
+                    ingredientSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+
+            if (localStorage.getItem(compareStateKey) === 'true') {
+                if (ingredientSection) {
+                    ingredientSection.hidden = false;
+                }
+                if (scrapingInfo) {
+                    scrapingInfo.hidden = false;
+                }
+                if (compareButton) {
+                    compareButton.setAttribute('aria-expanded', 'true');
+                }
+            } else if (compareButton) {
+                compareButton.setAttribute('aria-expanded', 'false');
+            }
+
+            markCheapestCards();
+
+        });
+    </script>
+</head>
+<body class="recipe-screen">
+    <!-- Enlace accesible para saltar directamente al contenido principal -->
+    <a class="skip-link sr-only" href="#content">Saltar al contenido</a>
+
+    <!-- Header principal del sitio -->
+    <header class="site-header">
+        <div class="container header-inner">
+
+            <!-- Logo / marca principal que redirige al inicio -->
+            <a href="../index.html" class="brand" aria-label="Foodsaver — Inicio">
+                <img
+                    src="../assets/icons/Foodsaver.png"
+                    alt="Logo Foodsaver"
+                >
+                <span class="brand__name">FOODSAVER</span>
+            </a>
+
+            <!-- Navegación principal visible en desktop -->
+            <nav class="main-nav" aria-label="Navegación principal">
+                <ul class="nav__list">
+                    <li><a class="nav__link" href="../index.html">Inicio</a></li>
+                    <li><a class="nav__link" href="recetas.html">Recetas</a></li>
+                    <li><a class="nav__link" href="como-funciona.html">Cómo funciona</a></li>
+                </ul>
+            </nav>
+
+            <!-- Acciones del header: carrito y botón hamburguesa -->
+            <div class="header-actions">
+
+                <!-- Acceso al carrito en desktop -->
+                <a href="carrito.html" class="cart" aria-label="Ver carrito">
+                    <img
+                        src="../assets/icons/Shopping_Bag.svg"
+                        alt="Icono de carrito de compras"
+                        aria-hidden="true"
+                    >
+                    <span class="cart-count" hidden>0</span>
+                </a>
+
+                <!-- Botón que abre el menú móvil -->
+                <button
+                    class="menu-toggle"
+                    type="button"
+                    aria-controls="mobile-menu"
+                    aria-expanded="false"
+                    aria-label="Abrir menú"
+                >
+                    <img
+                        src="../assets/icons/Menu.svg"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú móvil oculto por defecto -->
+        <div id="mobile-menu" class="mobile-menu" hidden>
+
+            <!-- Tarjeta central del menú móvil tratada como diálogo accesible -->
+                <!-- aria-modal="true" le indica a las tecnologías de asistencia que 
+                 informen al usuario que la capacidad de interactuar con otro contenido 
+                 de la página, o acceder a él, requiere que el cuadro de diálogo modal 
+                 esté cerrado o pierda el foco. En este caso, el menú móvil es un diálogo modal -->
+                <div class="mobile-card" role="dialog" aria-modal="true" aria-label="Navegación móvil">
+
+                <!-- Cabecera del menú móvil con botón de cierre -->
+                <!-- Cabecera del menú móvil con botón para cerrar -->
+                <header class="mobile-card__header">
+                    <button class="mobile-close" type="button" aria-label="Cerrar menú">
+                        <img src="../assets/icons/Close_Menu.svg" alt="" aria-hidden="true">
+                    </button>
+                </header>
+
+                <!-- Navegación en versión móvil -->
+                <nav class="mobile-nav" aria-label="Navegación móvil">
+                    <ul class="mobile-nav__list">
+                        <li><a href="../index.html" class="mobile-nav__link">Inicio</a></li>
+                        <li><a href="recetas.html" class="mobile-nav__link">Recetas</a></li>
+                        <li><a href="como-funciona.html" class="mobile-nav__link">Cómo funciona</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Acceso al carrito dentro del menú móvil -->
+                <a href="carrito.html" class="mobile-cart" aria-label="Ver carrito">
+                    <img
+                        src="../assets/icons/Shopping_Bag.svg"
+                        alt="Icono de carrito de compras"
+                        aria-hidden="true"
+                    >
+                    <span class="cart-count" hidden>0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal de la página -->
+    <main id="content" class="recipe-detail" tabindex="-1">
+        <section class="recipe-detail__section container" aria-labelledby="recipe-title">
+            <a class="return-link" href="recetas.html" aria-label="Volver a recetas">
+                <span aria-hidden="true">←</span>
+                <span>Volver a Recetas</span>
+            </a>
+
+            <article class="recipe-hero" aria-label="Detalle de receta arroz con pollo">
+                <figure class="recipe-hero__media">
+                    <img
+                        src="../assets/images/arroz-pollo.jpg"
+                        alt="Arroz con pollo servido en plato"
+                        loading="eager"
+                        decoding="sync"
+                        fetchpriority="high"
+                        width="1200"
+                        height="600"
+                    >
+                </figure>
+
+                <div class="recipe-hero__content">
+                    <h1 id="recipe-title">ARROZ CON POLLO</h1>
+                    <p>
+                        Un clásico de la cocina latinoamericana, especialmente en Colombia. 
+                        Arroz tierno cocinado con trozos de pollo jugoso, verduras frescas y un toque 
+                        de azafrán que le da su color y sabor característico. Perfecto para comer en familia.
+                    </p>
+                    <button id="compare-ingredients-btn" class="compare-btn" type="button" aria-controls="ingredient-section scraping-info" aria-expanded="false">Comparar ingredientes</button>
+                </div>
+            </article>
+
+            <section id="ingredient-section" class="ingredient-section" aria-label="Comparador por ingrediente" hidden>
+                <nav class="ingredient-tabs" aria-label="Ingredientes">
+                    <button class="ingredient-tabs__item is-active" type="button" data-ingredient="habichuela">Habichuela</button>
+                    <button class="ingredient-tabs__item" type="button" data-ingredient="arroz">Arroz</button>
+                    <button class="ingredient-tabs__item" type="button" data-ingredient="pimenton">Pimentón</button>
+                    <button class="ingredient-tabs__item" type="button" data-ingredient="cebolla">Cebolla</button>
+                    <button class="ingredient-tabs__item" type="button" data-ingredient="pechuga">Pechuga</button>
+                    <button class="ingredient-tabs__item" type="button" data-ingredient="arveja">Arveja</button>
+                    <button class="ingredient-tabs__item" type="button" data-ingredient="condimento">Condimento</button>
+                    <button class="ingredient-tabs__item" type="button" data-ingredient="ajo">Ajo</button>
+                </nav>
+
+                <!-- Habichuela Section -->
+                <section class="market-grid is-active" data-ingredient="habichuela" aria-label="Habichuela - Comparación de supermercados">
+                <article class="market-card">
+                    <img
+                        src="../assets/images/Habichuela Ekono.jpg"
+                        alt="Habichuela Ekono Éxito"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Habichuela Ekono</h2>
+                        <p class="price">COP 5,200</p>
+                        <p class="market">Éxito</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+
+                <article class="market-card">
+                    <img
+                        src="../assets/images/Habichuelina Carulla.jpg"
+                        alt="Habichuela Premium Carulla"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Habichuela Premium</h2>
+                        <p class="price">COP 7,200</p>
+                        <p class="market">Carulla</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+
+                <article class="market-card">
+                    <img
+                        src="../assets/images/Habichuela Jumbo 700 gr.jpg"
+                        alt="Habichuela Tradicional Jumbo"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Habichuela Tradicional</h2>
+                        <p class="price">COP 3,800</p>
+                        <p class="market">Jumbo</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+                </section>
+
+                <!-- Arroz Section -->
+                <section class="market-grid" data-ingredient="arroz" aria-label="Arroz - Comparación de supermercados" hidden>
+                <article class="market-card">
+                    <img
+                        src="../assets/images/Arroz-Diana-1000-gr.jpg"
+                        alt="Arroz Blanco Éxito"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Arroz Blanco 1kg</h2>
+                        <p class="price">COP 3,500</p>
+                        <p class="market">Éxito</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+
+                <article class="market-card">
+                    <img
+                        src="../assets/images/Arroz-Premium-1000 gr.jpg"
+                        alt="Arroz Premium Carulla"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Arroz Premium 1kg</h2>
+                        <p class="price">COP 5,800</p>
+                        <p class="market">Carulla</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+
+                <article class="market-card">
+                    <img
+                        src="../assets/images/Arroz Integral.jpg"
+                        alt="Arroz Integral Jumbo"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Arroz Integral 1kg</h2>
+                        <p class="price">COP 11,590</p>
+                        <p class="market">Jumbo</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+                </section>
+
+                <!-- Pimentón Section -->
+                <section class="market-grid" data-ingredient="pimenton" aria-label="Pimentón - Comparación de supermercados" hidden>
+                <article class="market-card">
+                    <img
+                        src="../assets/images/Pimenton-Colores- Exito.jpg"
+                        alt="Pimentón Amarillo Éxito"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Pimentón Amarillo 500g</h2>
+                        <p class="price">COP 7,800</p>
+                        <p class="market">Éxito</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+
+                <article class="market-card">
+                    <img
+                        src="../assets/images/PIMENTON-VERDE Carulla.jpg"
+                        alt="Pimentón Importado Carulla"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Pimentón Importado 500g</h2>
+                        <p class="price">COP 5,500</p>
+                        <p class="market">Carulla</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+
+                <article class="market-card">
+                    <img
+                        src="../assets/images/Pimenton Jumbo.jpg"
+                        alt="Pimentón Dulce Jumbo"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Pimentón Dulce 500g</h2>
+                        <p class="price">COP 6,500</p>
+                        <p class="market">Jumbo</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+                </section>
+
+                <!-- Cebolla Section -->
+                <section class="market-grid" data-ingredient="cebolla" aria-label="Cebolla - Comparación de supermercados" hidden>
+                <article class="market-card">
+                    <img
+                        src="../assets/images/CEBOLLA-BLANCA-UNIDAD EXITO.jpg"
+                        alt="Cebolla Blanca Éxito"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Cebolla Blanca Unidad</h2>
+                        <p class="price">COP 2,500</p>
+                        <p class="market">Éxito</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+
+                <article class="market-card">
+                    <img
+                        src="../assets/images/CEBOLLA-ROJA-UNIDAD-CARULLA.jpg"
+                        alt="Cebolla Morada Carulla unidad"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Cebolla Morada Unidad</h2>
+                        <p class="price">COP 3,200</p>
+                        <p class="market">Carulla</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+
+                <article class="market-card">
+                    <img
+                        src="../assets/images/CEBOLLA JUMBO.jpg"
+                        alt="Cebolla Dulce Jumbo"
+                        loading="lazy"
+                        decoding="async"
+                        width="300"
+                        height="300"
+                    >
+                    <div class="market-card__content">
+                        <h2>Cebolla Dulce Unidad</h2>
+                        <p class="price">COP 2,800</p>
+                        <p class="market">Jumbo</p>
+                        <button class="add-btn" type="button">Añadir a la bolsa</button>
+                    </div>
+                </article>
+                </section>
+
+                <!-- Pechuga Section -->
+                <section class="market-grid" data-ingredient="pechuga" aria-label="Pechuga - Comparación de supermercados" hidden>
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/PECHUGA-SI-CAMPESINA-EXITO.jpg"
+                            alt="Pechuga de Pollo Campesina Éxito"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Pechuga de Pollo Campesina 900g</h2>
+                            <p class="price">COP 17,520</p>
+                            <p class="market">Éxito</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/PECHUGA-SI-BLANCA-CARULLA.jpg"
+                            alt="Pechuga Blanca Marinada Carulla"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Pechuga Blanca Marinada 900g</h2>
+                            <p class="price">COP 16,720</p>
+                            <p class="market">Carulla</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Pechuga Jumbo.jpg"
+                            alt="Pechuga Campesina Marinada Jumbo"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Pechuga Campesina Marinada 900g</h2>
+                            <p class="price">COP 24,282</p>
+                            <p class="market">Jumbo</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Arveja Section -->
+                <section class="market-grid" data-ingredient="arveja" aria-label="Arveja - Comparación de supermercados" hidden>
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Arveja-Amarilla-Frescampo EXITO.jpg"
+                            alt="Arveja Amarilla Éxito"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Arveja Amarilla 500g</h2>
+                            <p class="price">COP 4,600</p>
+                            <p class="market">Éxito</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Arveja-Verde-Frescampo CARULLA.jpg"
+                            alt="Arveja Verde Carulla"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Arveja Verde 500g</h2>
+                            <p class="price">COP 5,700</p>
+                            <p class="market">Carulla</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Arveja Premium JUMBO.jpg"
+                            alt="Arveja Premium Jumbo"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Arveja Premium 500g</h2>
+                            <p class="price">COP 4,100</p>
+                            <p class="market">Jumbo</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Condimento Section -->
+                <section class="market-grid" data-ingredient="condimento" aria-label="Condimento - Comparación de supermercados" hidden>
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Tricompleto-El-Rey-X-Exito.jpg"
+                            alt="Condimento Tricompleto Éxito"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Condimento Tricompleto 60g</h2>
+                            <p class="price">COP 2,900</p>
+                            <p class="market">Éxito</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Condimento-Completo-TRICONDOR-Carulla.jpg"
+                            alt="Condimento Premium Carulla"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Condimento Premium 60g</h2>
+                            <p class="price">COP 4,700</p>
+                            <p class="market">Carulla</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Condimento Jumbo.jpg"
+                            alt="Condimento Tradicional Jumbo"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Condimento Tradicional 60g</h2>
+                            <p class="price">COP 3,900</p>
+                            <p class="market">Jumbo</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Ajo Section -->
+                <section class="market-grid" data-ingredient="ajo" aria-label="Ajo - Comparación de supermercados" hidden>
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Ajo-Importado-Malla-Paquete-Exito.jpg"
+                            alt="Ajo Malla por 3 Éxito"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Ajo Malla x3</h2>
+                            <p class="price">COP 2,100</p>
+                            <p class="market">Éxito</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Ajo-Importado-Malla-Paquete Carulla.jpg"
+                            alt="Ajo Malla por 3 Carulla"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Ajo Malla x3</h2>
+                            <p class="price">COP 1,950</p>
+                            <p class="market">Carulla</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+
+                    <article class="market-card">
+                        <img
+                            src="../assets/images/Ajo Importado Malla Jumbo.jpg"
+                            alt="Ajo Malla por 3 Jumbo"
+                            loading="lazy"
+                            decoding="async"
+                            width="300"
+                            height="300"
+                        >
+                        <div class="market-card__content">
+                            <h2>Ajo Malla x3</h2>
+                            <p class="price">COP 2,800</p>
+                            <p class="market">Jumbo</p>
+                            <button class="add-btn" type="button">Añadir a la bolsa</button>
+                        </div>
+                    </article>
+                </section>
+            </section>
+
+            <section id="scraping-info" class="scraping-info" aria-label="Estado de resultados" hidden>
+                <p class="scraping-info__status">Resultados actualizados hace unos segundos</p>
+                <p class="scraping-info__meta">3 supermercados consultados</p>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-locale">
+                <span aria-hidden="true">🌐</span>
+                <span>Español (Colombia)</span>
+            </div>
+            <nav class="footer-nav" aria-label="Enlaces de footer">
+                <a href="#">Contacto</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Aviso Legal</a>
+            </nav>
+            <p class="footer-copyright">© FOODSAVER 2026</p>
+        </div>
+    </footer>
+</body>
+</html>
