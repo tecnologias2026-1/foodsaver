@@ -33,6 +33,10 @@
             const scrapingInfo = document.getElementById('scraping-info');
             const compareStateKey = 'foodsaverRecipeCompareOpen';
 
+            function prefersReducedMotion() {
+                return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            }
+
             function parsePrice(text) {
                 const numeric = Number((text || '').replace(/[^0-9]/g, ''));
                 return Number.isFinite(numeric) ? numeric : Number.POSITIVE_INFINITY;
@@ -96,8 +100,16 @@
                     const match = grid.dataset.ingredient === ingredientName;
                     grid.hidden = !match;
                     grid.classList.toggle('is-active', match);
+                    try { grid.setAttribute('aria-hidden', (!match).toString()); } catch (e) {}
                     if (match && setFocusToPanel) {
-                        try { grid.focus(); } catch (e) { /* ignore */ }
+                        try {
+                            try { grid.focus({ preventScroll: true }); } catch (err) { if (grid.focus) grid.focus(); }
+                            if (!prefersReducedMotion()) {
+                                try { grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { grid.scrollIntoView(true); }
+                            } else {
+                                try { grid.scrollIntoView({ behavior: 'auto', block: 'start' }); } catch (e) { grid.scrollIntoView(true); }
+                            }
+                        } catch (e) { /* ignore */ }
                     }
                 });
             }
@@ -156,10 +168,16 @@
                     compareButton.setAttribute('aria-expanded', 'true');
                     if (scrapingInfo) scrapingInfo.hidden = false;
                     localStorage.setItem(compareStateKey, 'true');
-                    // focus the active tab for keyboard users
+                    // focus the active tab for keyboard users without jump
                     const active = tabs.find(function(t) { return t.getAttribute('aria-selected') === 'true'; }) || tabs[0];
-                    ingredientSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    if (active) active.focus();
+                    if (active) {
+                        try { active.focus({ preventScroll: true }); } catch (e) { active.focus(); }
+                        if (!prefersReducedMotion()) {
+                            try { ingredientSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { ingredientSection.scrollIntoView(true); }
+                        } else {
+                            try { ingredientSection.scrollIntoView({ behavior: 'auto', block: 'start' }); } catch (e) { ingredientSection.scrollIntoView(true); }
+                        }
+                    }
                 });
             }
 
