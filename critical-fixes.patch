@@ -1,0 +1,87 @@
+*** Begin Patch
+*** Update File: js/header.js
+@@
+   if (e.key !== 'Tab') return;
+ 
+   const nodes = mobileMenu.querySelectorAll(focusableSel);
+   const first = nodes[0];
+   const last = nodes[nodes.length - 1];
+@@
+     }
+   }
++
++  // Oculta / restaura el contenido de fondo a las tecnologías de asistencia
++  // (cuando el diálogo del menú móvil está abierto)
++  function setBackgroundHidden(hidden) {
++    try {
++      document.querySelectorAll('main, footer, .site-footer').forEach(function (el) {
++        if (!el) return;
++        if (hidden) el.setAttribute('aria-hidden', 'true');
++        else el.removeAttribute('aria-hidden');
++      });
++    } catch (err) { /* no-op */ }
++  }
+@@
+   function openMenu() {
+@@
+     // Bloquea el scroll de la página de fondo
+     document.body.style.overflow = 'hidden';
++
++    // Oculta el fondo a AT (mejora compatibilidad de aria-modal)
++    setBackgroundHidden(true);
+@@
+   function closeMenu() {
++    // Restaura visibilidad del fondo a AT
++    setBackgroundHidden(false);
+     // Quita la clase visual del menú
+     mobileMenu.classList.remove('is-open');
+*** End Patch
+
+*** Begin Patch
+*** Update File: pages/arroz-con-pollo-scraped.html
+@@
+-                <nav class="ingredient-tabs" aria-label="Ingredientes">
+-                    <button class="ingredient-tabs__item is-active" type="button" data-ingredient="habichuela">Habichuela</button>
+-                    <button class="ingredient-tabs__item" type="button" data-ingredient="arroz">Arroz</button>
+-                    <button class="ingredient-tabs__item" type="button" data-ingredient="pimenton">Pimentón</button>
+-                    <button class="ingredient-tabs__item" type="button" data-ingredient="cebolla">Cebolla</button>
+-                    <button class="ingredient-tabs__item" type="button" data-ingredient="pechuga">Pechuga</button>
+-                    <button class="ingredient-tabs__item" type="button" data-ingredient="arveja">Arveja</button>
+-                    <button class="ingredient-tabs__item" type="button" data-ingredient="condimento">Condimento</button>
+-                    <button class="ingredient-tabs__item" type="button" data-ingredient="ajo">Ajo</button>
+-                </nav>
++                <nav class="ingredient-tabs" role="tablist" aria-label="Ingredientes">
++                    <button id="tab-habichuela" class="ingredient-tabs__item is-active" type="button" data-ingredient="habichuela" role="tab" aria-selected="true" aria-controls="panel-habichuela">Habichuela</button>
++                    <button id="tab-arroz" class="ingredient-tabs__item" type="button" data-ingredient="arroz" role="tab" aria-selected="false" aria-controls="panel-arroz" tabindex="-1">Arroz</button>
++                    <button id="tab-pimenton" class="ingredient-tabs__item" type="button" data-ingredient="pimenton" role="tab" aria-selected="false" aria-controls="panel-pimenton" tabindex="-1">Pimentón</button>
++                    <button id="tab-cebolla" class="ingredient-tabs__item" type="button" data-ingredient="cebolla" role="tab" aria-selected="false" aria-controls="panel-cebolla" tabindex="-1">Cebolla</button>
++                    <button id="tab-pechuga" class="ingredient-tabs__item" type="button" data-ingredient="pechuga" role="tab" aria-selected="false" aria-controls="panel-pechuga" tabindex="-1">Pechuga</button>
++                    <button id="tab-arveja" class="ingredient-tabs__item" type="button" data-ingredient="arveja" role="tab" aria-selected="false" aria-controls="panel-arveja" tabindex="-1">Arveja</button>
++                    <button id="tab-condimento" class="ingredient-tabs__item" type="button" data-ingredient="condimento" role="tab" aria-selected="false" aria-controls="panel-condimento" tabindex="-1">Condimento</button>
++                    <button id="tab-ajo" class="ingredient-tabs__item" type="button" data-ingredient="ajo" role="tab" aria-selected="false" aria-controls="panel-ajo" tabindex="-1">Ajo</button>
++                </nav>
+@@
+-                <section class="market-grid is-active" data-ingredient="habichuela" aria-label="Habichuela - Comparación de supermercados">
++                <section id="panel-habichuela" class="market-grid is-active" data-ingredient="habichuela" aria-label="Habichuela - Comparación de supermercados" role="tabpanel" aria-labelledby="tab-habichuela" tabindex="0">
+@@
+-                <section class="market-grid" data-ingredient="arroz" aria-label="Arroz - Comparación de supermercados" hidden>
++                <section id="panel-arroz" class="market-grid" data-ingredient="arroz" aria-label="Arroz - Comparación de supermercados" role="tabpanel" aria-labelledby="tab-arroz" hidden tabindex="0">
+@@
+-                <section class="market-grid" data-ingredient="pimenton" aria-label="Pimentón - Comparación de supermercados" hidden>
++                <section id="panel-pimenton" class="market-grid" data-ingredient="pimenton" aria-label="Pimentón - Comparación de supermercados" role="tabpanel" aria-labelledby="tab-pimenton" hidden tabindex="0">
+@@
+-                <section class="market-grid" data-ingredient="cebolla" aria-label="Cebolla - Comparación de supermercados" hidden>
++                <section id="panel-cebolla" class="market-grid" data-ingredient="cebolla" aria-label="Cebolla - Comparación de supermercados" role="tabpanel" aria-labelledby="tab-cebolla" hidden tabindex="0">
+@@
+-                <section class="market-grid" data-ingredient="pechuga" aria-label="Pechuga - Comparación de supermercados" hidden>
++                <section id="panel-pechuga" class="market-grid" data-ingredient="pechuga" aria-label="Pechuga - Comparación de supermercados" role="tabpanel" aria-labelledby="tab-pechuga" hidden tabindex="0">
+@@
+-                <section class="market-grid" data-ingredient="arveja" aria-label="Arveja - Comparación de supermercados" hidden>
++                <section id="panel-arveja" class="market-grid" data-ingredient="arveja" aria-label="Arveja - Comparación de supermercados" role="tabpanel" aria-labelledby="tab-arveja" hidden tabindex="0">
+@@
+-                <section class="market-grid" data-ingredient="condimento" aria-label="Condimento - Comparación de supermercados" hidden>
++                <section id="panel-condimento" class="market-grid" data-ingredient="condimento" aria-label="Condimento - Comparación de supermercados" role="tabpanel" aria-labelledby="tab-condimento" hidden tabindex="0">
+@@
+-                <section class="market-grid" data-ingredient="ajo" aria-label="Ajo - Comparación de supermercados" hidden>
++                <section id="panel-ajo" class="market-grid" data-ingredient="ajo" aria-label="Ajo - Comparación de supermercados" role="tabpanel" aria-labelledby="tab-ajo" hidden tabindex="0">
+*** End Patch
