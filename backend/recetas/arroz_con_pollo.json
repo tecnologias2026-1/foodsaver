@@ -1,0 +1,300 @@
+{
+  "recetas": [
+    {
+      "id": 1,
+      "nombre": "Arroz con Pollo",
+      "descripcion": "Un plato tradicional colombiano que combina arroz, pollo y verduras en una deliciosa mezcla de sabores.",
+      "imagen": "arroz_con_pollo.jpg",
+      "ingredientes": [
+        {
+          "id": 101,
+          "nombre": "Habichuela",
+          "imagen": "habichuela.jpg",
+          "botonAnadirBolsa": true,
+          "precios": [
+            {
+              "supermercado": "Éxito",
+              "precio": 3500,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Jumbo",
+              "precio": 3800,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "D1",
+              "precio": 2900,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
+              "supermercado": "Ara",
+              "precio": 3100,
+              "moneda": "COP",
+              "disponible": true
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "nombre": "Arroz",
+          "imagen": "arroz.jpg",
+          "botonAnadirBolsa": true,
+          "precios": [
+            {
+              "supermercado": "Éxito",
+              "precio": 4200,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Jumbo",
+              "precio": 4500,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "D1",
+              "precio": 3800,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Carulla",
+              "precio": 4800,
+              "moneda": "COP",
+              "disponible": true
+            }
+          ]
+        },
+        {
+          "id": 103,
+          "nombre": "Pimentón",
+          "imagen": "pimenton.jpg",
+          "botonAnadirBolsa": true,
+          "precios": [
+            {
+              "supermercado": "Éxito",
+              "precio": 2800,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Jumbo",
+              "precio": 3000,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Ara",
+              "precio": 2500,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Carulla",
+              "precio": 3200,
+              "moneda": "COP",
+              "disponible": false
+            }
+          ]
+        },
+        {
+          "id": 104,
+          "nombre": "Cebolla",
+          "imagen": "cebolla.jpg",
+          "botonAnadirBolsa": true,
+          "precios": [
+            {
+              "supermercado": "Éxito",
+              "precio": 1900,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "D1",
+              "precio": 1500,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Ara",
+              "precio": 1600,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Carulla",
+              "precio": 2100,
+              "moneda": "COP",
+              "disponible": true
+            }
+          ]
+        },
+        {
+          "id": 105,
+          "nombre": "Pechuga de Pollo",
+          "imagen": "pechuga.jpg",
+          "botonAnadirBolsa": true,
+          "precios": [
+            {
+              "supermercado": "Éxito",
+              "precio": 18000,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Jumbo",
+              "precio": 19500,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "D1",
+              "precio": 16000,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Carulla",
+              "precio": 20000,
+              "moneda": "COP",
+              "disponible": true
+            }
+          ]
+        },
+        {
+          "id": 106,
+          "nombre": "Arveja",
+          "imagen": "arveja.jpg",
+          "botonAnadirBolsa": true,
+          "precios": [
+            {
+              "supermercado": "Éxito",
+              "precio": 3100,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "D1",
+              "precio": 2700,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Ara",
+              "precio": 2900,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Jumbo",
+              "precio": 3400,
+              "moneda": "COP",
+              "disponible": false
+            }
+          ]
+        },
+        {
+          "id": 107,
+          "nombre": "Color (Tricompleto)",
+          "imagen": "tricompleto.jpg",
+          "botonAnadirBolsa": true,
+          "precios": [
+            {
+              "supermercado": "Éxito",
+              "precio": 2500,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "D1",
+              "precio": 2000,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Ara",
+              "precio": 2200,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Carulla",
+              "precio": 2800,
+              "moneda": "COP",
+              "disponible": true
+            }
+          ]
+        },
+        {
+          "id": 108,
+          "nombre": "Ajo",
+          "imagen": "ajo.jpg",
+          "botonAnadirBolsa": true,
+          "precios": [
+            {
+              "supermercado": "Éxito",
+              "precio": 1500,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Jumbo",
+              "precio": 1800,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "D1",
+              "precio": 1200,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Carulla",
+              "precio": 2000,
+              "moneda": "COP",
+              "disponible": false
+            }
+          ]
+        },
+        {
+          "id": 109,
+          "nombre": "arroz paisa",
+          "imagen": "arroz paisa. png",
+          "botonAnadirBolsa": true,
+          "precios": [
+            {
+              "supermercado": "1200",
+              "precio": 300.0,
+              "moneda": "cop",
+              "disponible": false
+            },
+            {
+              "supermercado": "carulla",
+              "precio": 490.0,
+              "moneda": "cop",
+              "disponible": true
+            },
+            {
+              "supermercado": "n",
+              "precio": 700.0,
+              "moneda": "cop",
+              "disponible": false
+            },
+            {
+              "supermercado": "exito",
+              "precio": 400.0,
+              "moneda": "cop",
+              "disponible": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
