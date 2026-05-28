@@ -57,6 +57,10 @@ el contenedor para mantener dos o más elementos en caso de futuras adiciones */
     align-items: center;
 }
 
+.menu-toggle {
+    position: relative;
+}
+
 /* Tamaño uniforme para iconos del header */
 /* Selecciona cualquier img dentro de .cart o .menu-toggle para aplicar el mismo tamaño */
 /* Es un selector descendiente. Apunta a elementos hijos img dentro de .cart o .menu-toggle */
@@ -80,7 +84,8 @@ el contenedor para mantener dos o más elementos en caso de futuras adiciones */
 }
 
 .cart .cart-count,
-.mobile-cart .cart-count {
+.mobile-cart .cart-count,
+.menu-toggle .cart-count {
     position: absolute;
     top: -6px;
     right: -6px;
@@ -100,7 +105,8 @@ el contenedor para mantener dos o más elementos en caso de futuras adiciones */
 }
 
 .cart .cart-count[hidden],
-.mobile-cart .cart-count[hidden] {
+.mobile-cart .cart-count[hidden],
+.menu-toggle .cart-count[hidden] {
     display: none;
 }
 
@@ -142,6 +148,20 @@ el contenedor para mantener dos o más elementos en caso de futuras adiciones */
     .mobile-card .mobile-cart .cart-count {
         /* move badge further inside the icon area and make it slightly smaller */
         top: -5px; /* slight offset outside icon corner for separation */
+        right: -5px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 4px;
+        font-size: 11px;
+        line-height: 18px;
+        box-sizing: border-box;
+    }
+}
+
+/* Mobile hamburger badge mirrors the cart count bubble */
+@media (max-width: 699px) {
+    .menu-toggle .cart-count {
+        top: -5px;
         right: -5px;
         min-width: 18px;
         height: 18px;
