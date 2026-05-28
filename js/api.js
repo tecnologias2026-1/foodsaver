@@ -82,14 +82,31 @@ function renderIngredientCards(grid, ingredients) {
   });
 }
 
+<<<<<<< Updated upstream
 // Solo se activa en páginas que tienen pestañas de ingredientes
 document.addEventListener('DOMContentLoaded', function () {
   const tabs = document.querySelectorAll('.ingredient-tabs__item');
   if (!tabs.length) return; // no es una página de receta, salir
+=======
+function getIngredientGrid(ingredientName) {
+  if (!ingredientName) return null;
+  return document.querySelector(`.market-grid[data-ingredient="${ingredientName}"]`);
+}
 
-  async function loadTab(tab) {
-    const ingredientName = tab.dataset.ingredient;
-    const grid = document.querySelector(`.market-grid[data-ingredient="${ingredientName}"]`);
+function setActiveIngredient(ingredientName) {
+  document.querySelectorAll('.ingredient-tabs__item').forEach(tab => {
+    tab.classList.toggle('is-active', tab.dataset.ingredient === ingredientName);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const tabs = document.querySelectorAll('.ingredient-tabs__item');
+  const ingredientSelect = document.getElementById('ingredient-select');
+  if (!tabs.length && !ingredientSelect) return;
+>>>>>>> Stashed changes
+
+  async function loadIngredient(ingredientName) {
+    const grid = getIngredientGrid(ingredientName);
     if (!grid) return;
 
     // Marcar como cargando solo si aún no se cargó desde el backend
@@ -105,6 +122,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const data = await fetchIngredients(ingredientName);
       console.log(`Ingredientes recibidos para "${ingredientName}":`, data);
       renderIngredientCards(grid, data);
+      document.dispatchEvent(new CustomEvent('foodsaver:ingredient-loaded', {
+        detail: { ingredientName, grid, data }
+      }));
     } catch (error) {
       console.error(`Error cargando "${ingredientName}":`, error);
       // Si falla, restaurar el contenido hardcodeado
@@ -114,12 +134,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Cargar la pestaña activa al inicio
   const activeTab = document.querySelector('.ingredient-tabs__item.is-active');
-  if (activeTab) loadTab(activeTab);
+  const initialIngredient = ingredientSelect?.value || activeTab?.dataset.ingredient;
+  if (initialIngredient) {
+    loadIngredient(initialIngredient);
+  }
 
   // Cargar cuando el usuario cambie de pestaña
   tabs.forEach(tab => {
     tab.addEventListener('click', function () {
-      loadTab(this);
+      const ingredientName = this.dataset.ingredient;
+      setActiveIngredient(ingredientName);
+      loadIngredient(ingredientName);
     });
   });
+
+  if (ingredientSelect) {
+    ingredientSelect.addEventListener('change', function () {
+      const ingredientName = this.value;
+      setActiveIngredient(ingredientName);
+      loadIngredient(ingredientName);
+    });
+  }
 });
