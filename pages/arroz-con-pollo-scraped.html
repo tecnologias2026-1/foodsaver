@@ -23,6 +23,7 @@
     <script defer src="../js/header.js"></script>
     <script defer src="../js/card-shared.js"></script>
     <script defer src="../js/card.js"></script>
+    <script defer src="../js/api.js"></script>
 
     <!-- Script para cambiar entre ingredientes -->
     <script>
@@ -181,6 +182,10 @@
             // ensure cheapest badges are present
             markCheapestCards();
 
+            document.addEventListener('foodsaver:ingredient-loaded', function () {
+                markCheapestCards();
+                syncIngredientCartIndicators();
+            });
             // Sync select with currently active grid (on load)
             (function initSelection() {
                 try {
