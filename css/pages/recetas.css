@@ -29,6 +29,15 @@
     justify-content: flex-start; /* asegurar que título e ícono queden juntos a la izquierda */
 }
 
+/* Back link used to return to 'Cómo funciona' — hidden on desktop, visible on mobile */
+.back-link {
+    display: none;
+    text-decoration: none;
+    color: #0f1724;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
 /* Estilos para los títulos h1 y h2 en section-heading: define tamaño, línea, peso y color de fuente */
 .section-heading h1,
 .section-heading h2 {
@@ -194,10 +203,48 @@
         padding: 2rem 0;
     }
 
+    .section-heading {
+        justify-content: flex-start;
+        text-align: left;
+        padding-top: 1.5rem;
+    }
+
+    .back-link {
+        display: inline-flex;
+        position: relative;
+        left: 0;
+        margin-right: 0.5rem;
+        align-items: center;
+        gap: 0.4rem;
+        color: #0f1724;
+    }
+
+    .section-icon {
+        display: none;
+    }
+
     .section-heading h1,
     .section-heading h2 {
-        font-size: 1.75rem;
-        line-height: 2.25rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        white-space: normal;
+    }
+
+    .section-heading.has-horizontal-scroll::after {
+        content: "Desliza →";
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: 0.5rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(0, 166, 62, 0.08);
+        color: #0f7a2d;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        flex: 0 0 auto;
     }
 
     /* Structural and spacing adjustments retained; sizes use clamp() */
@@ -210,9 +257,32 @@
 
     .category-list,
     .recipe-list {
-        gap: 1rem;
-        padding-inline-start: 0.75rem;
-        padding-inline-end: 0.75rem;
+        display: flex;
+        gap: 0.9rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-inline-start: 0.25rem;
+        padding-inline-end: 0.25rem;
+        padding-block: 0.75rem 0;
+        scroll-snap-type: x proximity;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .card {
+        width: clamp(190px, 72vw, 240px);
+        border-radius: 16px;
+        flex: 0 0 auto;
+    }
+
+    .card img {
+        height: 150px;
+    }
+
+    .card p,
+    .card .recipe-name {
+        padding: 0.85rem 0.9rem;
+        font-size: 0.98rem;
+        line-height: 1.4;
     }
 
     /* Footer styles moved to css/components/footer.css */
@@ -225,14 +295,29 @@
 /* Ajustes para móviles pequeños: reduce gap del contenedor y tamaños de títulos */
 @media (max-width: 480px) {
     .recipes-page .container {
-        gap: 1.5rem;
+        gap: 1.25rem;
+    }
+
+    .section-heading.has-horizontal-scroll::after {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.72rem;
     }
 
     .section-heading h1,
     .section-heading h2 {
-        font-size: 1.5rem;
-        line-height: 2rem;
+        font-size: 1.35rem;
+        line-height: 1.85rem;
     }
 
     /* Keep spacing and layout changes; sizes handled by clamp() */
+
+    .card img {
+        height: 140px;
+    }
+
+    .card p,
+    .card .recipe-name {
+        padding: 0.8rem 0.85rem;
+        font-size: 0.94rem;
+    }
 }

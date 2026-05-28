@@ -14,6 +14,31 @@ document.addEventListener('DOMContentLoaded', function () {
   const focusableSel = 'a, button, [tabindex]:not([tabindex="-1"])';
   const navLinksSelector = '.nav__link, .mobile-nav__link';
 
+  function ensureMenuBadge() {
+    let badge = menuToggle.querySelector('.cart-count');
+
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'cart-count';
+      badge.hidden = true;
+      badge.textContent = '0';
+      badge.setAttribute('role', 'status');
+      badge.setAttribute('aria-live', 'polite');
+      badge.setAttribute('aria-atomic', 'true');
+      badge.setAttribute('aria-hidden', 'true');
+      menuToggle.appendChild(badge);
+    }
+
+    return badge;
+  }
+
+  function renderMenuBadge(count) {
+    const badge = ensureMenuBadge();
+    badge.textContent = String(count);
+    badge.hidden = count === 0;
+    badge.setAttribute('aria-hidden', count === 0 ? 'true' : 'false');
+  }
+
   // Mantiene el foco dentro del menú móvil mientras está abierto
   // También permite cerrar el menú con la tecla Escape
   function trap(e) {
@@ -116,6 +141,15 @@ document.addEventListener('DOMContentLoaded', function () {
     open ? closeMenu() : openMenu();
   });
 
+  // Reutiliza el contador del carrito para mostrarlo también sobre el botón hamburguesa en móvil.
+  function syncMenuBadge() {
+    const saved = Number(localStorage.getItem('foodsaverCartCount'));
+    const count = Number.isFinite(saved) && saved > 0 ? saved : 0;
+    renderMenuBadge(count);
+  }
+
+  syncMenuBadge();
+
   // Cierra el menú si se hace click en el overlay, en un enlace o en el botón cerrar
   mobileMenu.addEventListener('click', function (e) {
     if (
@@ -184,6 +218,14 @@ document.addEventListener('DOMContentLoaded', function () {
       // Esto elimina la clase "menu-open", restaura el scroll
       // y hace que el carrito vuelva a mostrarse
       closeMenu();
+    }
+  });
+
+  document.addEventListener('foodsaver:cart-updated', syncMenuBadge);
+
+  window.addEventListener('storage', function (e) {
+    if (e && e.key === 'foodsaverCartCount') {
+      syncMenuBadge();
     }
   });
 });
