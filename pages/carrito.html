@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Configuración básica del documento -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Carrito — Foodsaver</title>
 
-    <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Hoja de estilos principal (modular) -->
     <link rel="stylesheet" href="../css/base/variables.css">
     <link rel="stylesheet" href="../css/base/reset.css">
     <link rel="stylesheet" href="../css/layout/header.css">
@@ -19,27 +16,18 @@
     <link rel="stylesheet" href="../css/components/buttons.css">
     <link rel="stylesheet" href="../css/pages/carrito.css">
 
-    <!-- Script del header: controla menú móvil y estados interactivos -->
-    <script defer src="../js/header.js"></script>
+    
+    
 </head>
 <body>
-    <!-- Enlace accesible para saltar directamente al contenido principal -->
     <a class="skip-link sr-only" href="#content">Saltar al contenido</a>
 
-    <!-- Header principal del sitio -->
     <header class="site-header">
         <div class="container header-inner">
-
-            <!-- Logo / marca principal que redirige al inicio -->
             <a href="../index.html" class="brand" aria-label="Foodsaver — Inicio">
-                <img
-                    src="../assets/icons/Foodsaver.png"
-                    alt="Logo Foodsaver"
-                >
+                <img src="../assets/icons/Foodsaver.png" alt="Logo Foodsaver">
                 <span class="brand__name">FOODSAVER</span>
             </a>
-
-            <!-- Navegación principal visible en desktop -->
             <nav class="main-nav" aria-label="Navegación principal">
                 <ul class="nav__list">
                     <li><a class="nav__link" href="../index.html">Inicio</a></li>
@@ -47,50 +35,23 @@
                     <li><a class="nav__link" href="como-funciona.html">Cómo funciona</a></li>
                 </ul>
             </nav>
-
-            <!-- Acciones del header: carrito y botón hamburguesa -->
             <div class="header-actions">
-
-                <!-- Acceso al carrito en desktop -->
                 <a href="carrito.html" class="cart" aria-label="Ver carrito">
-                    <img
-                        src="../assets/icons/Shopping_Bag.svg"
-                        alt="Icono de carrito de compras"
-                        aria-hidden="true"
-                    >
+                    <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito" aria-hidden="true">
                 </a>
-
-                <!-- Botón que abre el menú móvil -->
-                <button
-                    class="menu-toggle"
-                    type="button"
-                    aria-controls="mobile-menu"
-                    aria-expanded="false"
-                    aria-label="Abrir menú"
-                >
-                    <img
-                        src = "../assets/icons/Menu.svg"
-                        aria-hidden="true"
-                        focusable="false"
-                    >
+                <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú">
+                    <img src="../assets/icons/Menu.svg" aria-hidden="true" focusable="false">
                 </button>
             </div>
         </div>
 
-        <!-- Menú móvil oculto por defecto -->
         <div id="mobile-menu" class="mobile-menu" hidden>
-
-            <!-- Tarjeta central del menú móvil tratada como diálogo accesible -->
             <div class="mobile-card" role="dialog" aria-modal="true" aria-label="Navegación móvil">
-
-                <!-- Cabecera del menú móvil con botón de cierre -->
                 <header class="mobile-card__header">
                     <button class="mobile-close" type="button" aria-label="Cerrar menú">
                         <img src="../assets/icons/Close_Menu.svg" alt="" aria-hidden="true">
                     </button>
                 </header>
-
-                <!-- Navegación en versión móvil -->
                 <nav class="mobile-nav" aria-label="Navegación móvil">
                     <ul class="mobile-nav__list">
                         <li><a href="../index.html" class="mobile-nav__link">Inicio</a></li>
@@ -98,32 +59,190 @@
                         <li><a href="como-funciona.html" class="mobile-nav__link">Cómo funciona</a></li>
                     </ul>
                 </nav>
-
-                <!-- Acceso al carrito dentro del menú móvil -->
                 <a href="carrito.html" class="mobile-cart" aria-label="Ver carrito">
-                    <img
-                        src="../assets/icons/Shopping_Bag.svg"
-                        alt="Icono de carrito de compras"
-                        aria-hidden="true"
-                    >
+                    <img src="../assets/icons/Shopping_Bag.svg" alt="Icono de carrito" aria-hidden="true">
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Contenido principal de la página -->
     <main id="content" tabindex="-1">
-        <div class="empty-cart">
+
+        <!-- ── Estado: cargando ── -->
+        <div id="estado-cargando" class="empty-cart">
+            <p>Cargando bolsa...</p>
+        </div>
+
+        <!-- ── Estado: vacía ── -->
+        <div id="estado-vacio" class="empty-cart" hidden>
             <h1>Bolsa de Mercado</h1>
             <p>Tu bolsa está vacía. ¡Agrega algunos ingredientes!</p>
             <div class="empty-cart-card">
                 <div class="empty-cart-icon">
                     <img src="../assets/icons/Shopping_Bag.svg" alt="Carrito vacío">
                 </div>
-                <p>Aún no has consultado ningún producto</p>
+                <p>Aún no has agregado ningún producto</p>
                 <a href="recetas.html" class="btn-primary">Explorar recetas</a>
             </div>
         </div>
+
+        <!-- ── Estado: con items ── -->
+        <div id="estado-items" class="filled-cart" hidden>
+            <h1 class="cart-title">Bolsa de Mercado</h1>
+
+            <ul id="cart-items-list" class="cart-items-list" aria-label="Productos en la bolsa"></ul>
+
+            <div class="cart-summary">
+                <div class="cart-summary__top">
+                    <span>Total estimado</span>
+                    <strong id="cart-total">$0</strong>
+                </div>
+                <p id="cart-count" class="cart-summary__count"></p>
+                <div class="cart-summary__actions">
+                    <a href="recetas.html" class="btn-secondary">Seguir explorando</a>
+                    <button id="btn-vaciar" class="cart-clear-btn" type="button">Vaciar bolsa</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Estado: error ── -->
+        <div id="estado-error" class="empty-cart" hidden>
+            <h1>Bolsa de Mercado</h1>
+            <div class="empty-cart-card">
+                <div class="empty-cart-icon">
+                    <img src="../assets/icons/Shopping_Bag.svg" alt="Error">
+                </div>
+                <p id="error-msg">No se pudo cargar la bolsa.</p>
+                <!-- Reintentar deshabilitado: ahora el carrito usa solo localStorage -->
+                <button class="btn-primary" type="button" onclick="return false" disabled>Reintentar</button>
+
+            </div>
+        </div>
+
     </main>
+
+   <script>
+    const STORAGE_KEY = 'foodsaverCartItems';
+
+    function readCart() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            const parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed : [];
+        } catch {
+            return [];
+        }
+    }
+
+    function writeCart(items) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+        document.dispatchEvent(new CustomEvent('foodsaver:cart-updated'));
+    }
+
+    function getTotalCount(items) {
+        return items.reduce((total, item) => total + (Number(item.qty) || 0), 0);
+    }
+
+    function formatCOP(value) {
+        return Number(value || 0).toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+    }
+
+    const ESTADOS = ['estado-cargando', 'estado-vacio', 'estado-items', 'estado-error'];
+
+    function showOnly(id) {
+        ESTADOS.forEach(sid => {
+            const el = document.getElementById(sid);
+            el.hidden = sid !== id;
+            el.style.display = sid === id ? '' : 'none';
+        });
+    }
+
+    function renderCart() {
+        const items = readCart();
+
+        if (!items || items.length === 0) {
+            showOnly('estado-vacio');
+            return;
+        }
+
+        const list = document.getElementById('cart-items-list');
+
+        list.innerHTML = items.map(item => {
+            const nombre = item.nombre || 'Producto';
+            const tienda = item.tienda || '';
+            const imagen = item.imagen || '../assets/icons/Foodsaver.png';
+            const precio = Number(item.precio) || 0;
+            const qty = Number(item.qty) || 1;
+
+            return `
+                <li class="cart-item">
+                    <img
+                        class="cart-item__image"
+                        src="${imagen}"
+                        alt="${nombre}"
+                        onerror="this.src='../assets/icons/Foodsaver.png'"
+                    >
+                    <div class="cart-item__content">
+                        <h2>${nombre}</h2>
+                        <p class="cart-item__market">Supermercado: ${tienda}</p>
+                        <div class="cart-item__qty">
+                            <span>Cantidad:</span>
+                            <div class="qty-stepper">
+                                <button class="qty-stepper__btn" type="button" onclick="changeQty('${item.id}', -1)">−</button>
+                                <span class="qty-stepper__value">${qty}</span>
+                                <button class="qty-stepper__btn" type="button" onclick="changeQty('${item.id}', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-item__meta">
+                        <p class="cart-item__unit">Precio unitario: ${formatCOP(precio)}</p>
+                        <p class="cart-item__line-total">Subtotal: ${formatCOP(precio * qty)}</p>
+                        <button
+                            class="cart-item__remove"
+                            type="button"
+                            aria-label="Eliminar ${nombre}"
+                            onclick="removeItem('${item.id}')"
+                        >
+                            <img class="cart-item__remove-icon" src="../assets/icons/Trash.svg" alt="Eliminar">
+                        </button>
+                    </div>
+                </li>
+            `;
+        }).join('');
+
+        const total = items.reduce((acc, i) => acc + (Number(i.precio) || 0) * (Number(i.qty) || 1), 0);
+        document.getElementById('cart-total').textContent = formatCOP(total);
+        const count = getTotalCount(items);
+        document.getElementById('cart-count').textContent =
+            `${count} producto${count !== 1 ? 's' : ''} en tu bolsa`;
+
+        showOnly('estado-items');
+    }
+
+    function removeItem(id) {
+        const items = readCart().filter(item => item.id !== id);
+        writeCart(items);
+        renderCart();
+    }
+
+    function changeQty(id, delta) {
+        const items = readCart();
+        const item = items.find(i => i.id === id);
+        if (!item) return;
+        item.qty = Math.max(1, (Number(item.qty) || 1) + delta);
+        writeCart(items);
+        renderCart();
+    }
+
+    document.getElementById('btn-vaciar').addEventListener('click', () => {
+        if (!confirm('¿Seguro que quieres vaciar toda la bolsa?')) return;
+        writeCart([]);
+        renderCart();
+    });
+
+    window.addEventListener('storage', renderCart);
+
+    renderCart();
+</script>
 </body>
 </html>

@@ -13,22 +13,28 @@
           "botonAnadirBolsa": true,
           "precios": [
             {
+              "supermercado": "Éxito",
+              "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
               "supermercado": "Jumbo",
-              "precio": 2541,
+              "precio": 2990,
               "moneda": "COP",
               "disponible": true
             },
             {
-              "supermercado": "Mercado Libre",
+              "supermercado": "D1",
               "precio": null,
               "moneda": "COP",
               "disponible": false
             },
             {
-              "supermercado": "Olímpica",
-              "precio": null,
+              "supermercado": "Ara",
+              "precio": 3100,
               "moneda": "COP",
-              "disponible": false
+              "disponible": true
             }
           ]
         },
@@ -39,22 +45,28 @@
           "botonAnadirBolsa": true,
           "precios": [
             {
+              "supermercado": "Éxito",
+              "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
               "supermercado": "Jumbo",
               "precio": 1890,
               "moneda": "COP",
               "disponible": true
             },
             {
-              "supermercado": "Mercado Libre",
+              "supermercado": "D1",
               "precio": null,
               "moneda": "COP",
               "disponible": false
             },
             {
-              "supermercado": "Olímpica",
-              "precio": null,
+              "supermercado": "Carulla",
+              "precio": 4800,
               "moneda": "COP",
-              "disponible": false
+              "disponible": true
             }
           ]
         },
@@ -65,20 +77,26 @@
           "botonAnadirBolsa": true,
           "precios": [
             {
-              "supermercado": "Jumbo",
-              "precio": 4071,
-              "moneda": "COP",
-              "disponible": true
-            },
-            {
-              "supermercado": "Mercado Libre",
+              "supermercado": "Éxito",
               "precio": null,
               "moneda": "COP",
               "disponible": false
             },
             {
-              "supermercado": "Olímpica",
-              "precio": null,
+              "supermercado": "Jumbo",
+              "precio": 4790,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Ara",
+              "precio": 2500,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "Carulla",
+              "precio": 3200,
               "moneda": "COP",
               "disponible": false
             }
@@ -91,22 +109,28 @@
           "botonAnadirBolsa": true,
           "precios": [
             {
-              "supermercado": "Jumbo",
-              "precio": 1861,
+              "supermercado": "Éxito",
+              "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
+              "supermercado": "D1",
+              "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
+              "supermercado": "Ara",
+              "precio": 1600,
               "moneda": "COP",
               "disponible": true
             },
             {
-              "supermercado": "Mercado Libre",
-              "precio": null,
+              "supermercado": "Carulla",
+              "precio": 2100,
               "moneda": "COP",
-              "disponible": false
-            },
-            {
-              "supermercado": "Olímpica",
-              "precio": null,
-              "moneda": "COP",
-              "disponible": false
+              "disponible": true
             }
           ]
         },
@@ -117,22 +141,28 @@
           "botonAnadirBolsa": true,
           "precios": [
             {
+              "supermercado": "Éxito",
+              "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
               "supermercado": "Jumbo",
               "precio": null,
               "moneda": "COP",
               "disponible": false
             },
             {
-              "supermercado": "Mercado Libre",
+              "supermercado": "D1",
               "precio": null,
               "moneda": "COP",
               "disponible": false
             },
             {
-              "supermercado": "Olímpica",
-              "precio": null,
+              "supermercado": "Carulla",
+              "precio": 20000,
               "moneda": "COP",
-              "disponible": false
+              "disponible": true
             }
           ]
         },
@@ -143,48 +173,60 @@
           "botonAnadirBolsa": true,
           "precios": [
             {
-              "supermercado": "Jumbo",
-              "precio": 1990,
+              "supermercado": "Éxito",
+              "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
+              "supermercado": "D1",
+              "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
+              "supermercado": "Ara",
+              "precio": 2900,
               "moneda": "COP",
               "disponible": true
             },
             {
-              "supermercado": "Mercado Libre",
-              "precio": null,
+              "supermercado": "Jumbo",
+              "precio": 1990,
               "moneda": "COP",
-              "disponible": false
-            },
-            {
-              "supermercado": "Olímpica",
-              "precio": null,
-              "moneda": "COP",
-              "disponible": false
+              "disponible": true
             }
           ]
         },
         {
           "id": 107,
           "nombre": "Color (Tricompleto)",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/192137/7702175108385-1.jpg?v=637814018056970000",
+          "imagen": "tricompleto.jpg",
           "botonAnadirBolsa": true,
           "precios": [
             {
-              "supermercado": "Jumbo",
-              "precio": 890,
+              "supermercado": "Éxito",
+              "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
+              "supermercado": "D1",
+              "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
+              "supermercado": "Ara",
+              "precio": 2200,
               "moneda": "COP",
               "disponible": true
             },
             {
-              "supermercado": "Mercado Libre",
-              "precio": null,
+              "supermercado": "Carulla",
+              "precio": 2800,
               "moneda": "COP",
-              "disponible": false
-            },
-            {
-              "supermercado": "Olímpica",
-              "precio": null,
-              "moneda": "COP",
-              "disponible": false
+              "disponible": true
             }
           ]
         },
@@ -195,20 +237,26 @@
           "botonAnadirBolsa": true,
           "precios": [
             {
-              "supermercado": "Jumbo",
-              "precio": 1343,
-              "moneda": "COP",
-              "disponible": true
-            },
-            {
-              "supermercado": "Mercado Libre",
+              "supermercado": "Éxito",
               "precio": null,
               "moneda": "COP",
               "disponible": false
             },
             {
-              "supermercado": "Olímpica",
+              "supermercado": "Jumbo",
+              "precio": 1580,
+              "moneda": "COP",
+              "disponible": true
+            },
+            {
+              "supermercado": "D1",
               "precio": null,
+              "moneda": "COP",
+              "disponible": false
+            },
+            {
+              "supermercado": "Carulla",
+              "precio": 2000,
               "moneda": "COP",
               "disponible": false
             }

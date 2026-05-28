@@ -9,35 +9,37 @@ async function fetchIngredients() {
 function renderIngredients(ingredients) {
   // Create or find container for ingredients
   let container = document.getElementById('ingredients-container');
-  
+ 
   if (!container) {
-    // If container doesn't exist, create it
     container = document.createElement('section');
     container.id = 'ingredients-container';
     container.className = 'ingredients-section';
-    
+ 
     const main = document.querySelector('main');
     if (main) {
       main.appendChild(container);
     }
   }
-  
+ 
   if (!ingredients || ingredients.length === 0) {
     container.innerHTML = '<p>No hay ingredientes disponibles</p>';
     return;
   }
-  
+ 
   let html = '<h2>Ingredientes Disponibles</h2><div class="ingredients-grid">';
-  
+ 
   ingredients.forEach(ingredient => {
     const nombre = ingredient.nombre || ingredient.name || 'Sin nombre';
     const imagen = ingredient.imagen || ingredient.image || '';
     const precio = ingredient.precio || ingredient.price || 0;
     const tienda = ingredient.tienda || ingredient.seller || 'Tienda';
-    const id = ingredient.id || Math.random();
-    
+    const id     = ingredient.id || 0;
+    const url    = ingredient.url || '';
+ 
     html += `
-      <div class="ingredient-card market-card">
+      <div class="ingredient-card market-card"
+           data-ingrediente-id="${id}"
+           data-url="${url}">
         <img src="${imagen}" alt="${nombre}" onerror="this.src='../assets/icons/Foodsaver.png'">
         <h3>${nombre}</h3>
         <p class="market">${tienda}</p>
@@ -46,49 +48,51 @@ function renderIngredients(ingredients) {
       </div>
     `;
   });
-  
+ 
   html += '</div>';
   container.innerHTML = html;
-  
+ 
   // Attach event listeners to buttons
   document.querySelectorAll('#ingredients-container .add-btn').forEach(button => {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', async function () {
       const card = this.closest('.market-card');
-      if (card) {
-        const titleNode = card.querySelector('h3');
-        const marketNode = card.querySelector('.market');
-        const priceNode = card.querySelector('.price');
-        const imageNode = card.querySelector('img');
-        
-        const name = titleNode ? titleNode.textContent.trim() : 'Producto';
-        const market = marketNode ? marketNode.textContent.trim() : 'Supermercado';
-        const priceText = priceNode ? priceNode.textContent.trim() : '0';
-        const price = parseInt(priceText.replace(/[^0-9]/g, '')) || 0;
-        const image = imageNode ? imageNode.getAttribute('src') : '';
-        const itemId = (name + '|' + market).toLowerCase();
-        
-        // Get current cart
-        const itemsStorageKey = 'foodsaverCartItems';
-        const items = JSON.parse(localStorage.getItem(itemsStorageKey) || '[]');
-        
-        // Add or update item
-        const existing = items.find(item => item.id === itemId);
-        if (existing) {
-          existing.qty = (existing.qty || 1) + 1;
-        } else {
-          items.push({
-            id: itemId,
-            name: name,
-            market: market,
-            price: price,
-            image: image,
-            qty: 1
-          });
+      if (!card) return;
+ 
+      const nombre  = card.querySelector('h3')?.textContent.trim()           || 'Producto';
+      const tienda  = card.querySelector('.market')?.textContent.trim()      || 'Supermercado';
+      const priceText = card.querySelector('.price')?.textContent.trim()     || '0';
+      const imagen  = card.querySelector('img')?.getAttribute('src')         || '';
+      const precio  = parseInt(priceText.replace(/[^0-9]/g, ''))             || 0;
+      const ingrediente_id = parseInt(card.dataset.ingredienteId)            || 0;
+      const url     = card.dataset.url                                        || '';
+ 
+      // Disable button while request is in flight
+      this.disabled = true;
+      this.textContent = 'Agregando...';
+
+      try {
+        const response = await fetch('/api/bolsa/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ingrediente_id, nombre, imagen, precio, tienda, url }),
+        });
+
+ 
+        if (!response.ok) {
+          const err = await response.json().catch(() => ({}));
+          throw new Error(err.error || 'Error al agregar a la bolsa');
         }
-        
-        localStorage.setItem(itemsStorageKey, JSON.stringify(items));
-        document.dispatchEvent(new CustomEvent('foodsaver:cart-updated', { detail: { items } }));
-        alert(`${name} agregado a la bolsa`);
+ 
+        const item = await response.json();
+ 
+        document.dispatchEvent(new CustomEvent('foodsaver:cart-updated', { detail: { item } }));
+        alert(`${nombre} agregado a la bolsa ✓`);
+      } catch (error) {
+        console.error('Error al agregar a bolsa:', error);
+        alert('No se pudo agregar: ' + error.message);
+      } finally {
+        this.disabled = false;
+        this.textContent = 'Agregar a bolsa';
       }
     });
   });
