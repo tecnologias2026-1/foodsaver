@@ -27,15 +27,26 @@
     <!-- Script para cambiar entre ingredientes -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.ingredient-tabs__item');
+            const ingredientSelect = document.getElementById('ingredient-select');
             const compareButton = document.getElementById('compare-ingredients-btn');
             const ingredientSection = document.getElementById('ingredient-section');
             const scrapingInfo = document.getElementById('scraping-info');
             const compareStateKey = 'foodsaverRecipeCompareOpen';
+            const cartItemsStorageKey = 'foodsaverCartItems';
 
             function parsePrice(text) {
                 const numeric = Number((text || '').replace(/[^0-9]/g, ''));
                 return Number.isFinite(numeric) ? numeric : Number.POSITIVE_INFINITY;
+            }
+
+            function readCartItems() {
+                try {
+                    const raw = localStorage.getItem(cartItemsStorageKey);
+                    const parsed = raw ? JSON.parse(raw) : [];
+                    return Array.isArray(parsed) ? parsed : [];
+                } catch (error) {
+                    return [];
+                }
             }
 
             function markCheapestCards() {
@@ -80,32 +91,14 @@
                     }
                 });
             }
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const ingredientName = this.dataset.ingredient;
-                    
-                    // Remove active state from all tabs
-                    tabs.forEach(t => t.classList.remove('is-active'));
-                    
-                    // Add active state to clicked tab
-                    this.classList.add('is-active');
-                    
-                    // Hide all market grids
-                    const grids = document.querySelectorAll('.market-grid');
-                    grids.forEach(grid => {
-                        grid.hidden = true;
-                        grid.classList.remove('is-active');
-                    });
-                    
-                    // Show the selected grid
-                    const selectedGrid = document.querySelector(`.market-grid[data-ingredient="${ingredientName}"]`);
-                    if (selectedGrid) {
-                        selectedGrid.hidden = false;
-                        selectedGrid.classList.add('is-active');
-                    }
+
+            // Dropdown select handler
+            if (ingredientSelect) {
+                ingredientSelect.addEventListener('change', function () {
+                    const ingredientName = this.value;
+                    showIngredientGrid(ingredientName);
                 });
-            });
+            }
 
             if (compareButton && ingredientSection) {
                 compareButton.addEventListener('click', function () {
@@ -133,7 +126,220 @@
                 compareButton.setAttribute('aria-expanded', 'false');
             }
 
+            // helper to centralize show/hide logic
+            function showIngredientGrid(ingredientName) {
+                const grids = document.querySelectorAll('.market-grid');
+                grids.forEach(grid => {
+                    if (grid.dataset && grid.dataset.ingredient === ingredientName) {
+                        grid.hidden = false;
+                        grid.classList.add('is-active');
+                    } else {
+                        grid.hidden = true;
+                        grid.classList.remove('is-active');
+                    }
+                });
+                // scroll the results area into view for the user
+                const results = document.querySelector('.ingredient-results');
+                if (results) results.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            function getIngredientGridMatches(grid, cartItems) {
+                const cards = Array.from(grid.querySelectorAll('.market-card'));
+
+                return cartItems.some(function (item) {
+                    if (!item) return false;
+
+                    const itemId = String(item.id || '').toLowerCase();
+                    return cards.some(function (card) {
+                        const titleNode = card.querySelector('h2');
+                        const marketNode = card.querySelector('.market');
+                        const cardName = titleNode ? titleNode.textContent.trim().toLowerCase() : '';
+                        const cardMarket = marketNode ? marketNode.textContent.trim().toLowerCase() : '';
+                        const cardId = (cardName + '|' + cardMarket).toLowerCase();
+
+                        return itemId === cardId || (
+                            String(item.name || '').trim().toLowerCase() === cardName &&
+                            String(item.market || '').trim().toLowerCase() === cardMarket
+                        );
+                    });
+                });
+            }
+
+            function syncIngredientCartIndicators() {
+                const cartItems = readCartItems();
+                const grids = document.querySelectorAll('.market-grid');
+
+                grids.forEach(function (grid) {
+                    const ingredientName = grid && grid.dataset ? grid.dataset.ingredient : null;
+                    if (!ingredientName) return;
+
+                    const hasCartItems = getIngredientGridMatches(grid, cartItems);
+                    markIngredientInCart(ingredientName, hasCartItems);
+                });
+            }
+
+            // ensure cheapest badges are present
             markCheapestCards();
+
+            // Sync select with currently active grid (on load)
+            (function initSelection() {
+                try {
+                    const activeGrid = document.querySelector('.market-grid.is-active');
+                    const defaultIngredient = activeGrid && activeGrid.dataset ? activeGrid.dataset.ingredient : 'habichuela';
+                    if (ingredientSelect) {
+                        ingredientSelect.value = defaultIngredient;
+                    }
+                    // make sure correct grid is visible
+                    showIngredientGrid(defaultIngredient);
+                } catch (err) {
+                    // no-op
+                }
+            })();
+
+            // Build a custom-styled dropdown UI to make options prettier
+            function createCustomSelect(select) {
+                if (!select) return;
+
+                // visually hide native select but keep it in the DOM for accessibility/fallback
+                select.classList.add('visually-hidden');
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'custom-select';
+
+                const selected = document.createElement('button');
+                selected.type = 'button';
+                selected.className = 'custom-select__selected';
+                selected.setAttribute('aria-haspopup', 'listbox');
+                selected.setAttribute('aria-expanded', 'false');
+
+                const badge = document.createElement('span');
+                badge.className = 'custom-select__badge';
+                const label = document.createElement('span');
+                label.className = 'custom-select__label';
+                selected.append(badge, label);
+
+                const list = document.createElement('ul');
+                list.className = 'custom-select__list';
+                list.setAttribute('role', 'listbox');
+
+                Array.from(select.options).forEach(function (opt, i) {
+                    const li = document.createElement('li');
+                    li.className = 'custom-select__option';
+                    li.dataset.value = opt.value;
+                    li.setAttribute('role', 'option');
+                    li.tabIndex = 0;
+
+                    const numSpan = document.createElement('span');
+                    numSpan.className = 'custom-select__num';
+                    // preserve the numbering (if present) or use index+1
+                    const m = (opt.text || '').match(/^\s*(\d+)\.?\s*/);
+                    numSpan.textContent = m ? m[1] : String(i + 1);
+
+                    const textSpan = document.createElement('span');
+                    textSpan.className = 'custom-select__opttext';
+                    textSpan.textContent = (opt.text || '').replace(/^\s*\d+\.?\s*/, '');
+
+                    li.append(numSpan, textSpan);
+
+                    li.addEventListener('click', function () {
+                        select.value = this.dataset.value;
+                        select.dispatchEvent(new Event('change', { bubbles: true }));
+                        updateSelected();
+                        closeList();
+                    });
+
+                    li.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.click();
+                        }
+                    });
+
+                    list.append(li);
+                });
+
+                wrapper.append(selected, list);
+                select.parentNode.appendChild(wrapper);
+
+                function updateSelected() {
+                    const val = select.value;
+                    const opt = select.options[select.selectedIndex];
+                    const numMatch = (opt && opt.text) ? opt.text.match(/^\s*(\d+)\.?\s*/) : null;
+                    badge.textContent = numMatch ? numMatch[1] : '';
+                    // remove numeric prefix from the visible label to avoid duplicate numbers
+                    const textWithoutNumber = opt && opt.text ? opt.text.replace(/^\s*\d+\.?\s*/, '') : '';
+                    label.textContent = textWithoutNumber;
+
+                    const items = list.querySelectorAll('.custom-select__option');
+                    items.forEach(it => it.classList.toggle('is-active', it.dataset.value === val));
+                }
+
+                function openList() {
+                    list.classList.add('is-open');
+                    selected.setAttribute('aria-expanded', 'true');
+                }
+
+                function closeList() {
+                    list.classList.remove('is-open');
+                    selected.setAttribute('aria-expanded', 'false');
+                }
+
+                selected.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (list.classList.contains('is-open')) closeList(); else openList();
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!wrapper.contains(e.target)) closeList();
+                });
+
+                // keep custom label in sync if the native select changes
+                select.addEventListener('change', updateSelected);
+
+                updateSelected();
+            }
+
+            // When a user adds a product to the bag on this page, mark the related ingredient option
+            function markIngredientInCart(ingredientName, inCart) {
+                if (!ingredientSelect) return;
+                const opt = ingredientSelect.querySelector(`option[value="${ingredientName}"]`);
+                if (opt) {
+                    if (inCart) opt.dataset.inCart = 'true'; else delete opt.dataset.inCart;
+                }
+
+                // update the custom select list item if present
+                const customOpt = document.querySelector(`.custom-select__option[data-value="${ingredientName}"]`);
+                if (customOpt) {
+                    if (inCart) {
+                        customOpt.classList.add('has-cart');
+                        if (!customOpt.querySelector('.custom-select__cart')) {
+                            const cartEl = document.createElement('span');
+                            cartEl.className = 'custom-select__cart';
+                            cartEl.setAttribute('aria-hidden', 'true');
+                            cartEl.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6h15l-1.5 9h-11L6 6z" stroke="#0B6A2B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1" fill="#0B6A2B"/><circle cx="18" cy="20" r="1" fill="#0B6A2B"/></svg>';
+                            customOpt.append(cartEl);
+                        }
+                    } else {
+                        customOpt.classList.remove('has-cart');
+                        const existing = customOpt.querySelector('.custom-select__cart');
+                        if (existing) existing.remove();
+                    }
+                }
+            }
+
+            document.addEventListener('foodsaver:cart-updated', syncIngredientCartIndicators);
+
+            window.addEventListener('storage', function (event) {
+                if (event && event.key === cartItemsStorageKey) {
+                    syncIngredientCartIndicators();
+                }
+            });
+
+            // initialize custom select
+            if (ingredientSelect) createCustomSelect(ingredientSelect);
+
+            // Sync indicators from the actual cart state whenever the page loads or the cart changes.
+            syncIngredientCartIndicators();
 
         });
     </script>
@@ -275,18 +481,29 @@
         <!-- Ingredientes -->
         <section class="recipe-detail__section container" aria-labelledby="recipe-title">
             <section id="ingredient-section" class="ingredient-section" aria-label="Comparador por ingrediente" hidden>
-                <nav class="ingredient-tabs" aria-label="Ingredientes">
-                    <button class="ingredient-tabs__item is-active" type="button" data-ingredient="habichuela">Habichuela</button>
-                    <button class="ingredient-tabs__item" type="button" data-ingredient="arroz">Arroz</button>
-                    <button class="ingredient-tabs__item" type="button" data-ingredient="pimenton">Pimentón</button>
-                    <button class="ingredient-tabs__item" type="button" data-ingredient="cebolla">Cebolla</button>
-                    <button class="ingredient-tabs__item" type="button" data-ingredient="pechuga">Pechuga</button>
-                    <button class="ingredient-tabs__item" type="button" data-ingredient="arveja">Arveja</button>
-                    <button class="ingredient-tabs__item" type="button" data-ingredient="condimento">Condimento</button>
-                    <button class="ingredient-tabs__item" type="button" data-ingredient="ajo">Ajo</button>
-                </nav>
+                <div class="ingredient-section__header">
+                    <p class="ingredient-section__eyebrow">Comparador por ingrediente</p>
+                    <h2 class="ingredient-section__title">Selecciona un ingrediente</h2>
+                    <p class="ingredient-section__subtitle">Explora cada ingrediente en una lista clara y cambia entre supermercados con un toque.</p>
+                </div>
 
-                <!-- Habichuela Section -->
+                <div class="ingredient-select-wrapper">
+                    <label for="ingredient-select" class="sr-only">Selecciona un ingrediente</label>
+                    <select id="ingredient-select" class="ingredient-select" aria-label="Selecciona ingrediente">
+                        <option value="habichuela" selected>1. Habichuela</option>
+                        <option value="arroz">2. Arroz</option>
+                        <option value="pimenton">3. Pimentón</option>
+                        <option value="cebolla">4. Cebolla</option>
+                        <option value="pechuga">5. Pechuga</option>
+                        <option value="arveja">6. Arveja</option>
+                        <option value="condimento">7. Condimento</option>
+                        <option value="ajo">8. Ajo</option>
+                    </select>
+                </div>
+
+                <!-- Área de resultados -->
+                <div class="ingredient-results">
+                    <!-- Habichuela Section -->
                 <section class="market-grid is-active" data-ingredient="habichuela" aria-label="Habichuela - Comparación de supermercados">
                 <article class="market-card">
                     <img
@@ -717,6 +934,7 @@
                         </div>
                     </article>
                 </section>
+                </div>
             </section>
 
             <section id="scraping-info" class="scraping-info" aria-label="Estado de resultados" hidden>
