@@ -82,12 +82,6 @@ function renderIngredientCards(grid, ingredients) {
   });
 }
 
-<<<<<<< Updated upstream
-// Solo se activa en páginas que tienen pestañas de ingredientes
-document.addEventListener('DOMContentLoaded', function () {
-  const tabs = document.querySelectorAll('.ingredient-tabs__item');
-  if (!tabs.length) return; // no es una página de receta, salir
-=======
 function getIngredientGrid(ingredientName) {
   if (!ingredientName) return null;
   return document.querySelector(`.market-grid[data-ingredient="${ingredientName}"]`);
@@ -103,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const tabs = document.querySelectorAll('.ingredient-tabs__item');
   const ingredientSelect = document.getElementById('ingredient-select');
   if (!tabs.length && !ingredientSelect) return;
->>>>>>> Stashed changes
 
   async function loadIngredient(ingredientName) {
     const grid = getIngredientGrid(ingredientName);
@@ -114,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     grid.dataset.loaded = 'true';
 
-    // Mostrar estado de carga
     const originalContent = grid.innerHTML;
     grid.innerHTML = '<p style="padding:1rem;color:var(--color-text-secondary)">Cargando precios...</p>';
 
